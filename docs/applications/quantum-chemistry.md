@@ -22,19 +22,6 @@ spack load intel-oneapi-mpi
 time mpirun -np $SLURM_NTASKS nwchem input.nw
 ```
 
-## CP2K
-
-Quantum chemistry and solid-state physics — atomistic simulations of solids,
-liquids, molecular and biological systems. Site: <https://www.cp2k.org>.
-
-```bash
-#SBATCH --partition=cpu
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=48
-spack load cp2k
-mpirun -np $SLURM_NTASKS cp2k.popt -i input.inp
-```
-
 ## OpenMolcas
 
 Multiconfigurational quantum chemistry. Site: <https://www.molcas.org/>.

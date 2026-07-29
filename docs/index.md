@@ -1,6 +1,6 @@
 # PARAM Rudra — 20 PetaFlop System User Manual
 
-![C-DAC PARAM Rudra — 20 PetaFlop Supercomputer](assets/hero.svg){ loading=lazy }
+![C-DAC PARAM Rudra — 20 PetaFlop Supercomputer](assets/img/hero.png){ loading=lazy }
 
 Welcome to the user documentation for **PARAM Rudra**, a ~20 PetaFlop
 supercomputer operated under the **National Supercomputing Mission (NSM)** by
@@ -23,14 +23,15 @@ supported by MeitY and DST, Government of India.*{ .cobrand-caption }
 
 | Resource | Count | Node name prefix | Partition |
 | --- | --- | --- | --- |
+| **Total nodes** | **3,074** | — | — |
 | **Total compute nodes** | **2,906** | — | — |
 | CPU-only nodes (2× Xeon Gold 6240R, 48c, 192 GB) | 2,266 | `cbcn####` | `cpu` |
 | GPU nodes (+ 2× NVIDIA A100 80 GB) | 320 | `cbgpu####` | `gpu` |
 | High-memory nodes (768 GB RAM) | 320 | `cbhm####` | `hm` |
 | Peak performance | ~20 PFLOPS | — | — |
 | Interconnect | **InfiniBand NDR** | — | — |
-| Storage | **Lustre** (10 PiB + 10 PiB archival) | — | — |
-| OS / scheduler | Rocky Linux 9.6 / SLURM 23.11.10 | — | — |
+| Storage | **Lustre** (20 PiB + 10 PiB archival) | — | — |
+| OS / scheduler | Rocky Linux 9.6 / SLURM 25.11.6 | — | — |
 | Login nodes | 14 (`login01…`) | — | — |
 
 <div class="grid cards" markdown>

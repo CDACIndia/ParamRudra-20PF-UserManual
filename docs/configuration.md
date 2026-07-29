@@ -7,7 +7,7 @@ on **Intel Xeon (2nd Gen Cascade Lake) processors** and **NVIDIA A100 GPUs**.
 
 ## Architecture diagram
 
-![PARAM Rudra system architecture — users connect via SSH/2FA to login and service nodes, which reach CPU, GPU and high-memory compute over the InfiniBand NDR fabric, backed by Lustre storage](assets/architecture.svg){ loading=lazy }
+![PARAM Rudra system architecture — users connect via SSH/2FA to login and service nodes, which reach CPU, GPU and high-memory compute over the InfiniBand NDR fabric, backed by Lustre storage](assets/img/ParamArchitecture.png){ loading=lazy }
 
 ## Headline numbers
 
@@ -20,9 +20,9 @@ on **Intel Xeon (2nd Gen Cascade Lake) processors** and **NVIDIA A100 GPUs**.
 | Management nodes | 24 |
 | Visualization nodes | 2 |
 | Interconnect | InfiniBand **NDR** (primary) + 10 Gbps Ethernet (secondary) |
-| Parallel filesystem | **Lustre** — 10 PiB primary + 10 PiB archival, ~100 GB/s |
+| Parallel filesystem | **Lustre** — 20 PiB primary + 10 PiB archival |
 | Operating system | Rocky Linux 9.6 |
-| Scheduler | SLURM 23.11.10 |
+| Scheduler | SLURM 25.11.6 |
 
 ## Node types and per-node hardware
 
@@ -68,10 +68,6 @@ is 13,824 CUDA cores and 160 GB of GPU memory per node.
 - Of the 20 PiB primary storage, 18 PiB delivers a throughput of 150 GB/s, while the remaining 2 PiB is flash-based and provides a throughput of 500 GB/s.
 <br>
 
-![PARAM Rudra Architecture Diagram  —](assets/img/ParamArchitecture.png){ loading=lazy }
-*Figure : PARAM Rudra Architecture Diagram.*
-<br>
-<br>
 
 ## Operating System 
 The operating system on PARAM Rudra is Linux – Rocky 9.6
@@ -125,7 +121,7 @@ C-CHAKSHU, a multi-cluster management tool designed to help administrators opera
 | Operating system | Rocky Linux 9.6 (x86_64) |
 | Provisioning / cluster manager | xCAT |
 | Monitoring | **C-CHAKSHU**, Nagios, Ganglia |
-| Resource manager | SLURM 23.11.10 |
+| Resource manager | SLURM 25.11.6 |
 | I/O | Lustre client |
 | Interconnect stack | Mellanox InfiniBand (MLNX_OFED) |
 | Compilers | GNU (gcc/g++/gfortran), Intel oneAPI (icx/icpx/ifx) |
