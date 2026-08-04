@@ -21,7 +21,7 @@ Copy the benchmark dataset to your working directory before running the example:
 
 ```bash
 cp -r /home/apps/hpc_inputs/applications/CP2K/H2O.inp .
-cd Motorbike_bench_template.tar.gz
+cd H2O.inp
 ```
 
 

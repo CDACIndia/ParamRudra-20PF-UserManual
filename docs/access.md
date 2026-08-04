@@ -197,7 +197,8 @@ The first login sequence:
    and scan it. A new entry appears (e.g. `Cluster: you@login`).
 3. Enter the **6-digit OTP** from the app to complete 2FA setup.
 4. Enter your **temporary password**. You are then required to **set a new
-   password** of your own.
+   password** of your own. It is recommended to use a strong password containing a combination of lowercase and uppercase letters, numbers, and a few special characters that are easy for you to remember.            
+5. Your password will be valid for 90 days. On expiry of 90 days period, you will be prompted to change your password, on attempting to log in. You are required to provide a new password. 
 
 **Every subsequent login:** username → CAPTCHA → current 6-digit OTP → password.
 
@@ -205,18 +206,20 @@ The first login sequence:
     Login nodes are shared gateways for **editing, compiling, data transfer and
     job submission** — never for running computations. See [Policies](policies.md).
 
-## Passwords
+### Forgot Password?
 
-- Your new password must be strong (upper + lower case, digits, a few special
-  characters).
-- Passwords are valid for **90 days**; you are prompted to change on expiry.
-- Change it any time with:
-  ```bash
-  passwd
-  ```
-- **Forgot your password?** Raise a ticket at
-  `https://paramrudra.cdac.in/support`; after email verification the support team
-  resets it and emails you a temporary password to change on next login.
+1. Please open a ticket regarding this issue, and the support team will assist you with your problem. Follow the steps below:
+2. Visit the PARAM Rudra support site (ticketing system) by clicking the following link:
+<https://paramrudra.cdacb.in/support>
+3. Log in using your username or registered email ID.
+4. Raise a ticket to request a password reset.
+5. The support team will respond with an email for verification.
+6. Once you acknowledge the email, the password will be reset for you, and you will receive an email confirming the same.
+7. You can then log in using the temporary password provided and set a new password of your choice.
+
+### How to change the password:
+
+Use the passwd command to change your user password. Enter your current password, followed by your new password, and then confirm the new password.
 
 ## Optional: SSH config convenience
 

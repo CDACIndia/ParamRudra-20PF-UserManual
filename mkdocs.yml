@@ -127,6 +127,7 @@ nav:
 
   - User Guide:
       - Best Practices & Performance: best-practices.md
+      - Important Facts : important-facts.md
       - Debugging: debugging.md
       - Data Management: data.md
       - Policies: policies.md

@@ -1,24 +1,47 @@
 # Building Software
 
-This page covers compiling your own code on PARAM Rudra: compilers, MPI, CUDA,
-MKL and OpenACC. Toolchains are provided through **[Spack](spack.md)**.
+## Preparing Your Own Executable
 
-!!! tip "Compile on the login node; run on compute nodes"
-    *Compilation is done on the login node; execution happens on compute nodes
-    via SLURM.* Long or heavy builds are better done in a short
-    [interactive job](batch.md#interactive-jobs). Compile and run with the **same
-    compiler and library versions** to avoid surprises.
+The compilations are done on the login node, whereas the execution happens on the compute nodes via the scheduler (SLURM).
 
-## Available compilers
+**Note:** The compilation and execution must be done with the same libraries and matching version to avoid unexpected results. 
 
-| Toolchain | Command(s) | Versions available |
-| --- | --- | --- |
-| GNU | `gcc` / `g++` / `gfortran` | 8.5.0, 9.5.0, 10.5.0, 11.5.0, 12.5.0, 13.4.0, 14.3.0, 15.2.0 |
-| Intel oneAPI | `icx` / `icpx` / `ifx` (classic: `icc`/`ifort`) | 2022.2.0, 2024.2.1 |
-| Intel MPI + GNU | `mpicc` / `mpicxx` / `mpif90` | 2021.18.0 |
-| Intel MPI + Intel | `mpiicx` / `mpiicpx` / `mpiifx` | 2021.18.0 |
-| CUDA | `nvcc` | 11.8.0, 12.2.2, 13.1.1 |
-| NVIDIA HPC SDK | `nvc` / `nvfortran` (OpenACC) | via `nvhpc` |
+Steps:
+
+1. Load required modules on the login node.
+2. Do the compilation.
+3. Open the job submission script and specify the same modules to be loaded as used while compilation.
+4. Submit the script.
+
+The directory contains a few sample programs and their sample job submission scripts. The compilation and execution instructions are described in the beginning of the respective files.
+
+The user can copy the directory to his/her home directory and further try compiling and executing these sample codes. The command for copying is as follows:
+
+```bash
+cp -r /home/apps/Docs/samples/ ~/.
+```
+
+1. mm.c          	- Serial Version of Matrix-Matrix Multiplication of two NxN matrices
+2. mm_omp.c     	- Basic OpenMP Version of Matrix-Matrix Multiplication of two NxN matrices
+3. mm_mpi.c     	- Basic MPI Version of Matrix-Matrix Multiplication of two NxN matrices
+4. mm_acc.c 	- OpenAcc Version of Matrix-Matrix Multiplication of two NxN matrices
+5. mm_blas.cu   	 - CUDA Matrix Multiplication program using the cuBlas library.
+6. mm_mkl.c     	 - MKL Matrix Multiplication program.
+7. laplace_acc.c 	- OpenACC version of the basic stencil problem.
+
+It is recommended to use the intel compilers since they are better optimized for the hardware.
+
+## Available Compilers
+
+| **Compiler Command** | **Description** | **Available Versions** |
+|----------------------|-----------------|------------------------|
+| `gcc`, `g++`, `gfortran` | GNU Compilers (C/C++/Fortran) | 8.5.0, 9.5.0, 10.5.0, 11.5.0, 12.5.0, 13.4.0, 14.3.0, 15.2.0 |
+| `icc`, `icpc`, `ifort` | Intel Classic Compilers (C/C++/Fortran) | 2022.2.0 |
+| `icx`, `icpx`, `ifx` | Intel oneAPI Compilers (C/C++/Fortran) | 2024.2.1 |
+| `mpicc`, `mpicxx`, `mpif90` | Intel MPI with GNU Compilers (C/C++/Fortran) | 2021.18.0 |
+| `mpiicc`, `mpiicpc`, `mpiifort` | Intel MPI with Intel Compilers (C/C++/Fortran) | 2021.18.0 |
+| `nvcc` | NVIDIA CUDA C Compiler | 11.8.0, 12.2.2, 13.1.1 |
+
 
 Confirm exact builds/hashes with `spack find -l gcc`, `spack find -l intel-oneapi-compilers`, etc.
 
