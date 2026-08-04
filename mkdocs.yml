@@ -108,11 +108,14 @@ nav:
   - Software:
       - Modules & Conda: modules.md
       - Spack Packages: spack.md
+      - HPC Containers: apptainer.md
+      - HPC Apptainer Scripts: apptainer_slurmscript.md
       - Building Software: building.md
 
   - GPU & AI:
       - GPU Computing: gpu.md
       - Machine Learning / DL: machine-learning.md
+      - GPU Containers: enroot.md
 
   - Applications:
       - Overview: applications/index.md
