@@ -1,6 +1,6 @@
 # PARAM Rudra (20 PetaFlop) — User Manual
 
-[![Build & Deploy](https://github.com/samcom12/paramrudra-user-manual/actions/workflows/deploy.yml/badge.svg)](https://github.com/samcom12/paramrudra-user-manual/actions/workflows/deploy.yml)
+[![Build & Deploy](https://github.com/CDACIndia/ParamRudra-20PF-UserManual/actions/workflows/deploy.yml/badge.svg)](https://github.com/CDACIndia/ParamRudra-20PF-UserManual/actions/workflows/deploy.yml)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](LICENSE)
 
 A free, community-maintained user manual for **PARAM Rudra**, a ~20 PetaFlop
@@ -8,8 +8,8 @@ supercomputer under the National Supercomputing Mission (NSM) at C-DAC. It is
 grounded in the official C-DAC PARAM Rudra User Manual plus the live login banner
 and SLURM configuration.
 
-📖 **Live site:** https://samcom12.github.io/paramrudra-user-manual/
-📄 **PDF:** [Download the full manual](https://samcom12.github.io/paramrudra-user-manual/assets/PARAM-Rudra-20PF-User-Manual.pdf) (auto-generated each build)
+📖 **Live site:** https://cdacindia.github.io/ParamRudra-20PF-UserManual/
+📄 **PDF:** [Download the full manual](https://cdacindia.github.io/ParamRudra-20PF-UserManual/assets/PARAM-Rudra-20PF-User-Manual.pdf) (auto-generated each build)
 
 ## What's inside
 
