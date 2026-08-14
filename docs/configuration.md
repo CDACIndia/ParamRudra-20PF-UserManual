@@ -1,13 +1,116 @@
-# System Configuration
+# System  Architecture and Configuration
 
-PARAM Rudra is the ~20 PetaFlop supercomputing facility at **C-DAC Bangalore**,
-designed and implemented by the HPC Technologies group of C-DAC under the
-National Supercomputing Mission (NSM). It is a heterogeneous, hybrid system based
-on **Intel Xeon (2nd Gen Cascade Lake) processors** and **NVIDIA A100 GPUs**.
+The PARAM Rudra 20 PF HPC System is based on the Intel Xeon Gold 6240R with a total peak performance of 20 PFLOPS. The cluster consists of compute nodes connected with the InfiniBand NDR Low-Latency, High-Bandwidth InfiniBand interconnect network. The system uses the Lustre parallel file system.
+
+- Total number of Nodes: 2946
+    - Login Nodes: 14
+    - Management Nodes: 24
+    - Visualization Nodes : 2
+    - CPU only Nodes: 2266
+    - GPU Nodes: 320
+    - High Memory CPU only Nodes: 320
+
+## Login Nodes 
+
+Login nodes are typically used for administrative tasks such as editing files, writing scripts, transferring files, managing jobs, and related activities. Users are always connected to one of the login nodes upon logging in. From a login node, users can connect to a compute node to execute interactive jobs or submit batch jobs through the Slurm workload manager for execution on compute nodes. Since the PARAM Rudra login nodes serve as the entry point for all users, they are shared resources. By default, there are limits on the CPU time and memory that each user can utilize on a login node. If either of these limits is exceeded, the user's process or job will be terminated. 
+
+
+| **Specification** | **Value** |
+|-------------------|-----------|
+| **Number of Login Nodes** | 14 |
+| **Processor** | 2 × Intel® Xeon® Gold 6240R |
+| **CPU Frequency** | 2.4 GHz |
+| **Cores per Login Node** | 48 |
+| **Total CPU Cores** | 672 |
+| **Memory per Login Node** | 192 GB |
+| **Total Memory** | 2,688 GB |
+
+## Service Nodes
+
+PARAM Rudra is an aggregation of a large number of nodes connected through networks. Management nodes play a crucial role in managing and monitoring every component of PARAM Rudra cluster. This includes monitoring the health, load, and utilization of individual components, as well as providing essential services such as security, management, and monitoring to ensure the cluster functions smoothly. 
+
+### Management Nodes
+
+| **Specification** | **Value** |
+|-------------------|-----------|
+| **Number of Management Nodes** | 24 |
+| **Processor** | 2 × Intel® Xeon® Gold 6240R |
+| **CPU Frequency** | 2.4 GHz |
+| **Cores per Management Node** | 48 |
+| **Total CPU Cores** | 1,152 |
+| **Memory per Management Node** | 192 GB |
+| **Total Memory** | 4,608 GB |
+
+### Visualization Nodes
+
+| **Specification** | **Value** |
+|-------------------|-----------|
+| **Number of Visualization Nodes** | 2 |
+| **Processor** | 2 × Intel® Xeon® Gold 6240R |
+| **CPU Frequency** | 2.4 GHz |
+| **Cores per Visualization Node** | 48 |
+| **Total CPU Cores** | 96 |
+| **Memory per Visualization Node** | 192 GB |
+| **Total Memory** | 384 GB |
+
+## CPU Compute Nodes
+
+CPU nodes are the individual machines dedicated to performing computational tasks. These nodes collectively form the computational power of the cluster. All the CPU intensive activities are carried on these nodes. Users can access these nodes from the login node to run interactive or batch jobs. 
+
+| **Specification** | **Value** |
+|-------------------|-----------|
+| **Number of CPU Compute Nodes** | 2,266 |
+| **Processor** | 2 × Intel® Xeon® Gold 6240R |
+| **CPU Frequency** | 2.4 GHz |
+| **Cores per Compute Node** | 48 |
+| **Total CPU Cores** | 108,768 |
+| **Memory per Compute Node** | 192 GB DDR4 (2933 MHz) |
+| **Total Memory** | 435,072 GB |
+| **Local Storage** | 800 GB SSD per node |
+
+## GPU Compute Nodes
+
+GPU Compute Nodes feature accelerators cards that offer significant acceleration for parallel computing tasks using frameworks like CUDA and OpenCL. By harnessing the computational power of modern GPUs, these nodes are utilized for tasks such as scientific simulations, deep learning, and data analytics, providing high computational power and memory.
+
+| **Specification** | **Value** |
+|-------------------|-----------|
+| **Number of GPU Compute Nodes** | 320 |
+| **Processor** | 2 × Intel® Xeon® Gold 6240R |
+| **CPU Frequency** | 2.4 GHz |
+| **CPU Cores per Compute Node** | 48 |
+| **Total CPU Cores** | 15,360 |
+| **Memory per Compute Node** | 192 GB DDR4 (2933 MHz) |
+| **Total Memory** | 61,440 GB |
+| **Local Storage** | 800 GB SSD per node |
+| **GPUs per Compute Node** | 2 × NVIDIA A100 |
+| **GPU CUDA Cores per Compute Node** | 13,824 (2 × 6,912) |
+| **GPU Memory** | 80 GB HBM2e per NVIDIA A100 |
+
+## High Memory Compute Nodes
+
+High Memory Compute nodes are specialized nodes designed to handle workloads that require a large amount of memory.
+
+| **Specification** | **Value** |
+|-------------------|-----------|
+| **Number of High Memory Compute Nodes** | 320 |
+| **Processor** | 2 × Intel® Xeon® Gold 6240R |
+| **CPU Base Frequency** | 2.4 GHz |
+| **CPU Cores per Node** | 48 |
+| **Total CPU Cores** | 15,360 |
+| **System Memory per Node** | 768 GB DDR4 (2933 MHz) |
+| **Total System Memory** | 245,760 GB |
+| **Local Storage** | 800 GB SSD per node |
+
+
+## Storage
+
+- Based on the Lustre parallel file system.
+- The storage subsystem provides a total usable capacity of 20 PiB Primary Storage and 10 PiB Archival Storage.
+- Of the 20 PiB primary storage, 18 PiB delivers a throughput of 150 GB/s, while the remaining 2 PiB is flash-based and provides a throughput of 500 GB/s.
 
 ## Architecture diagram
 
-![PARAM Rudra system architecture — users connect via SSH/2FA to login and service nodes, which reach CPU, GPU and high-memory compute over the InfiniBand NDR fabric, backed by Lustre storage](assets/architecture.svg){ loading=lazy }
+![PARAM Rudra system architecture — users connect via SSH/2FA to login and service nodes, which reach CPU, GPU and high-memory compute over the InfiniBand NDR fabric, backed by Lustre storage](assets/img/ParamArchitecture.png){ loading=lazy }
 
 ## Headline numbers
 
@@ -20,9 +123,9 @@ on **Intel Xeon (2nd Gen Cascade Lake) processors** and **NVIDIA A100 GPUs**.
 | Management nodes | 24 |
 | Visualization nodes | 2 |
 | Interconnect | InfiniBand **NDR** (primary) + 10 Gbps Ethernet (secondary) |
-| Parallel filesystem | **Lustre** — 10 PiB primary + 10 PiB archival, ~100 GB/s |
+| Parallel filesystem | **Lustre** — 20 PiB primary + 10 PiB archival |
 | Operating system | Rocky Linux 9.6 |
-| Scheduler | SLURM 23.11.10 |
+| Scheduler | SLURM 25.11.6 |
 
 ## Node types and per-node hardware
 
@@ -53,26 +156,6 @@ is 13,824 CUDA cores and 160 GB of GPU memory per node.
     nvidia-smi            # GPUs (on a gpu node)
     ```
 
-## Interconnect
-
-- **Primary (message-passing) fabric:** InfiniBand **NDR** — high-bandwidth,
-  low-latency; carries MPI traffic and Lustre I/O. This is what lets
-  tightly-coupled jobs scale across many nodes.
-- **Secondary fabric:** 10 Gbps Gigabit Ethernet — management and general I/O.
-  Open MPI and MPICH both work over Ethernet with no extra configuration.
-
-## Storage
-
-- Based on the Lustre parallel file system.
-- The storage subsystem provides a total usable capacity of 20 PiB Primary Storage and 10 PiB Archival Storage.
-- Of the 20 PiB primary storage, 18 PiB delivers a throughput of 150 GB/s, while the remaining 2 PiB is flash-based and provides a throughput of 500 GB/s.
-<br>
-
-![PARAM Rudra Architecture Diagram  —](assets/img/ParamArchitecture.png){ loading=lazy }
-*Figure : PARAM Rudra Architecture Diagram.*
-<br>
-<br>
-
 ## Operating System 
 The operating system on PARAM Rudra is Linux – Rocky 9.6
 
@@ -86,6 +169,21 @@ Ensuring fast read/ writes access to the storage, the network or portion of the 
 - Ensuring High-Bandwidth, Low-latency communication among processors is essential for achieving high-scalability. The network or portion of the network that implements this functionality is referred to as Message Passing Fabric.
 
 Technically, all the above functionalities can be implemented in a single network. However, for optimal performance, economic suitability, and meeting specific requirements, these functionalities are implemented using two different networks based on different technologies, as explained below:
+
+
+## Interconnect
+
+### Primary Interconnection Network
+
+**InfiniBand: NDR**
+
+Computing nodes of PARAM Rudra are interconnected by a high-bandwidth, low-latency interconnect network, specifically InfiniBand: NDR. InfiniBand, a high-performance communication architecture owned by Mellanox, offers low communication latency, low power consumption and a high throughput. All CPU nodes are connected via the InfiniBand interconnect network.
+
+### Secondary Interconnection Network
+
+**Gigabit Ethernet:  10 Gbps**
+
+Gigabit Ethernet is the most commonly available interconnection network. No additional modules or libraries are required for Gigabit Ethernet. Both Open MPI, MPICH implementations will work over Gigabit Ethernet. 
 
 
 ### Network infrastructure 
@@ -125,59 +223,11 @@ C-CHAKSHU, a multi-cluster management tool designed to help administrators opera
 | Operating system | Rocky Linux 9.6 (x86_64) |
 | Provisioning / cluster manager | xCAT |
 | Monitoring | **C-CHAKSHU**, Nagios, Ganglia |
-| Resource manager | SLURM 23.11.10 |
+| Resource manager | SLURM 25.11.6 |
 | I/O | Lustre client |
 | Interconnect stack | Mellanox InfiniBand (MLNX_OFED) |
 | Compilers | GNU (gcc/g++/gfortran), Intel oneAPI (icx/icpx/ifx) |
 | MPI | MVAPICH, Open MPI, MPICH, Intel MPI |
 | Package manager | **Spack** (primary), Environment Modules, Miniconda |
 
-**C-CHAKSHU** is C-DAC's multi-cluster management dashboard; users can monitor
-CPU, storage, interconnect, filesystem and application utilization from a single
-web dashboard.
 
-## Resource Management 
-
-This section explains how you interact with the resource manager. It covers information about the resource manager, the definition of nodes within partitions, job policies, scheduler information, the process of submitting jobs to the cluster, monitoring active jobs and getting useful information about resource usage.
-
-A cluster is a group of computers that work together to solve complex computational tasks and presents itself to the user as a single system. For the resources of a cluster (e.g. CPUs, GPUs, memory) to be used efficiently, a resource manager (also called workload manager or batch-queuing system) is important. While there are many different resource managers available, the resource manager at PARAM Rudra is SLURM. After submitting a job to the cluster, SLURM will try to fulfill the job’s resource request by allocating resources to the job. If the requested resources are already available, the job can start immediately. Otherwise, the start of the job is delayed (pending) until enough resources are available. SLURM allows you to monitor active (pending, running) jobs and to retrieve statistics about finished jobs. 
-
-SLURM, which is an open-source workload manager, efficiently allocates computing resources such as CPUs, GPUs, and memory to users' jobs, ensuring optimal resource utilization and job scheduling. SLURM provides features for job submission, monitoring, and management, allowing users to specify job requirements and dependencies. Slurm is a widely used batch scheduler in the top500 HPC list.
-
-
-### SLURM Partitions
-
-Partition is a logical grouping of nodes that share similar characteristics or resources. Partitions are helpful to manage and allocate resources efficiently based on the specific requirements of jobs or users. PARAM Rudra consists of three types of computational nodes: i.e. CPU only nodes, High memory (with 768 GB memory) nodes and GPU-enabled GPGPU nodes.
-
-The following partitions/queues have been defined to meet different user requirements:
-
-1. **cpu:** This partition is specifically designed for nodes that only have CPU resources.
-
-2. **gpu:** The GPU partition includes nodes equipped with NVIDIA A100 GPUs. Jobs submitted to this partition will run on nodes that can leverage the high-performance computing capabilities of A100 GPU cards for parallel processing tasks.  The GPU partition exclusively contains GPU nodes. If a user wishes to submit a job only on GPU nodes, they need to specify the number of GPU cards with the partition name.
-
-3. **hm:** The High Memory partition is intended for nodes with a substantial amount of RAM. Specifically, it accommodates CPU nodes that are equipped with 768 GB of RAM, allowing jobs requiring large memory resources to be executed efficiently.
-
-
-Three user partitions map to the three compute node types. Limits below are from
-the **live SLURM configuration** on the login banner:
-
-| Partition | Max wall time | Max nodes / job | Target hardware |
-| --- | --- | --- | --- |
-| `cpu` *(default)* | `4-00:00:00` (4 days) | 1 | CPU-only `cbcn*` |
-| `hm` | `4-00:00:00` (4 days) | 8 | High-memory `cbhm*` (768 GB) |
-| `gpu` | `6-00:00:00` (6 days) | 128 | GPU `cbgpu*` (2× A100) |
-
-Additional partitions (e.g. benchmarking pools such as `hpl02`) may appear in
-`sinfo` and are generally reserved for system/administrative use.
-
-!!! note "Older docs mention a `standard` partition"
-    Some C-DAC sample scripts use `--partition=standard`. On this system the
-    actual partitions are **`cpu`, `hm`, `gpu`**. Use those. Always confirm live
-    limits with:
-    ```bash
-    sinfo -s
-    scontrol show partition cpu
-    ```
-
-Continue to [Environment](environment.md), or jump to the
-[Batch System](batch.md) to start submitting jobs.

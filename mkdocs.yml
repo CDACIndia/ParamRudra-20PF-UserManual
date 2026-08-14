@@ -1,4 +1,4 @@
-site_name: C-DAC PARAM Rudra — 20 PetaFlop Supercomputer
+site_name: C-DAC PARAM Rudra - 20 PetaFlop Supercomputer
 site_description: >-
   Official-style user guide for the C-DAC PARAM Rudra 20 PetaFlop supercomputer
   (National Supercomputing Mission) — access, environment, Spack, SLURM batch
@@ -130,6 +130,7 @@ nav:
 
   - User Guide:
       - Best Practices & Performance: best-practices.md
+      - Important Facts : important-facts.md
       - Debugging: debugging.md
       - Data Management: data.md
       - Policies: policies.md

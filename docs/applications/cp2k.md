@@ -21,7 +21,7 @@ Copy the benchmark dataset to your working directory before running the example:
 
 ```bash
 cp -r /home/apps/hpc_inputs/applications/CP2K/H2O.inp .
-cd Motorbike_bench_template.tar.gz
+cd H2O.inp
 ```
 
 
@@ -47,14 +47,11 @@ or
 #SBATCH --output=cp2k.out
 #SBATCH --error=cp2k.err
 
-
 # 1. Initialize Spack
 . /home/apps/spack/share/spack/setup-env.sh
 
-
 # 2. Load CP2K
 spack load cp2k/i55m5p3
-
 
 # 3. Detect which parallel executable is available (cp2k.psmp or cp2k.popt)
 if command -v cp2k.psmp &>/dev/null; then
@@ -65,12 +62,10 @@ else
     EXE="cp2k"
 fi
 
-
 # Run the job using mpirun (required for Open MPI builds without PMI)
 time \
 mpirun -np 20 $EXE -i input.inp
 ```
-
 
 ## Expected Output
 

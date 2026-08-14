@@ -21,18 +21,7 @@ Storage is a **Lustre** parallel filesystem (10 PiB primary + 10 PiB archival,
 
 ## The recommended data lifecycle
 
-```text
-  ┌─────────────┐   stage in    ┌──────────────┐   run    ┌──────────────┐
-  │  Your code  │ ────────────▶ │  /scratch    │ ───────▶ │  Results in  │
-  │  in /home   │   (rsync/scp) │  (fast I/O)  │  (SLURM) │  /scratch    │
-  └─────────────┘               └──────────────┘          └──────┬───────┘
-                                                                  │ copy out promptly
-                                                                  ▼
-                                                        ┌───────────────────┐
-                                                        │  Institutional /   │
-                                                        │  personal archive  │
-                                                        └───────────────────┘
-```
+![Data Management](assets/img/DataManagement.png){ loading=lazy }
 
 1. Keep source and job scripts in `/home`.
 2. Stage inputs into `/scratch/$USER/<project>/<run>` and run there.

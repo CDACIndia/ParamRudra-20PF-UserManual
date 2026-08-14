@@ -43,6 +43,7 @@ module load miniconda
 conda list                # packages in the current environment
 conda info --env          # list all environments
 ```
+## Building Your Own Conda Environment
 
 !!! warning "Don't install into `base`"
     Create your own named environments instead of modifying `base`:
@@ -55,6 +56,68 @@ conda info --env          # list all environments
     Environments can be large — mind your **50 GB `/home` quota**
     (`du -sh ~/.conda`).
 
+Building your own conda environment gives you the control to manage and install your own packages, and they will be less likely to have version errors than the pip-installed packages. The easiest way to create your own environment is to clone an existing conda environment into your own directory, then modify it.
+
+Creating an environment can take up a significant portion of your disk quota, depending on the packages installed. To ensure that you can use your conda environment properly, please familiarize yourself with all the basic conda commands.
+
+Conda based installation provides the latest version of DL framework, however users can install their own choice of DL framework or library version locally by following below steps.
+
+Step 1. Login to Rudra cluster by using your credential.
+
+Step 2.  Activate conda environment. 
+
+```bash
+ $ module load miniconda 
+```
+<br>
+Step 3. Create the local environment myenv  (myenv is the environment name, you can give any name of your choice).
+
+```bash
+$ conda create --name myenv
+```
+<br>
+Step 4. Activate a newly created environment. 
+
+```bash
+$ conda activate myenv
+```
+Step 5. Install your own DL framework / python library. <package-name> will get replaced by desired package which user wants to install
+
+$ conda install `<package-name>`
+
+Example: In order to install numpy we can use below command. 
+
+
+```bash 
+ $ conda install numpy
+```
+
+Now you can use the newly installed package in your python program.
+
+
+## Submitting job using sbatch script for DL Application 
+
+You can activate your machine learning environment, run your program, and deactivate the environment in a SLURM sbatch script. For example:
+
+
+```bash
+#!/bin/bash -x
+#SBATCH -N 1
+#SBATCH --ntasks-per-node=<np>
+#SBATCH -p cpu
+#SBATCH -J <job_name>
+#SBATCH -t 05:00:00
+#SBATCH -o %j.out             # name of stdout output file(--output)
+#SBATCH -e %j.err             # name of stderr error file(--error)
+cd $SLURM_WORKDIR
+module purge
+module load miniconda		# load the module and environment
+conda activate <env_name>	# load working environment
+python <script>.py		# run python script
+conda deactivate 		# deactivate environment
+# end of script
+
+```
 ## Pre-built ML/DL Conda environments
 
 PARAM Rudra ships ready-to-use, **GPU-enabled** Conda environments for machine

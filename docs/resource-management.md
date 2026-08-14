@@ -137,9 +137,9 @@ Once the prerequisite job finishes the dependent job is dispatched.
 !!! success "To check submited Job" 
      $ squeue
 
-    JOBID PARTITION  NAME    USER   ST   TIME  NODES NODELIST(REASON)
+        JOBID  PARTITION   NAME  USER   ST  TIME NODES NODELIST(REASON)
 
-           150 standard  simple user1  R 0:31  1  rpcn001
+         150  standard   simple user1   R   0:31  1  rpcn001
 
 
 1.3 **Submit a job with a reservation allocated**
