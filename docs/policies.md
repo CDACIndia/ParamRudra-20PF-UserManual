@@ -75,8 +75,8 @@ scheduling and usage reporting.
 
 | Filesystem | Soft quota |
 | --- | --- |
-| `/home/$USER` | **50 GB** |
-| `/scratch/$USER` | **200 GB** |
+| `/home/nsmext/$USER` | **1 TiB** |
+| `/scratch/nsmext/$USER` | **1 TiB** |
 
 Stage inputs and run jobs in `/scratch`; copy results worth keeping back to
 `/home` (and off-cluster). Check usage with `lfs quota -h -u $USER /scratch`.

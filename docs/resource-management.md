@@ -9,19 +9,35 @@ SLURM, which is an open-source workload manager, efficiently allocates computing
 
 Partition is a logical grouping of nodes that share similar characteristics or resources. Partitions are helpful to manage and allocate resources efficiently based on the specific requirements of jobs or users. PARAM Rudra consists of three types of computational nodes: i.e. CPU only nodes, High memory (with 768 GB memory) nodes and GPU-enabled GPGPU nodes.
 
-The following partitions/queues have been defined to meet different user requirements:
+The following partitions/queues have been defined to meet user requirements:
 
-1. **cpu:** This partition is specifically designed for nodes that only have CPU resources.
+| NAME        | Priority | Min Core/GPU | Max Core/GPU | Max Walltime (HH:MM:SS) | Max Queued Jobs per User | Max Running Job per User | Overall Running Jobs |
+|-------------|----------|--------------|--------------|--------------------------|--------------------------|--------------------------|----------------------|
+| debug       | 4800     | 01           | 192 (4 nodes) | 01:00:00               | 2                        | 1                        | 20                   |
+| terai       | 3400     | 480 (10 nodes) | 2400 (50 nodes) | 24:00:00            | 4                        | 2                        | 70                   |
+| shiwalik    | 3700     | 2448 (51 nodes) | 12288 (256 nodes) | 24:00:00          | 2                        | 1                        | 15                   |
+| himachal    | 4000     | 12336 (257 nodes) | 24576 (512 nodes) | 12:00:00        | 2                        | 1                        | 3                    |
+| himadri     | 5000     | 24624 (513 nodes) | 72000 (1500 nodes) | 06:00:00       | 1                        | 1                        | 1                    |
+| gpu-debug   | 4800     | 1            | 4            | 01:00:00                  | 2                        | 1                        | 20                   |
+| gpu-small   | 3400     | 10 (5 nodes) | 50 (25 nodes) | 24:00:00                | 4                        | 2                        | 20                   |
+| gpu-large   | 4000     | 52 (26 nodes) | 200 (100 nodes) | 12:00:00              | 2                        | 1                        | 3                    |
+| gpu-massive | 5000     | 202 (101 nodes) | 400 (200 nodes) | 06:00:00             | 1                        | 1                        | 1                    |
+| hm-small    | 3700     | 480 (10 nodes) | 2400 (50 nodes) | 24:00:00              | 3                        | 2                        | 5                    |
+| hm-large    | 4000     | 2448 (51 nodes) | 4800 (100 nodes) | 12:00:00             | 2                        | 1                        | 3                    |
 
-2. **gpu:** The GPU partition includes nodes equipped with NVIDIA A100 GPUs. Jobs submitted to this partition will run on nodes that can leverage the high-performance computing capabilities of A100 GPU cards for parallel processing tasks.  The GPU partition exclusively contains GPU nodes. If a user wishes to submit a job only on GPU nodes, they need to specify the number of GPU cards with the partition name.
-3. **hm:** The High Memory partition is intended for nodes with a substantial amount of RAM. Specifically, it accommodates CPU nodes that are equipped with 768 GB of RAM, allowing jobs requiring large memory resources to be executed efficiently.
+
 
 ### QoS Job policy
 
 Users have the flexibility to run up to 10 simultaneous jobs. They can run an 8-node job for 4 days, a 16-node job for 2 days, or a 32-node job for 1 day. The default policy of the cluster allows for a maximum wall time of 4 days per job. However, this policy can be tailored to individual user needs or adjusted for all users in the future, depending on cluster usage. Users will be informed about any changes made to the SLURM policy.
 
 **Walltime :** 
-The walltime parameter defines how long your job will run, with the maximum runtime determined by the QoS Policy. The default walltime for every job is 2 hours, so users are requested to explicitly specify the walltime in their scripts. If more than 4 days are required, users can raise a query on the support portal of PARAM Rudra, and it will be addressed on a case-by-case basis. If a job exceeds the specified walltime in the script, it will be terminated. Specifying the appropriate walltime improves scheduling efficiency, resulting in enhanced throughput for all jobs, including yours. 
+The walltime parameter defines the maximum amount of time for which a job is allowed to run under a particular QoS. The maximum walltime is determined by the selected QoS and the resources requested by the user.Users are requested to explicitly specify the required walltime in their SLURM job script using the --time parameter. For example:
+
+**#SBATCH --time=02:00:00**
+
+The maximum walltime depends on the selected QoS. For example, DEBUG and GPU-DEBUG jobs are limited to 1 hour, while terai and shiwalik jobs can run for up to 24 hours. himachal and GPU-LARGE jobs are limited to 12 hours, whereas himadri and GPU-MASSIVE jobs are limited to 6 hours. If a job exceeds the walltime specified in the SLURM script, the job will be terminated by SLURM. Therefore, users should provide a realistic walltime based on their expected execution time.
+
 
 ### Schudeling Type
 
@@ -111,7 +127,7 @@ Note that the Slurm -J option is used to give the job a name.
 
 ```bash
 #!/bin/bash
-#SBATCH -p standard
+#SBATCH -p debug
 #SBATCH -J simple
 sleep 60
 Submit the job:  
@@ -444,7 +460,7 @@ $ squeue
 
 `scontrol show partition <partition name>`- shows detailed information about a specific partition
 
-!["scontrol partition command](assets/img/Resource3.png){ loading=lazy }
+!["scontrol partition command](assets/img/par1.png){ loading=lazy }
 
 Figure: scontrol show partition displays specific partition details
 
@@ -479,35 +495,30 @@ If a job exceeds the runtime or memory limit, it will get killed by SLURM.
 
 The exit code of a job is captured by Slurm and saved as part of the job record. For sbatch jobs the exit code of the batch script is captured. For srun, the exit code will be the return value of the executed command. Any non-zero exit code is considered a job failure, and results in job state of FAILED. When a signal was responsible for a job/step termination, the signal number will also be captured, and displayed after the exit code (separated by a colon).
 
-## Migrating from PBS/Torque to Slurm
+## I am familiar with PBS/ TORQUE. How do I migrate to SLURM?
 
-If you are familiar with **PBS/Torque**, the following tables provide the equivalent **Slurm** environment variables and job submission directives.
+| **Environment Variables / PBS/Torque / SLURM** | **PBS/Torque** | **SLURM** |
+|---|---|---|
+| Job ID | `$PBS_JOBID` | `$SLURM_JOBID` |
+| Submit Directory | `$PBS_O_WORKDIR` | `$SLURM_SUBMIT_DIR` |
+| Node List | `$PBS_NODEFILE` | `$SLURM_JOB_NODELIST` |
+| Job Specification | PBS/Torque | SLURM |
+| Script Directive | `#PBS` | `#SBATCH` |
+| Job Name | `-N [name]` | `--job-name=[name]` or `-J [name]` |
+| Node Count | `-l nodes=[count]` | `--nodes=[min[-max]]` or `-N [min[-max]]` |
+| CPU Count | `-l nodes=[count]:ppn=[count]` | `--ntasks-per-node=[count]` |
+| CPUs Per Task | — | `--cpus-per-task=[count]` |
+| Memory Size | `-l mem=[MB]` | `--mem=[MB]` or `--mem-per-cpu=[MB]` |
+| Wall Clock Limit | `-l walltime=[hh:mm:ss]` | `--time=[min]` |
+| Node Properties | `-l nodes=4:ppn=8:[property]` | `--constraint=[list]` |
+| Standard Output File | `-o [file_name]` | `--output=[file_name]` or `-o [file_name]` |
+| Standard Error File | `-e [file_name]` | `--error=[file_name]` or `-e [file_name]` |
+| Combine stdout/stderr | `-j oe` (both to stdout) | Default if `--error` is not specified |
+| Job Arrays | `-t [array_spec]` | `--array=[array_spec]` or `-a [array_spec]` |
+| Delay Job Start | `-a [time]` | `--begin=[time]` |
 
-### Environment Variables
 
-| **PBS/Torque** | **Slurm** | **Description** |
-|----------------|-----------|-----------------|
-| `$PBS_JOBID` | `$SLURM_JOBID` | Job ID |
-| `$PBS_O_WORKDIR` | `$SLURM_SUBMIT_DIR` | Directory from which the job was submitted |
-| `$PBS_NODEFILE` | `$SLURM_JOB_NODELIST` | List of allocated compute nodes |
 
-### Job Specification Directives
-
-| **Description** | **PBS/Torque** | **Slurm** |
-|-----------------|----------------|-----------|
-| Script directive | `#PBS` | `#SBATCH` |
-| Job name | `-N <name>` | `--job-name=<name>` or `-J <name>` |
-| Number of nodes | `-l nodes=<count>` | `--nodes=<count>` or `-N <count>` |
-| Tasks per node | `-l ppn=<count>` | `--ntasks-per-node=<count>` |
-| CPUs per task | — | `--cpus-per-task=<count>` |
-| Memory | `-l mem=<MB>` | `--mem=<MB>` or `--mem-per-cpu=<MB>` |
-| Wall-clock time | `-l walltime=<hh:mm:ss>` | `--time=<hh:mm:ss>` |
-| Node constraints | `-l nodes=4:ppn=8:<property>` | `--constraint=<property>` |
-| Standard output | `-o <file_name>` | `--output=<file_name>` or `-o <file_name>` |
-| Standard error | `-e <file_name>` | `--error=<file_name>` or `-e <file_name>` |
-| Combine stdout and stderr | `-j oe` | By default, both streams go to the same file unless `--error` is specified separately. |
-| Job arrays | `-t <array_spec>` | `--array=<array_spec>` or `-a <array_spec>` |
-| Delay job start | `-a <time>` | `--begin=<time>` |
 
 ### Addressing Basic Security Concerns
 
@@ -517,10 +528,12 @@ If you are familiar with **PBS/Torque**, the following tables provide the equiva
 
 **Per user**
 
-- Every user will have quota of 50 GB of soft limit in HOME file system (/home) and 200 GB of soft limit in SCRATCH file system.
+- Every user will have a quota of 1TiB of soft limit in the HOME file system (/home) and 1 TiB of soft limit in the SCRATCH(/scratch) file system.
 
 - Users are recommended to copy their execution environment and input files to scratch file system (/scratch/<username>) during job running and copy output data back to HOME area
-- File retention policy has been implemented on Lustre storage for the "/scratch" file system. As per the policy, any files that have not been accessed for the last 3 months will be deleted permanently
+
+- File retention policy has been implemented on Lustre storage for the "/scratch" file system. After the jobs are completed, you need to store the data in /home. Users are requested to regularly back up their data from the /scratch directory. As per the policy, files stored in /scratch will be retained for only one week, after which they will be permanently deleted.
+
 
 **It is important to note:**
 

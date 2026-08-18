@@ -174,7 +174,7 @@ Activate the environment inside the job, run, then deactivate:
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=8
 #SBATCH --gres=gpu:1              # request a GPU (drop for CPU-only)
-#SBATCH -p gpu                    # gpu partition
+#SBATCH -p gpu-small                    # gpu partition
 #SBATCH -A myproject              # your account
 #SBATCH -J dl-train
 #SBATCH -t 05:00:00

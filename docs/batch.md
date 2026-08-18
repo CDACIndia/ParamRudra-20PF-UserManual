@@ -81,7 +81,7 @@ Create `job.slurm`:
 #!/bin/bash
 #SBATCH --job-name=myjob            # name shown in squeue
 #SBATCH --account=myproject         # REQUIRED accounting code (-A)
-#SBATCH --partition=cpu             # cpu | hm | gpu
+#SBATCH --partition=shiwalik             # cpu | hm | gpu
 #SBATCH --nodes=1                   # number of nodes
 #SBATCH --ntasks-per-node=48        # MPI ranks per node (match core count)
 #SBATCH --cpus-per-task=1           # threads per rank (OpenMP)
