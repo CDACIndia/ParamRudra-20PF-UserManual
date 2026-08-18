@@ -16,7 +16,7 @@ ideal for large AI/ML training and GPU-accelerated HPC.
 GPUs are requested as a **generic resource (GRES)**:
 
 ```bash
-#SBATCH --partition=gpu
+#SBATCH --partition=gpu-small
 #SBATCH --gres=gpu:1            # GPUs per node (set to the node's GPU count for full-node)
 ```
 
@@ -26,7 +26,7 @@ Minimal GPU job script:
 #!/bin/bash
 #SBATCH --job-name=gpu-test
 #SBATCH --account=myproject
-#SBATCH --partition=gpu
+#SBATCH --partition=gpu-small
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:1
 #SBATCH --ntasks-per-node=1
@@ -34,8 +34,8 @@ Minimal GPU job script:
 #SBATCH --time=00:30:00
 #SBATCH --output=%x-%j.out
 
-module purge
-module load cuda            # version per `module avail`
+source /home/apps/spack/share/spack/setup-env.sh
+spack load cuda /jlytfxg           
 
 nvidia-smi                  # show the GPU(s) assigned to this job
 srun ./app_gpu
@@ -89,7 +89,7 @@ use `srun` to launch one process per GPU across nodes:
 #!/bin/bash
 #SBATCH --job-name=ddp
 #SBATCH --account=myproject
-#SBATCH --partition=gpu
+#SBATCH --partition=gpu-small
 #SBATCH --nodes=8
 #SBATCH --gres=gpu:4                 # GPUs per node
 #SBATCH --ntasks-per-node=4          # one task per GPU
@@ -97,8 +97,9 @@ use `srun` to launch one process per GPU across nodes:
 #SBATCH --time=12:00:00
 #SBATCH --output=%x-%j.out
 
-module purge
-module load cuda
+
+source /home/apps/spack/share/spack/setup-env.sh
+spack load cuda /jlytfxg  
 
 # Rendezvous info for torch.distributed
 export MASTER_ADDR=$(scontrol show hostnames "$SLURM_JOB_NODELIST" | head -n1)
@@ -140,7 +141,7 @@ one-rank-per-GPU is simpler and usually best for HPC.
 ```bash
 salloc -A myproject -p gpu -N 1 --gres=gpu:1 -c 8 -t 00:30:00
 srun --pty bash
-module load cuda
+module load  miniconda/26.7.0
 conda activate myenv                 # env with a CUDA-enabled PyTorch
 python - <<'PY'
 import torch

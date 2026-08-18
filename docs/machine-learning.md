@@ -183,7 +183,7 @@ Activate the environment inside the job, run, then deactivate:
 
 cd $SLURM_SUBMIT_DIR
 module purge
-module load miniconda
+module load miniconda/26.7.0
 conda activate myenv              # or: module load Pytorch
 python train.py
 conda deactivate
@@ -202,7 +202,7 @@ tunnel. Never run it on the login node.
 **1. Grab a GPU node interactively**
 
 ```bash
-salloc --nodes=1 --time=1:00:00 --gres=gpu:1 --partition=gpu -A myproject
+salloc --nodes=1 --time=1:00:00 --gres=gpu:1 --partition=gpu-small -A myproject
 squeue --me                       # note the assigned node, e.g. cbgpu0044
 ssh cbgpu0044                     # hop onto it
 ```
@@ -210,7 +210,7 @@ ssh cbgpu0044                     # hop onto it
 **2. Start the notebook on the compute node**
 
 ```bash
-module load miniconda
+module load miniconda/26.7.0
 jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser
 # copy the token printed in the terminal
 ```

@@ -15,8 +15,8 @@ the [hardware you confirmed](configuration.md#node-types-and-per-node-hardware).
     ```bash
     module load spack
     . /home/apps/spack/share/spack/setup-env.sh
-    spack load intel-oneapi-compilers /<hash>
-    spack load intel-oneapi-mpi        /<hash>
+    spack load intel-oneapi-compilers /nizifpn 
+    spack load intel-oneapi-mpi /ptyduik       
     ```
     For ready-made application scripts (GROMACS, LAMMPS, WRF …) see
     [Applications](applications/index.md).
@@ -27,7 +27,7 @@ the [hardware you confirmed](configuration.md#node-types-and-per-node-hardware).
 #!/bin/bash
 #SBATCH --job-name=serial
 #SBATCH --account=myproject
-#SBATCH --partition=cpu
+#SBATCH --partition=shiwalik
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
@@ -35,8 +35,8 @@ the [hardware you confirmed](configuration.md#node-types-and-per-node-hardware).
 #SBATCH --output=%x-%j.out
 
 set -euo pipefail
-module purge
-module load gcc/12
+source /home/apps/spack/share/spack/setup-env.sh
+spack load gcc@12.5.0 /2abo2si
 
 cd /scratch/$USER/serial_run
 ./my_serial_app input.dat
@@ -48,7 +48,7 @@ cd /scratch/$USER/serial_run
 #!/bin/bash
 #SBATCH --job-name=openmp
 #SBATCH --account=myproject
-#SBATCH --partition=cpu
+#SBATCH --partition=shiwalik
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=48        # threads = cores on the node
@@ -56,8 +56,8 @@ cd /scratch/$USER/serial_run
 #SBATCH --output=%x-%j.out
 
 set -euo pipefail
-module purge
-module load gcc/12
+source /home/apps/spack/share/spack/setup-env.sh
+spack load gcc@12.5.0 /2abo2si
 
 export OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK}
 export OMP_PLACES=cores
@@ -73,7 +73,7 @@ srun ./my_openmp_app
 #!/bin/bash
 #SBATCH --job-name=mpi1node
 #SBATCH --account=myproject
-#SBATCH --partition=cpu
+#SBATCH --partition=shiwalik
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=48      # ranks = cores on the node
 #SBATCH --cpus-per-task=1
@@ -81,8 +81,9 @@ srun ./my_openmp_app
 #SBATCH --output=%x-%j.out
 
 set -euo pipefail
-module purge
-module load gcc/12 openmpi/4.1.5
+source /home/apps/spack/share/spack/setup-env.sh
+spack load gcc@12.5.0 /2abo2si
+spack load openmpi@5.0.10 /cw7xezt
 
 cd /scratch/$USER/mpi_run
 srun --cpu-bind=cores ./my_mpi_app
@@ -99,7 +100,7 @@ srun --cpu-bind=cores ./my_mpi_app
 #!/bin/bash
 #SBATCH --job-name=hybrid
 #SBATCH --account=myproject
-#SBATCH --partition=cpu
+#SBATCH --partition=shiwalik
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=4       # 4 MPI ranks
 #SBATCH --cpus-per-task=12        # 12 threads each -> 48 cores
@@ -107,8 +108,9 @@ srun --cpu-bind=cores ./my_mpi_app
 #SBATCH --output=%x-%j.out
 
 set -euo pipefail
-module purge
-module load gcc/12 openmpi/4.1.5
+source /home/apps/spack/share/spack/setup-env.sh
+spack load gcc@12.5.0 /2abo2si
+spack load openmpi@5.0.10 /cw7xezt
 
 export OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK}
 export OMP_PROC_BIND=close
@@ -124,7 +126,7 @@ srun --cpu-bind=cores ./my_hybrid_app
 #!/bin/bash
 #SBATCH --job-name=bigmem
 #SBATCH --account=myproject
-#SBATCH --partition=hm
+#SBATCH --partition=hm-small
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=32
@@ -133,8 +135,8 @@ srun --cpu-bind=cores ./my_hybrid_app
 #SBATCH --output=%x-%j.out
 
 set -euo pipefail
-module purge
-module load gcc/12
+source /home/apps/spack/share/spack/setup-env.sh
+spack load gcc@12.5.0 /2abo2si
 
 export OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK}
 cd /scratch/$USER/bigmem_run
@@ -147,7 +149,7 @@ srun ./memory_hungry_app large_input
 #!/bin/bash
 #SBATCH --job-name=gpu1
 #SBATCH --account=myproject
-#SBATCH --partition=gpu
+#SBATCH --partition=gpu-small
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:1
 #SBATCH --ntasks-per-node=1
@@ -156,8 +158,8 @@ srun ./memory_hungry_app large_input
 #SBATCH --output=%x-%j.out
 
 set -euo pipefail
-module purge
-module load cuda
+source /home/apps/spack/share/spack/setup-env.sh
+spack load cuda@12.2.2 /jlytfxg
 
 nvidia-smi
 cd /scratch/$USER/gpu_run
@@ -170,7 +172,7 @@ srun ./my_gpu_app
 #!/bin/bash
 #SBATCH --job-name=ddp
 #SBATCH --account=myproject
-#SBATCH --partition=gpu
+#SBATCH --partition=gpu-small
 #SBATCH --nodes=4
 #SBATCH --gres=gpu:4
 #SBATCH --ntasks-per-node=4       # one task per GPU
@@ -179,8 +181,11 @@ srun ./my_gpu_app
 #SBATCH --output=%x-%j.out
 
 set -euo pipefail
-module purge
-module load cuda
+source /home/apps/spack/share/spack/setup-env.sh
+spack load cuda@12.2.2 /jlytfxg
+
+module load miniconda/26.7.0
+#Load your own created conda environment
 conda activate myenv
 
 export MASTER_ADDR=$(scontrol show hostnames "$SLURM_JOB_NODELIST" | head -n1)
@@ -196,7 +201,7 @@ srun python train_ddp.py
 #!/bin/bash
 #SBATCH --job-name=sweep
 #SBATCH --account=myproject
-#SBATCH --partition=cpu
+#SBATCH --partition=shiwalik
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
@@ -205,8 +210,8 @@ srun python train_ddp.py
 #SBATCH --output=sweep-%A_%a.out
 
 set -euo pipefail
-module purge
-module load gcc/12
+source /home/apps/spack/share/spack/setup-env.sh
+spack load gcc@12.5.0 /2abo2si
 
 PARAM=$(sed -n "${SLURM_ARRAY_TASK_ID}p" params.txt)
 cd /scratch/$USER/sweep

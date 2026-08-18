@@ -62,8 +62,8 @@ module load spack
 === "Intel (recommended)"
 
     ```bash
-    spack load gcc@13.4.0
-    spack load intel-oneapi-compilers /6asbh6t
+    spack load gcc@13.4.0 /azyvhui
+    spack load intel-oneapi-compilers /nizifpn 
 
     icx  -O3 -xHost prog.c        -o app     # C
     icpx -O3 -xHost prog.cpp      -o app     # C++
@@ -83,8 +83,8 @@ module load spack
 ## OpenMP (shared memory)
 
 ```bash
-spack load gcc@13.4.0
-spack load intel-oneapi-compilers /6asbh6t
+spack load gcc@13.4.0 /azyvhui
+spack load intel-oneapi-compilers /nizifpn 
 
 icx -O3 -xHost -qopenmp prog.c -o app_omp   # Intel: -qopenmp  (GNU: -fopenmp)
 export OMP_NUM_THREADS=48                    # up to 48 physical cores/node
@@ -94,9 +94,9 @@ export OMP_NUM_THREADS=48                    # up to 48 physical cores/node
 ## MPI
 
 ```bash
-spack load gcc@13.4.0
-spack load intel-oneapi-compilers@2024.2.1
-spack load intel-oneapi-mpi@2021.18.0
+spack load gcc@13.4.0 /azyvhui
+spack load intel-oneapi-compilers /nizifpn 
+spack load intel-oneapi-mpi /r2af467
 
 mpiicx  -O3 -xHost prog.c   -o app_mpi       # Intel MPI + Intel compiler
 # or: mpicc -O3 prog.c -o app_mpi            # Intel MPI + GNU
@@ -117,9 +117,9 @@ export I_MPI_DEBUG=5              # verbosity (raise for diagnostics)
 ## Intel MKL
 
 ```bash
-spack load gcc@13.4.0
-spack load intel-oneapi-compilers@2024.2.1
-spack load intel-oneapi-mkl@2026.0.0
+spack load gcc@13.4.0 /azyvhui
+spack load intel-oneapi-compilers /nizifpn
+spack load intel-oneapi-mkl /m6z7nn5
 
 icx -O3 -xHost -mkl prog.c -o app_mkl        # link MKL BLAS/LAPACK/FFT
 ./app_mkl
@@ -130,8 +130,8 @@ icx -O3 -xHost -mkl prog.c -o app_mkl        # link MKL BLAS/LAPACK/FFT
 The A100 GPUs are **Ampere → `sm_80`**:
 
 ```bash
-spack load gcc@13.4.0
-spack load cuda@12.8.0                        # or 11.8.0 / 12.2.2 / 13.1.1
+spack load gcc@13.4.0 /azyvhui
+spack load cuda /jlytfxg                     # or 11.8.0 / 12.2.2 / 13.1.1
 
 nvcc -arch=sm_80 prog.cu -o app_gpu           # A100 = sm_80
 ./app_gpu
@@ -140,8 +140,8 @@ nvcc -arch=sm_80 prog.cu -o app_gpu           # A100 = sm_80
 CUDA + OpenMP, linking cuBLAS:
 
 ```bash
-spack load gcc@13.4.0
-spack load cuda@12.2.2
+spack load gcc@13.4.0 /azyvhui
+spack load cuda /jlytfxg 
 nvcc -arch=sm_80 -Xcompiler "-fopenmp" -lgomp mm_blas_omp.cu -lcublas -o app
 ```
 
@@ -152,8 +152,8 @@ nvcc -arch=sm_80 -Xcompiler "-fopenmp" -lgomp mm_blas_omp.cu -lcublas -o app
 ## OpenACC (NVIDIA HPC SDK)
 
 ```bash
-spack load nvhpc@23.11
-spack load cuda@12.2.2
+spack load  nvhpc@25.5 /enu35qv
+spack load cuda /jlytfxg 
 
 # GPU offload (A100 = cc80):
 nvc -acc -fast -Minfo=all -gpu=cc80,managed prog.c -o app_acc
@@ -185,7 +185,7 @@ cp -r /home/apps/Docs/samples/ ~/
 
 ```bash
 # Make
-spack load gcc@13.4.0
+spack load gcc@13.4.0 /azyvhui
 make -j $(nproc)
 
 # CMake (load cmake via spack/module if needed)

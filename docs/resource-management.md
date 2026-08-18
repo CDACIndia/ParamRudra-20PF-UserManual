@@ -79,10 +79,10 @@ Here is the example of sample slurm script:
 #SBATCH --error=job.%J.err 	// name of output file
 #SBATCH --output=job.%J.out 	// name of error file
 #SBATCH --time=01:00:00    	// time required to execute the program
-#SBATCH --partition=standard // specifies queue name (standard is the default partition if you do not specify any partition job will be submitted using default partition). For other partitions you can specify hm or gpu
+#SBATCH --partition=debug// specifies queue name (standard is the default partition if you do not specify any partition job will be submitted using default partition). For other partitions you can specify hm or gpu
 
 // To load the package //
-spack load intel-oneapi-compilers
+spack load intel-oneapi-compilers /nizifpn
 
 cd  <Path of the executable>
 a.out  (Name of the executable)
@@ -178,10 +178,10 @@ example: N1 -one node, N4 - four nodes. Instead of tmp here you can use the belo
 #SBATCH --error=job.%A_%a.err
 #SBATCH --output=job.%A_%a.out
 #SBATCH --time=01:00:00
-#SBATCH --partition=standard
+#SBATCH --partition=debug
 
 
-spack load intel-oneapi-compilers
+spack load intel-oneapi-compilers /nizifpn
 cd /home/guest/Rajneesh/Rajneesh	#change to your required directory
 export OMP_NUM_THREADS=${SLURM_ARRAY_TASK_ID}
 /home/guest/Rajneesh/Rajneesh/md_omp
@@ -254,14 +254,10 @@ Script for a Sequential Job
 #SBATCH --error=job.%J.err // name of output file
 #SBATCH --output=job.%J.out // name of error file
 #SBATCH --time=01:00:00    // time required to execute the program
-#SBATCH --partition=standard // specifies queue name (standard is the default partition if you do not specify any partition job will be submitted using default partition). For other partitions you can specify hm or gpu
-
-
-
+#SBATCH --partition=debug // specifies queue name (standard is the default partition if you do not specify any partition job will be submitted using default partition). For other partitions you can specify hm or gpu
 
 // To load the package //
-spack load intel-oneapi-compilers
-
+spack load intel-oneapi-compilers /nizifpn
 
 cd  <Path of the executable>
 a.out  (Name of the executable)
@@ -276,12 +272,12 @@ Script for a Parallel OpenMP Job
 #SBATCH --error=job.%J.err    // Name of output file
 #SBATCH --output=job.%J.out   // Name of error file
 #SBATCH --time=01:00:00       // Time take to execute the program 
-#SBATCH --partition=cpu       // specifies partition name
+#SBATCH --partition=shiwalik       // specifies partition name
 
 
 
 
-spack load intel-oneapi-compilers  // To load the package
+spack load intel-oneapi-compilers //nizifpn  // To load the package
 
 
 cd  <path of the executable>
@@ -307,8 +303,8 @@ Script for Parallel Job – MPI (Message Passing Interface)
 #SBATCH --job-name=lammps    			// Name of application
 #SBATCH --error=job.%J.err_16_node_48     // Name of the output file
 #SBATCH --output=job.%J.out_16_node_48    // Name of the error file
-#SBATCH --partition=standard              // Partition or queue name
-spack load intel-oneapi-compilers		// To load the package
+#SBATCH --partition=debug              // Partition or queue name
+spack load intel-oneapi-compilers	/nizifpn	// To load the package
 
 
 
@@ -344,10 +340,10 @@ Script for Hybrid Parallel Job – (MPI + OpenMP)
 #SBATCH --job-name=lammps
 #SBATCH --error=job.%J.err_16_node_48
 #SBATCH --output=job.%J.out_16_node_48
-#SBATCH --partition=standard
+#SBATCH --partition=debug
 
 # Load required package
-spack load intel-oneapi-compilers
+spack load intel-oneapi-compilers /nizifpn
 
 # Change to the job submission directory
 cd "$SLURM_SUBMIT_DIR"

@@ -63,8 +63,8 @@ spack load intel-oneapi-compilers
 spack load gromacs@2026.1
 
 # Pin an exact build by hash (most reproducible)
-spack load intel-oneapi-compilers /6asbh6t
-spack load gromacs@5.1.4 /73dy73q
+spack load intel-oneapi-compilers /nizifpn
+spack load  gromacs@2025.3 /bsayrza
 ```
 
 !["gcc loading](assets/img/Loadgcc.png){ loading=lazy }
@@ -78,10 +78,10 @@ Figure: Loading gcc through SPACK
 A typical Intel toolchain load looks like:
 
 ```bash
-spack load intel-oneapi-compilers /6asbh6t
-spack load intel-oneapi-mpi        /ptyduik
-spack load intel-oneapi-mkl        /joptats
-spack load gcc@13.4.0
+spack load intel-oneapi-compilers /nizifpn
+spack load intel-oneapi-mpi /r2af467
+spack load intel-oneapi-mkl /m6z7nn5
+spack load gcc@13.4.0 /azyvhui
 ```
 
 ## Spack spec syntax (operators)
@@ -246,8 +246,8 @@ source /home/apps/spack/share/spack/setup-env.sh
 
 
 # Load compiler (adjust as needed)
-spack load gcc@13.4.0
-spack load intel-oneapi-compilers /6asbh6t 
+spack load gcc@13.4.0 /azyvhui
+spack load intel-oneapi-compilers /nizifpn 
 
 
 # ---------------- OpenMP tuning ----------------
@@ -276,9 +276,9 @@ export OMP_PLACES=cores
 export SPACK_ROOT=/home/apps/spack
 . $SPACK_ROOT/share/spack/setup-env.sh
 
-spack load intel-oneapi-compilers /6asbh6t
-spack load intel-oneapi-mpi        /ptyduik
-spack load intel-oneapi-mkl        /joptats
+spack load intel-oneapi-compilers /nizifpn
+spack load intel-oneapi-mpi /r2af467
+spack load intel-oneapi-mkl /m6z7nn5
 
 cd $SLURM_SUBMIT_DIR
 srun --mpi=auto -n $SLURM_NTASKS ./my_app
