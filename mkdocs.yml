@@ -94,6 +94,7 @@ extra:
 
 nav:
   - Home: index.md
+  - System Update Notice: system-updates.md
 
   - Getting Started:
       - Getting Access: access.md
