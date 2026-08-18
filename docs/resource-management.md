@@ -82,7 +82,7 @@ Here is the example of sample slurm script:
 #SBATCH --partition=standard // specifies queue name (standard is the default partition if you do not specify any partition job will be submitted using default partition). For other partitions you can specify hm or gpu
 
 // To load the package //
-spack load intel-oneapi-compilers
+spack load intel-oneapi-compilers /nizifpn
 
 cd  <Path of the executable>
 a.out  (Name of the executable)
@@ -181,7 +181,7 @@ example: N1 -one node, N4 - four nodes. Instead of tmp here you can use the belo
 #SBATCH --partition=standard
 
 
-spack load intel-oneapi-compilers
+spack load intel-oneapi-compilers /nizifpn
 cd /home/guest/Rajneesh/Rajneesh	#change to your required directory
 export OMP_NUM_THREADS=${SLURM_ARRAY_TASK_ID}
 /home/guest/Rajneesh/Rajneesh/md_omp
@@ -256,12 +256,8 @@ Script for a Sequential Job
 #SBATCH --time=01:00:00    // time required to execute the program
 #SBATCH --partition=standard // specifies queue name (standard is the default partition if you do not specify any partition job will be submitted using default partition). For other partitions you can specify hm or gpu
 
-
-
-
 // To load the package //
-spack load intel-oneapi-compilers
-
+spack load intel-oneapi-compilers /nizifpn
 
 cd  <Path of the executable>
 a.out  (Name of the executable)
@@ -281,7 +277,7 @@ Script for a Parallel OpenMP Job
 
 
 
-spack load intel-oneapi-compilers  // To load the package
+spack load intel-oneapi-compilers //nizifpn  // To load the package
 
 
 cd  <path of the executable>
@@ -308,7 +304,7 @@ Script for Parallel Job – MPI (Message Passing Interface)
 #SBATCH --error=job.%J.err_16_node_48     // Name of the output file
 #SBATCH --output=job.%J.out_16_node_48    // Name of the error file
 #SBATCH --partition=standard              // Partition or queue name
-spack load intel-oneapi-compilers		// To load the package
+spack load intel-oneapi-compilers	/nizifpn	// To load the package
 
 
 
@@ -347,7 +343,7 @@ Script for Hybrid Parallel Job – (MPI + OpenMP)
 #SBATCH --partition=standard
 
 # Load required package
-spack load intel-oneapi-compilers
+spack load intel-oneapi-compilers /nizifpn
 
 # Change to the job submission directory
 cd "$SLURM_SUBMIT_DIR"

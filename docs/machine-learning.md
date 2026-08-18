@@ -183,7 +183,7 @@ Activate the environment inside the job, run, then deactivate:
 
 cd $SLURM_SUBMIT_DIR
 module purge
-module load miniconda
+module load miniconda/26.7.0
 conda activate myenv              # or: module load Pytorch
 python train.py
 conda deactivate
@@ -210,7 +210,7 @@ ssh cbgpu0044                     # hop onto it
 **2. Start the notebook on the compute node**
 
 ```bash
-module load miniconda
+module load miniconda/26.7.0
 jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser
 # copy the token printed in the terminal
 ```
@@ -229,5 +229,33 @@ Visit `http://localhost:8888` in your browser and paste the token.
 !!! note "Use the port and node SLURM actually assigned"
     Replace `8888` and `cbgpu0044` with your assigned port/node. If the port is
     taken, pick another (e.g. 8889) consistently across all three steps.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Next: [Applications](applications/index.md).

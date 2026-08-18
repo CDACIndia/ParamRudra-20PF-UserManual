@@ -88,7 +88,7 @@ one toolchain per application and stay consistent.
 === "GCC"
 
     ```bash
-    spack load gcc@13.4.0
+    spack load gcc@13.4.0 /azyvhui
     gcc -O3 -march=cascadelake -mtune=cascadelake -funroll-loops \
         -fopenmp -fopt-info-vec kernel.c -o kernel
     ```
@@ -96,7 +96,7 @@ one toolchain per application and stay consistent.
 === "Intel LLVM"
 
     ```bash
-    spack load intel-oneapi-compilers
+    spack load intel-oneapi-compilers /nizifpn
     icx -O3 -xCASCADELAKE -qopenmp -qopt-report=3 kernel.c -o kernel
     # add -qmkl to link Intel MKL BLAS/LAPACK/FFT
     ```
@@ -104,7 +104,7 @@ one toolchain per application and stay consistent.
 === "NVIDIA HPC SDK"
 
     ```bash
-    spack load nvhpc
+    spack load nvhpc /enu35qv
     nvc -O3 -tp=cascadelake -Minfo=all -mp kernel.c -o kernel
     # GPU offload: -acc -gpu=cc80  (A100) — see below
     ```
@@ -218,7 +218,8 @@ messages over **InfiniBand NDR**. Available MPI families: **Intel MPI**,
 ### Compile & run
 
 ```bash
-spack load intel-oneapi-compilers intel-oneapi-mpi
+spack load intel-oneapi-compilers /nizifpn
+spack load intel-oneapi-mpi /r2af467
 mpiicx -O3 -xCASCADELAKE app.c -o app_mpi        # Intel MPI + Intel LLVM
 # or: mpicc -O3 -march=cascadelake app.c -o app_mpi   # Intel MPI + GCC / Open MPI
 ```
