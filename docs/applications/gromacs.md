@@ -62,7 +62,7 @@ or
 #SBATCH --output=rfm_job.out
 #SBATCH --error=rfm_job.err
 #SBATCH --exclusive
-#SBATCH --partition=cpu
+#SBATCH --partition=shiwalik
 
 
 # Load required packages
@@ -104,7 +104,7 @@ GROMACS can offload nonbonded/PME work to the A100 GPUs. Use the `gpu` partition
 and a CUDA-enabled GROMACS build:
 
 ```bash
-#SBATCH --partition=gpu
+#SBATCH --partition=gpu-small
 #SBATCH --gres=gpu:1
 ...
 source /home/apps/spack/share/spack/setup-env.sh

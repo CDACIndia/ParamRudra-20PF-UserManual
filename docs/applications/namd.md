@@ -55,7 +55,7 @@ or
 #SBATCH --output=rfm_job.out
 #SBATCH --error=rfm_job.err
 #SBATCH --exclusive
-#SBATCH --partition=cpu
+#SBATCH --partition=shiwalik
 spack load namd/syvixe4
 export OMP_NUM_THREADS=1
 tar -xvf apoa1.tar.gz

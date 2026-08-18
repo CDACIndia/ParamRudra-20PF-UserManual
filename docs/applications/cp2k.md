@@ -42,7 +42,7 @@ or
 #SBATCH --job-name="cp2k_job"
 #SBATCH --ntasks=20
 #SBATCH --ntasks-per-node=20
-#SBATCH --partition=gpu
+#SBATCH --partition=gpu-small
 #SBATCH --gres=gpu:1           # Request 1 GPU device
 #SBATCH --output=cp2k.out
 #SBATCH --error=cp2k.err

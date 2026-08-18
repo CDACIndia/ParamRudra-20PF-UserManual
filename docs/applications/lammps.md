@@ -48,7 +48,7 @@ or
 #SBATCH --output=rfm_job.out
 #SBATCH --error=rfm_job.err
 #SBATCH --exclusive
-#SBATCH –partition=cpu
+#SBATCH –partition=shiwalik
 export SPACK_ROOT=/home/apps/spack
 . $SPACK_ROOT/share/spack/setup-env.sh
 spack load lammps /4dwl4bk

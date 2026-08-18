@@ -16,7 +16,7 @@ ideal for large AI/ML training and GPU-accelerated HPC.
 GPUs are requested as a **generic resource (GRES)**:
 
 ```bash
-#SBATCH --partition=gpu
+#SBATCH --partition=gpu-small
 #SBATCH --gres=gpu:1            # GPUs per node (set to the node's GPU count for full-node)
 ```
 
@@ -26,7 +26,7 @@ Minimal GPU job script:
 #!/bin/bash
 #SBATCH --job-name=gpu-test
 #SBATCH --account=myproject
-#SBATCH --partition=gpu
+#SBATCH --partition=gpu-small
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:1
 #SBATCH --ntasks-per-node=1
@@ -89,7 +89,7 @@ use `srun` to launch one process per GPU across nodes:
 #!/bin/bash
 #SBATCH --job-name=ddp
 #SBATCH --account=myproject
-#SBATCH --partition=gpu
+#SBATCH --partition=gpu-small
 #SBATCH --nodes=8
 #SBATCH --gres=gpu:4                 # GPUs per node
 #SBATCH --ntasks-per-node=4          # one task per GPU

@@ -202,7 +202,7 @@ tunnel. Never run it on the login node.
 **1. Grab a GPU node interactively**
 
 ```bash
-salloc --nodes=1 --time=1:00:00 --gres=gpu:1 --partition=gpu -A myproject
+salloc --nodes=1 --time=1:00:00 --gres=gpu:1 --partition=gpu-small -A myproject
 squeue --me                       # note the assigned node, e.g. cbgpu0044
 ssh cbgpu0044                     # hop onto it
 ```
@@ -229,33 +229,5 @@ Visit `http://localhost:8888` in your browser and paste the token.
 !!! note "Use the port and node SLURM actually assigned"
     Replace `8888` and `cbgpu0044` with your assigned port/node. If the port is
     taken, pick another (e.g. 8889) consistently across all three steps.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 Next: [Applications](applications/index.md).

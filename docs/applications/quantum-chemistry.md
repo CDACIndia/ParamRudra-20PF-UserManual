@@ -14,7 +14,7 @@ Ab-initio computational chemistry (quantum chemistry + molecular dynamics).
 Site: <https://www.nwchem-sw.org/>.
 
 ```bash
-#SBATCH --partition=cpu
+#SBATCH --partition=shiwalik
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=48
 spack load nwchem
@@ -27,7 +27,7 @@ time mpirun -np $SLURM_NTASKS nwchem input.nw
 Multiconfigurational quantum chemistry. Site: <https://www.molcas.org/>.
 
 ```bash
-#SBATCH --partition=hm
+#SBATCH --partition=hm-small
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=12
 #SBATCH -t 24:00:00
@@ -42,7 +42,7 @@ Biomolecular molecular dynamics (proteins, DNA, RNA), with CPU and GPU engines
 (`pmemd`, `pmemd.cuda`). Site: <https://ambermd.org/>.
 
 ```bash
-#SBATCH --partition=cpu
+#SBATCH --partition=shiwalik
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=48
 export OMP_NUM_THREADS=1

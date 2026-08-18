@@ -27,7 +27,7 @@ the [hardware you confirmed](configuration.md#node-types-and-per-node-hardware).
 #!/bin/bash
 #SBATCH --job-name=serial
 #SBATCH --account=myproject
-#SBATCH --partition=cpu
+#SBATCH --partition=shiwalik
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
@@ -48,7 +48,7 @@ cd /scratch/$USER/serial_run
 #!/bin/bash
 #SBATCH --job-name=openmp
 #SBATCH --account=myproject
-#SBATCH --partition=cpu
+#SBATCH --partition=shiwalik
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=48        # threads = cores on the node
@@ -73,7 +73,7 @@ srun ./my_openmp_app
 #!/bin/bash
 #SBATCH --job-name=mpi1node
 #SBATCH --account=myproject
-#SBATCH --partition=cpu
+#SBATCH --partition=shiwalik
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=48      # ranks = cores on the node
 #SBATCH --cpus-per-task=1
@@ -100,7 +100,7 @@ srun --cpu-bind=cores ./my_mpi_app
 #!/bin/bash
 #SBATCH --job-name=hybrid
 #SBATCH --account=myproject
-#SBATCH --partition=cpu
+#SBATCH --partition=shiwalik
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=4       # 4 MPI ranks
 #SBATCH --cpus-per-task=12        # 12 threads each -> 48 cores
@@ -126,7 +126,7 @@ srun --cpu-bind=cores ./my_hybrid_app
 #!/bin/bash
 #SBATCH --job-name=bigmem
 #SBATCH --account=myproject
-#SBATCH --partition=hm
+#SBATCH --partition=hm-small
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=32
@@ -149,7 +149,7 @@ srun ./memory_hungry_app large_input
 #!/bin/bash
 #SBATCH --job-name=gpu1
 #SBATCH --account=myproject
-#SBATCH --partition=gpu
+#SBATCH --partition=gpu-small
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:1
 #SBATCH --ntasks-per-node=1
@@ -172,7 +172,7 @@ srun ./my_gpu_app
 #!/bin/bash
 #SBATCH --job-name=ddp
 #SBATCH --account=myproject
-#SBATCH --partition=gpu
+#SBATCH --partition=gpu-small
 #SBATCH --nodes=4
 #SBATCH --gres=gpu:4
 #SBATCH --ntasks-per-node=4       # one task per GPU
@@ -201,7 +201,7 @@ srun python train_ddp.py
 #!/bin/bash
 #SBATCH --job-name=sweep
 #SBATCH --account=myproject
-#SBATCH --partition=cpu
+#SBATCH --partition=shiwalik
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
