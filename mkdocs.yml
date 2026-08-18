@@ -97,6 +97,7 @@ nav:
 
   - Getting Started:
       - Getting Access: access.md
+      - Use Open OnDemand Web Portal: ondemand.md
       - System Configuration: configuration.md
       - Environment: environment.md
 

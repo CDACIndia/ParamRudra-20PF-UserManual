@@ -2,13 +2,14 @@
 
 The PARAM Rudra 20 PF HPC System is based on the Intel Xeon Gold 6240R with a total peak performance of 20 PFLOPS. The cluster consists of compute nodes connected with the InfiniBand NDR Low-Latency, High-Bandwidth InfiniBand interconnect network. The system uses the Lustre parallel file system.
 
-- Total number of Nodes: 2946
+- Total number of Nodes: 3074
     - Login Nodes: 14
     - Management Nodes: 24
     - Visualization Nodes : 2
     - CPU only Nodes: 2266
     - GPU Nodes: 320
     - High Memory CPU only Nodes: 320
+    - Trinetra Nodes: 128
 
 ## Login Nodes 
 
@@ -101,12 +102,22 @@ High Memory Compute nodes are specialized nodes designed to handle workloads tha
 | **Total System Memory** | 245,760 GB |
 | **Local Storage** | 800 GB SSD per node |
 
+## Trinetra Nodes
+
+Trinetra nodes are the individual machines dedicated to performing computational tasks. These nodes collectively form the computational power of the system. All the CPU intensive activities are carried on these nodes.
+
+| **Trinetra Nodes: 128** | |
+|---|---|
+| 2 × Intel Xeon G-6240R<br>Cores = 48, 2.4 GHz | Total Cores = 6144 cores |
+| Memory = 192 GB, DDR4 2933 MHz | Total Memory = 24576 GB |
+| SSD = 800 GB (local) per node | |
+
 
 ## Storage
 
 - Based on the Lustre parallel file system.
 - The storage subsystem provides a total usable capacity of 20 PiB Primary Storage and 10 PiB Archival Storage.
-- Of the 20 PiB primary storage, 18 PiB delivers a throughput of 150 GB/s, while the remaining 2 PiB is flash-based and provides a throughput of 500 GB/s.
+
 
 ## Architecture diagram
 
@@ -116,8 +127,8 @@ High Memory Compute nodes are specialized nodes designed to handle workloads tha
 
 | Metric | Value |
 | --- | --- |
-| Peak performance | **~20 PFLOPS** (CPU + GPU + HM) |
-| Total nodes | 2,946 |
+| Peak performance | **~20 PFLOPS**  |
+| Total nodes | 3,074 |
 | Compute nodes | **2,906** (2,266 CPU + 320 GPU + 320 high-memory) |
 | Login nodes | 14 |
 | Management nodes | 24 |
@@ -136,11 +147,7 @@ High Memory Compute nodes are specialized nodes designed to handle workloads tha
 | **High-memory** | 320 | 2× Intel Xeon Gold 6240R @ 2.4 GHz | 48 | **768 GB** | 800 GB | — | `hm` |
 | **Login** | 14 | 2× Intel Xeon Gold 6240R @ 2.4 GHz | 48 | 192 GB | — | — (interactive gateway) |
 
-!!! info "Node naming convention"
-    Hostnames encode the class: `cb` (C-DAC Bengaluru) + class
-    (`cn` = compute, `gpu` = GPU, `hm` = high-memory) + a 4-digit index —
-    e.g. `cbcn0001`, `cbgpu0044`, `cbhm0193`. You will always land on a login
-    node such as `login03`.
+
 
 Each **A100** provides 80 GB HBM2e and 6,912 CUDA cores; with 2 per GPU node that
 is 13,824 CUDA cores and 160 GB of GPU memory per node.
@@ -177,13 +184,14 @@ Technically, all the above functionalities can be implemented in a single networ
 
 **InfiniBand: NDR**
 
-Computing nodes of PARAM Rudra are interconnected by a high-bandwidth, low-latency interconnect network, specifically InfiniBand: NDR. InfiniBand, a high-performance communication architecture owned by Mellanox, offers low communication latency, low power consumption and a high throughput. All CPU nodes are connected via the InfiniBand interconnect network.
+Computing nodes of PARAM Rudra are interconnected by a high-bandwidth, low-latency interconnect network, specifically InfiniBand. It is a high-performance communication architecture owned by Mellanox, offers low communication latency, low power consumption and a high throughput. All the nodes are connected via the InfiniBand interconnect network.
 
 ### Secondary Interconnection Network
 
-**Gigabit Ethernet:  10 Gbps**
+**Gigabit Ethernet:   10 Gbps /1 Gbps**
 
-Gigabit Ethernet is the most commonly available interconnection network. No additional modules or libraries are required for Gigabit Ethernet. Both Open MPI, MPICH implementations will work over Gigabit Ethernet. 
+The secondary network in an HPC system provides a dedicated communication channel for system management and operational traffic. It typically uses Ethernet switches to interconnect compute, login, management, and other infrastructure nodes. The network handles tasks such as monitoring, provisioning, administration, and general system communication without interfering with compute traffic. Dedicated switches and network links improve reliability, scalability, and network isolation within the HPC environment.
+
 
 
 ### Network infrastructure 
@@ -192,11 +200,10 @@ Storage is a **Lustre** parallel filesystem:
 
 | Path | Purpose | Quota (soft) | Backed up? | Purge |
 | --- | --- | --- | --- | --- |
-| `/home/<user>` | Code, scripts, small inputs, results to keep | **50 GB** | Per site policy | No |
-| `/scratch/<user>` | High-performance working space for jobs | **200 GB** | **No** | Files not accessed in **3 months** are deleted |
+| `/home/<user>` | Code, scripts, small inputs, results to keep | **1 TiB** | Per site policy | No |
+| `/scratch/<user>` | High-performance working space for jobs | **1 TiB** | **No** | As per the policy, files stored in /scratch will be retained for only one week, after which they will be permanently deleted. |
 
-Total usable capacity is 10 PiB (primary) + 10 PiB (archival), with ~100 GB/s
-throughput. See [Data Management](data.md) for quotas, Lustre striping and the
+Total usable capacity is 10 PiB (primary) + 10 PiB (archival). See [Data Management](data.md) for quotas, Lustre striping and the
 purge policy.
 
 ## Software stack
@@ -207,7 +214,7 @@ System administrators, on the other hand, are concerned with ensuring optimal re
 
 The software stack provided with this system has a wide range of software components that meet the needs of both users and administrators. Figure 2 illustrates the components of the software stack.
 
-C-CHAKSHU, a multi-cluster management tool designed to help administrators operate the HPC facility efficiently. It also enables the users to monitor system metrics relating to CPU, storage, interconnects, file system and application-specific utilization from a single dashboard. For more information, please follow the link:  **[CHAKSHU Dashboard](https://paramrudra.cdacb.in/chakshu-front)**.
+C-CHAKSHU, a multi-cluster management tool designed to help administrators operate the HPC facility efficiently. It also enables the users to monitor system metrics relating to CPU, storage, interconnects, file system and application-specific utilization from a single dashboard. For more information, please follow the link:  **[CHAKSHU Dashboard](https://chakshu.paramrudra.cdacb.in/)**.
 <br>
 <br>
 
@@ -227,7 +234,7 @@ C-CHAKSHU, a multi-cluster management tool designed to help administrators opera
 | I/O | Lustre client |
 | Interconnect stack | Mellanox InfiniBand (MLNX_OFED) |
 | Compilers | GNU (gcc/g++/gfortran), Intel oneAPI (icx/icpx/ifx) |
-| MPI | MVAPICH, Open MPI, MPICH, Intel MPI |
+| MPI | MVAPICH, OpenMPI, MPICH, Intel MPI |
 | Package manager | **Spack** (primary), Environment Modules, Miniconda |
 
 

@@ -15,30 +15,30 @@ system.
 supported by MeitY and DST, Government of India.*{ .cobrand-caption }
 
 !!! tip "New here? Start with these three pages"
-    1. [Getting Access](access.md) — connect over SSH (port **4422**).
+    1. [Getting Access](access.md) — Visit the PARAM Rudra Open OnDemand (OOD) portal.
     2. [Environment](environment.md) — modules, shell and your `/home` & `/scratch` directories.
     3. [Batch System (SLURM)](batch.md) — never run compute on the login node; submit jobs instead.
 
 ## System at a glance
 
-| Resource | Count | Node name prefix | Partition |
-| --- | --- | --- | --- |
-| **Total nodes** | **3,074** | — | — |
-| **Total compute nodes** | **2,906** | — | — |
-| CPU-only nodes (2× Xeon Gold 6240R, 48c, 192 GB) | 2,266 | `cbcn####` | `cpu` |
-| GPU nodes (+ 2× NVIDIA A100 80 GB) | 320 | `cbgpu####` | `gpu` |
-| High-memory nodes (768 GB RAM) | 320 | `cbhm####` | `hm` |
-| Peak performance | ~20 PFLOPS | — | — |
-| Interconnect | **InfiniBand NDR** | — | — |
-| Storage | **Lustre** (20 PiB + 10 PiB archival) | — | — |
-| OS / scheduler | Rocky Linux 9.6 / SLURM 25.11.6 | — | — |
-| Login nodes | 14 (`login01…`) | — | — |
+| Resource | Count | Node name prefix |
+| --- | --- | --- |
+| **Total nodes** | **3,074** | — |
+| **Total compute nodes** | **2,906** | — |
+| CPU-only nodes (2× Xeon Gold 6240R, 48c, 192 GB) | 2,266 | `cbcn####` |
+| GPU nodes (+ 2× NVIDIA A100 80 GB) | 320 | `cbgpu####` |
+| High-memory nodes (768 GB RAM) | 320 | `cbhm####` |
+| Peak performance | ~20 PFLOPS | — |
+| Interconnect | **InfiniBand NDR** | — |
+| Storage | **Lustre** (20 PiB + 10 PiB archival) | — |
+| OS / scheduler | Rocky Linux 9.6 / SLURM 25.11.6 | — |
+| Login nodes | 14 (`login01…`) | — |
 
 <div class="grid cards" markdown>
 
 - :material-login: **[Getting Access](access.md)**
 
-    SSH key setup, first login on port 4422, and login-node etiquette.
+    Visit the PARAM Rudra Open OnDemand (OOD) portal.
 
 - :material-server-network: **[System Configuration](configuration.md)**
 
@@ -83,15 +83,15 @@ supported by MeitY and DST, Government of India.*{ .cobrand-caption }
     through SLURM — see the [Batch System](batch.md) page.
 
 !!! warning "`/scratch` is purged"
-    Files in `/scratch` that have **not been accessed in the last 3 months are
-    permanently deleted**. `/scratch` is fast working space, **not** long-term
+    As per the policy, files stored in /scratch will be retained for only one week, after which they will be permanently deleted.
+    `/scratch` is fast working space, **not** long-term
     storage. Back up important results elsewhere — see [Data Management](data.md).
 
 ## Quick reference card
 
 ```bash
-# Connect (replace <username>; needs CAPTCHA + Google Authenticator OTP + password)
-ssh <username>@paramrudra.cdacb.in -p 4422
+# Connect: Visit the PARAM Rudra Open OnDemand (OOD) portal.
+
 
 # Software: Spack (primary) + modules
 module load spack

@@ -230,7 +230,7 @@ Ex- In linewidth example we have used Intel-MKl and HDF5.
 ```bash
 #!/bin/bash
 #SBATCH --nodes=1
-#SBATCH -p cpu        # cpu/gpu/standard
+#SBATCH -p shiwalik        # shiwalik/gpu-small/debug
 #SBATCH --exclusive
 #SBATCH -t 1:00:00
 
@@ -267,7 +267,7 @@ export OMP_PLACES=cores
 #!/bin/bash
 #SBATCH -J spack-job
 #SBATCH -A myproject
-#SBATCH -p cpu
+#SBATCH -p shiwalik
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=48
 #SBATCH -t 01:00:00
