@@ -1,13 +1,13 @@
 
-This section explains how you interact with the resource manager. It covers information about the resource manager, the definition of nodes within partitions, job policies, scheduler information, the process of submitting jobs to the cluster, monitoring active jobs and getting useful information about resource usage.
+This section explains how you interact with the resource manager. It covers information about the resource manager, the definition of nodes within partitions, job policies, scheduler information, the process of submitting jobs to the system, monitoring active jobs and getting useful information about resource usage.
 
-A cluster is a group of computers that work together to solve complex computational tasks and presents itself to the user as a single system. For the resources of a cluster (e.g. CPUs, GPUs, memory) to be used efficiently, a resource manager (also called workload manager or batch-queuing system) is important. While there are many different resource managers available, the resource manager at PARAM Rudra is SLURM. After submitting a job to the cluster, SLURM will try to fulfill the job’s resource request by allocating resources to the job. If the requested resources are already available, the job can start immediately. Otherwise, the start of the job is delayed (pending) until enough resources are available. SLURM allows you to monitor active (pending, running) jobs and to retrieve statistics about finished jobs. 
+A system is a group of computers that work together to solve complex computational tasks and presents itself to the user as a single system. For the resources of a system (e.g. CPUs, GPUs, memory) to be used efficiently, a resource manager (also called workload manager or batch-queuing system) is important. While there are many different resource managers available, the resource manager at PARAM Rudra is SLURM. After submitting a job to the system, SLURM will try to fulfill the job’s resource request by allocating resources to the job. If the requested resources are already available, the job can start immediately. Otherwise, the start of the job is delayed (pending) until enough resources are available. SLURM allows you to monitor active (pending, running) jobs and to retrieve statistics about finished jobs. 
 
 SLURM, which is an open-source workload manager, efficiently allocates computing resources such as CPUs, GPUs, and memory to users' jobs, ensuring optimal resource utilization and job scheduling. SLURM provides features for job submission, monitoring, and management, allowing users to specify job requirements and dependencies. Slurm is a widely used batch scheduler in the top500 HPC list.
 
 ## SLURM Partitions
 
-Partition is a logical grouping of nodes that share similar characteristics or resources. Partitions are helpful to manage and allocate resources efficiently based on the specific requirements of jobs or users. PARAM Rudra consists of three types of computational nodes: i.e. CPU only nodes, High memory (with 768 GB memory) nodes and GPU-enabled GPGPU nodes.
+Partition is a logical grouping of nodes that share similar characteristics or resources. Partitions are helpful to manage and allocate resources efficiently based on the specific requirements of jobs or users. PARAM Rudra consists of three types of computational nodes: i.e. CPU only nodes, High memory (with 768 GB memory) nodes and GPU-enabled GPU nodes.
 
 The following partitions/queues have been defined to meet user requirements:
 
@@ -29,17 +29,17 @@ The following partitions/queues have been defined to meet user requirements:
 
 ### QoS Job policy
 
-Users have the flexibility to run up to 10 simultaneous jobs. They can run an 8-node job for 4 days, a 16-node job for 2 days, or a 32-node job for 1 day. The default policy of the cluster allows for a maximum wall time of 4 days per job. However, this policy can be tailored to individual user needs or adjusted for all users in the future, depending on cluster usage. Users will be informed about any changes made to the SLURM policy.
+Users have the flexibility to run up to 10 simultaneous jobs. They can run an 8-node job for 4 days, a 16-node job for 2 days, or a 32-node job for 1 day. The default policy of the system allows for a maximum wall time of 4 days per job. However, this policy can be tailored to individual user needs or adjusted for all users in the future, depending on system usage. Users will be informed about any changes made to the SLURM policy.
 
 **Walltime :** 
 The walltime parameter defines the maximum amount of time for which a job is allowed to run under a particular QoS. The maximum walltime is determined by the selected QoS and the resources requested by the user.Users are requested to explicitly specify the required walltime in their SLURM job script using the --time parameter. For example:
 
 **#SBATCH --time=02:00:00**
 
-The maximum walltime depends on the selected QoS. For example, DEBUG and GPU-DEBUG jobs are limited to 1 hour, while terai and shiwalik jobs can run for up to 24 hours. himachal and GPU-LARGE jobs are limited to 12 hours, whereas himadri and GPU-MASSIVE jobs are limited to 6 hours. If a job exceeds the walltime specified in the SLURM script, the job will be terminated by SLURM. Therefore, users should provide a realistic walltime based on their expected execution time.
+The maximum walltime depends on the selected QoS. For example, debug and gpu-debug jobs are limited to 1 hour, while terai and cpu jobs can run for up to 24 hours. himachal and gpu-large jobs are limited to 12 hours, whereas himadri and gpu-massive jobs are limited to 6 hours. If a job exceeds the walltime specified in the SLURM script, the job will be terminated by SLURM. Therefore, users should provide a realistic walltime based on their expected execution time.
 
 
-### Schudeling Type
+### Scheduling Type
 
 PARAM Rudra has been configured with Slurm’s backfill scheduling policy. It is good for ensuring higher system utilization; it will start lower priority jobs if doing so does not delay the expected start time of any higher priority jobs. Since the expected start time of pending jobs depends upon the expected completion time of running jobs, reasonably accurate time limits are important for backfill scheduling to work well.
 
@@ -79,9 +79,9 @@ All of the factors in this formula are floating point numbers that range from 0.
 
 **Fair-share Factor:** The fair-share component to a job's priority influences the order in which a user's queued jobs are scheduled to run based on the portion of the computing resources they have been allocated and the resources their jobs have already consumed. 
 
-### Job Submition
+### Job Submission
 
-We can submit jobs either through a Slurm script or by using the interactive method. Creating a Slurm script is the optimal way to submit a job to the cluster.
+We can submit jobs either through a Slurm script or by using the interactive method. Creating a Slurm script is the optimal way to submit a job to the system.
 
 **Submitting Batch Scripts Jobs**
 
@@ -92,12 +92,13 @@ Here is the example of sample slurm script:
 #!/bin/bash
 #SBATCH -N 1   			// number of nodes
 #SBATCH --ntasks-per-node=1 	// number of cores per node
-#SBATCH --error=job.%J.err 	// name of output file
-#SBATCH --output=job.%J.out 	// name of error file
+#SBATCH --error=job.%J.err 	//  name of error file
+#SBATCH --output=job.%J.out 	// name of output file
 #SBATCH --time=01:00:00    	// time required to execute the program
-#SBATCH --partition=debug// specifies queue name (standard is the default partition if you do not specify any partition job will be submitted using default partition). For other partitions you can specify hm or gpu
+#SBATCH --partition=debug 
 
-// To load the package //
+#// To load the package //
+source /home/apps/spack/share/spack/setup-env.sh
 spack load intel-oneapi-compilers /nizifpn
 
 cd  <Path of the executable>
@@ -144,8 +145,8 @@ $ sbatch -d singleton simple.sh	//may be used for first pre-processing on a core
 Submitted batch job 150
 $ squeue
   JOBID PARTITION NAME USER ST TIME NODES NODELIST(REASON)
-    150 standard   simple user1  PD  0:00  1 (Dependency)
-    149 standard   simple  user1   R   0:17  1 rpcn001
+    150 debug   simple user1  PD  0:00  1 (Dependency)
+    149 debug   simple  user1   R   0:17  1 rpcn001
 ```
 Once the prerequisite job finishes the dependent job is dispatched.
 
@@ -155,7 +156,7 @@ Once the prerequisite job finishes the dependent job is dispatched.
 
         JOBID  PARTITION   NAME  USER   ST  TIME NODES NODELIST(REASON)
 
-         150  standard   simple user1   R   0:31  1  rpcn001
+         150  debug   simple user1   R   0:31  1  rpcn001
 
 
 1.3 **Submit a job with a reservation allocated**
@@ -196,11 +197,11 @@ example: N1 -one node, N4 - four nodes. Instead of tmp here you can use the belo
 #SBATCH --time=01:00:00
 #SBATCH --partition=debug
 
-
+source /home/apps/spack/share/spack/setup-env.sh
 spack load intel-oneapi-compilers /nizifpn
-cd /home/guest/Rajneesh/Rajneesh	#change to your required directory
+cd $HOME/testuser01	#change to your required directory
 export OMP_NUM_THREADS=${SLURM_ARRAY_TASK_ID}
-/home/guest/Rajneesh/Rajneesh/md_omp
+$HOME/testuser01/md_omp
 ```
 
 <span style="color:#4DA6FF;">Running Interactive Jobs</span>
@@ -267,12 +268,13 @@ Script for a Sequential Job
 #!/bin/bash
 #SBATCH -N 1   // number of nodes
 #SBATCH --ntasks-per-node=1 // number of cores per node
-#SBATCH --error=job.%J.err // name of output file
-#SBATCH --output=job.%J.out // name of error file
+#SBATCH --error=job.%J.err // name of error file 
+#SBATCH --output=job.%J.out // name of output file
 #SBATCH --time=01:00:00    // time required to execute the program
-#SBATCH --partition=debug // specifies queue name (standard is the default partition if you do not specify any partition job will be submitted using default partition). For other partitions you can specify hm or gpu
+#SBATCH --partition=debug 
 
-// To load the package //
+#// To load the package //
+source /home/apps/spack/share/spack/setup-env.sh
 spack load intel-oneapi-compilers /nizifpn
 
 cd  <Path of the executable>
@@ -285,26 +287,25 @@ Script for a Parallel OpenMP Job
 #!/bin/bash
 #SBATCH -N 1                  // Number of nodes
 #SBATCH --ntasks-per-node=48  // Number of core per node
-#SBATCH --error=job.%J.err    // Name of output file
-#SBATCH --output=job.%J.out   // Name of error file
+#SBATCH --error=job.%J.err    //  Name of error file
+#SBATCH --output=job.%J.out   // Name of output file
 #SBATCH --time=01:00:00       // Time take to execute the program 
-#SBATCH --partition=shiwalik       // specifies partition name
+#SBATCH --partition=debug       
 
 
-
-
-spack load intel-oneapi-compilers //nizifpn  // To load the package
+source /home/apps/spack/share/spack/setup-env.sh
+spack load intel-oneapi-compilers //nizifpn  
 
 
 cd  <path of the executable>
-or 
+#or 
 cd  $SLURM_SUBMIT_DIR //To run job in the directory from where it is submitted
 
 
-export OMP_NUM_THREADS=48 //Depending upon your requirement you can change the number of threads. If total number of threads per node is more than 48, multiple threads will share core(s) and performance may degrade)
+export OMP_NUM_THREADS=48 #//Depending upon your requirement you can change the number of threads. If total number of threads per node is more than 48, multiple threads will share core(s) and performance may degrade)
 
 
-/home/cdac/a.out  	   //Name of the executable)
+/home/cdac/a.out  	   #//Name of the executable
 ```
 
 Script for Parallel Job – MPI (Message Passing Interface)
@@ -317,28 +318,25 @@ Script for Parallel Job – MPI (Message Passing Interface)
 #SBATCH --ntasks-per-node=48 			// Number of cores per node
 #SBATCH --time=06:50:20      			// Time required to execute the program
 #SBATCH --job-name=lammps    			// Name of application
-#SBATCH --error=job.%J.err_16_node_48     // Name of the output file
-#SBATCH --output=job.%J.out_16_node_48    // Name of the error file
-#SBATCH --partition=debug              // Partition or queue name
-spack load intel-oneapi-compilers	/nizifpn	// To load the package
+#SBATCH --error=job.%J.err_16_node_48     // Name of the error file
+#SBATCH --output=job.%J.out_16_node_48    //   Name of the output file
+#SBATCH --partition=debug     
+source /home/apps/spack/share/spack/setup-env.sh        
+spack load intel-oneapi-compilers	/nizifpn	#// To load the package
 
-
-
-
-// Below are Intel MPI specific settings //
-
+#// Below are Intel MPI specific settings //
 
 export I_MPI_FALLBACK=disable
 export I_MPI_FABRICS=shm:dapl  
-export I_MPI_DEBUG=9 				// Level of MPI verbosity
+export I_MPI_DEBUG=9 				#// Level of MPI verbosity
 
 
-cd $SLURM_SUBMIT_DIR	//change to required path where command needs to be executed
+cd $SLURM_SUBMIT_DIR	#//change to required path where command needs to be executed
 or 
 cd /home/manjuv/LAMMPS_2018COMPILER/lammps-22Aug18/bench
 
 
-// Example Command to run the lammps in Parallel // 
+#// Example Command to run the lammps in Parallel // 
 
 
 time mpiexec.hydra -n $SLURM_NTASKS -genv OMP_NUM_THREADS 1 /home/manjuv/LAMMPS_2018COMPILER/lammps-22Aug18/src/lmp_intel_cpu_intelmpi -in in.lj
@@ -359,6 +357,7 @@ Script for Hybrid Parallel Job – (MPI + OpenMP)
 #SBATCH --partition=debug
 
 # Load required package
+source /home/apps/spack/share/spack/setup-env.sh
 spack load intel-oneapi-compilers /nizifpn
 
 # Change to the job submission directory
@@ -379,7 +378,7 @@ time mpiexec.hydra -n 32 lammps.exe -in in.lj
 
 ### Listing Partition
 
-<span style="color:#4DA6FF;">sinfo</span> displays information about nodes and partitions allowing users to view available nodes in the partition within the cluster.
+<span style="color:#4DA6FF;">sinfo</span> displays information about nodes and partitions allowing users to view available nodes in the partition within the system.
 
 ### Monitoring jobs
 
@@ -390,11 +389,11 @@ Monitoring jobs on SLURM can be done using the command squeue.  The command sque
 
          JOBID  PARTITION   NAME      USER    ST  TIME  NODES  NODELIST(REASON)
 
-          106  standard    slurm-jo   user1   R   0:04    1     rpcn001
+          106  debug    slurm-jo   user1   R   0:04    1     rpcn001
 
 The command `scontrol` provides even more detailed information about jobs and job steps.
 
-It will report more detailed information about nodes, partitions, jobs, job steps, and configurat
+It will report more detailed information about nodes, partitions, jobs, job steps, and configuration.
 
 ```bash
 $ scontrol show job <jobid>
@@ -433,15 +432,15 @@ Use the scontrol command to hold the job.
 ```
 $ squeue
   JOBID PARTITION  NAME    USER   ST      TIME  NODES NODELIST(REASON)
-    139 standard   simple  user1  PD      0:00      1 (Dependency)
-    138 standard   simple  user1   R      0:16      1  rpcn001
+    139 debug   simple  user1  PD      0:00      1 (Dependency)
+    138 debug   simple  user1   R      0:16      1  rpcn001
 $ scontrol hold 139
 
 
 $ squeue
   JOBID PARTITION  NAME    USER   ST     TIME  NODES NODELIST(REASON)
-    139 standard   simple  user1  PD     0:00      1 (JobHeldUser)
-    138 standard   simple  user1   R     0:32      1 rpcn001
+    139 debug   simple  user1  PD     0:00      1 (JobHeldUser)
+    138 debug   simple  user1   R     0:32      1 rpcn001
 ```
 
 ### Releasing a job
@@ -450,8 +449,8 @@ $ squeue
 $ scontrol release 139
 $ squeue
   JOBID PARTITION  NAME     USER  ST       TIME  NODES NODELIST(REASON)
-    139 standard   simple  user1  PD       0:00      1 (Dependency)
-    138 standard   simple  user1   R       0:46      1 rpcn001
+    139 debug   simple  user1  PD       0:00      1 (Dependency)
+    138 debug   simple  user1   R       0:46      1 rpcn001
 ```
 
 ## Getting Node and Partition details
@@ -530,7 +529,7 @@ The exit code of a job is captured by Slurm and saved as part of the job record.
 
 - Every user will have a quota of 1TiB of soft limit in the HOME file system (/home) and 1 TiB of soft limit in the SCRATCH(/scratch) file system.
 
-- Users are recommended to copy their execution environment and input files to scratch file system (/scratch/<username>) during job running and copy output data back to HOME area
+- Users are recommended to copy their execution environment and input files to scratch file system ($SCRATCH) during job running and copy output data back to HOME area
 
 - File retention policy has been implemented on Lustre storage for the "/scratch" file system. After the jobs are completed, you need to store the data in /home. Users are requested to regularly back up their data from the /scratch directory. As per the policy, files stored in /scratch will be retained for only one week, after which they will be permanently deleted.
 

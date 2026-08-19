@@ -17,9 +17,9 @@ optimization** (GCC, NVIDIA HPC SDK, Intel LLVM), **OpenMP**, **MPI**, and
   and submitting only — jobs run through [SLURM](batch.md). Long processes there
   are terminated.
 - **Run in `/scratch`, keep source in `/home`.** Stage inputs to
-  `/scratch/$USER`, run there (fast Lustre I/O), then copy results worth keeping
-  back to `/home` or off-cluster. `/scratch` is **not backed up** and is
-  [purged after 3 months](data.md).
+  `$SCRATCH`, run there (fast Lustre I/O), then copy results worth keeping
+  back to `/home` or off-system. `/scratch` is **not backed up** and is
+  [purged after 1 week](data.md).
 - **Compile and run with the *same* compiler and library versions.** Load
   identical [Spack](spack.md)/modules in your build and your job script. Mixing
   compilers (e.g. `gcc` + `icx`) across modules of one application invites link
@@ -34,8 +34,8 @@ optimization** (GCC, NVIDIA HPC SDK, Intel LLVM), **OpenMP**, **MPI**, and
   jobs one by one — better for throughput and the scheduler.
 - **Capture output.** Keep `--output`/`--error` files; never send them to
   `/dev/null`. They are the first place to look on failure.
-- **Estimate disk use** before launching many jobs; mind your 50 GB `/home` and
-  200 GB `/scratch` quotas. Avoid spaces in file/directory names.
+- **Estimate disk use** before launching many jobs; mind your 1 TiB `/home` and
+  1 TiB `/scratch` quotas. Avoid spaces in file/directory names.
 - **Install only from trusted sources**, and report anything strange (slowdowns,
   missing/corrupt files) to [support](support.md).
 

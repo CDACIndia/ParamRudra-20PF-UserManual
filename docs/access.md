@@ -1,4 +1,4 @@
-#  How to access the cluster for the first time
+#  How to access the HPC system for the first time
 
 ### (Setting up 2FA and passkeys)
 
@@ -142,13 +142,13 @@ You should now be able to access the PARAM Rudra home page.
 
 You are now successfully registered and will see the PARAM Rudra Open OnDemand (OOD) home page.
 
-Open OnDemand provides a convenient web-based interface for accessing and using the PARAM Rudra cluster.
+Open OnDemand provides a convenient web-based interface for accessing and using the PARAM Rudra system.
 
-For additional information about using Open OnDemand and the available cluster applications and features, please refer to the PARAM Rudra documentation.
+For additional information about using Open OnDemand and the available system applications and features, please refer to the PARAM Rudra documentation.
 
 ## 8.  You are now on the main home page of OOD.
 
-Here we are using the OpenOnDemand application for cluster access. This tool has many advantages. For more information, please go to the docs of PARAM Rudra.
+Here we are using the OpenOnDemand application for system access. This tool has many advantages. For more information, please go to the docs of PARAM Rudra.
 
 For the second time onwards, you can go to the url: <https://ood.paramrudra.cdacb.in>, sign in with the username and the password you have set, and press the sign in button.
 
@@ -194,11 +194,12 @@ Another device security method configured by you
 
 - The initial email verification link is valid for 5 minutes only.
 - Your new password must contain at least 13 alphanumeric characters.
+- Login Policy: After 5 failed login attempts, the user account will be blocked for 2 hours, as per Security policy.
+- Ondemand Directory: Do not delete the ondemand directory from your home directory.
 - Keep your authenticator application available for OTP-based authentication.
 - When registering a passkey, do not click Register repeatedly. Wait approximately 30 seconds after the first click.
 - A passkey registered on one device is intended for use on that specific device.
 - If you see “BAD REQUEST” after passkey registration, simply reopen the PARAM Rudra portal. The registration should already be complete.
-
 - For security, do not share your OTP, password, or passkey credentials with anyone.
 - If you face any issue during the login process, please mail us on rudrasupport@cdac.in with the screenshot of the error.
 - If you ever forget your password, click the "Forgot Password" text. You will see the page shown below, and a password-reset email will be sent to your registered email ID. Use that email to reset your password, then log in again by following the steps above.

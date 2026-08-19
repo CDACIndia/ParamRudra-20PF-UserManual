@@ -15,13 +15,6 @@ ready-to-run, adapted job script.
 
 </div>
 
-!!! warning "Node counts adapted to this system's limits"
-    The scripts on these pages are adapted from C-DAC application examples for
-    **this** system, where the `cpu` partition allows **max 1 node/job**; `hm`
-    allows 8; `gpu` allows 128 (see [Batch System](../batch.md)). They default to
-    a single `cpu` node (48 ranks); scale on `hm`/`gpu` or ask
-    [support](../support.md). Always add `#SBATCH -A <account>` and confirm the
-    exact Spack hash with `spack find -l <package>`.
 
 ## Loading applications with Spack
 

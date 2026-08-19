@@ -4,7 +4,7 @@ Most of the popular python-based ML/DL libraries are installed on the PARAM Rudr
 
 For the conda environment different modules are prepared. Users can check the list of the modules by using “module avail” command. Shown below is an example of loading conda environments in the current bash shell and continuing with application development. 
 
-Once logged into PARAM Rudra HPC Cluster, check which all libraries are available, loaded in the current shell. To check list of modules loaded in current shell, use the command given below:
+Once logged into PARAM Rudra HPC system, check which all libraries are available, loaded in the current shell. To check list of modules loaded in current shell, use the command given below:
 
 ```bash
 $ module list 
@@ -154,7 +154,7 @@ Creating an environment can take up a significant portion of your disk quota, de
 
 Conda based installation provides the latest version of DL framework, however users can install their own choice of DL framework or library version locally by following below steps.
 
-**Step 1.** Login to Rudra cluster by using your credential.
+**Step 1.** Login to Rudra system by using your credential.
 
 **Step 2.**  Activate conda environment. 
 

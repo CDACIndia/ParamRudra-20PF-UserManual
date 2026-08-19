@@ -24,15 +24,15 @@ through **SLURM** (`sbatch` / `salloc` / `srun`). See the
 **How to tell:** if `hostname` shows a `login*` node, do **not** launch
 simulations, training runs, big `make -j`, or large data crunching there.
 
-## 2. `/scratch` purge — 3 months
+## 2. `/scratch` purge — 1 week
 
 !!! warning "Automatic deletion"
-    Files in `/scratch` **not accessed in the last 3 months are permanently
+    Files in `/scratch` **not accessed in the last 1 week are permanently
     deleted.** `/scratch` is temporary working space, not storage.
 
 - No recovery after purge.
 - The clock is based on **access time**, not just existence.
-- Move important results **off the cluster** promptly ([Data Management](data.md)).
+- Move important results **off the system** promptly ([Data Management](data.md)).
 
 ## 3. Back up your own data
 
@@ -40,7 +40,7 @@ simulations, training runs, big `make -j`, or large data crunching there.
     *"Users are advised to regularly back up their data in `/home` & `/scratch`
     directory."*
 
-Treat the cluster as compute infrastructure, not an archive. Keep authoritative
+Treat the system as compute infrastructure, not an archive. Keep authoritative
 copies of code (in version control) and results (in institutional storage).
 
 ## 4. Use your accounting code
@@ -51,11 +51,19 @@ scheduling and usage reporting.
 
 ## 5. Respect partition limits
 
-| Partition | Max wall time | Max nodes / job |
-| --- | --- | --- |
-| `cpu` | 4 days | 1 |
-| `hm` | 4 days | 8 |
-| `gpu` | 6 days | 128 |
+| NAME        | Priority | Min Core/GPU | Max Core/GPU | Max Walltime (HH:MM:SS) | Max Queued Jobs per User | Max Running Job per User | Overall Running Jobs |
+|-------------|----------|--------------|--------------|--------------------------|--------------------------|--------------------------|----------------------|
+| debug       | 4800     | 01           | 192 (4 nodes) | 01:00:00               | 2                        | 1                        | 20                   |
+| terai       | 3400     | 480 (10 nodes) | 2400 (50 nodes) | 24:00:00            | 4                        | 2                        | 70                   |
+| shiwalik    | 3700     | 2448 (51 nodes) | 12288 (256 nodes) | 24:00:00          | 2                        | 1                        | 15                   |
+| himachal    | 4000     | 12336 (257 nodes) | 24576 (512 nodes) | 12:00:00        | 2                        | 1                        | 3                    |
+| himadri     | 5000     | 24624 (513 nodes) | 72000 (1500 nodes) | 06:00:00       | 1                        | 1                        | 1                    |
+| gpu-debug   | 4800     | 1            | 4            | 01:00:00                  | 2                        | 1                        | 20                   |
+| gpu-small   | 3400     | 10 (5 nodes) | 50 (25 nodes) | 24:00:00                | 4                        | 2                        | 20                   |
+| gpu-large   | 4000     | 52 (26 nodes) | 200 (100 nodes) | 12:00:00              | 2                        | 1                        | 3                    |
+| gpu-massive | 5000     | 202 (101 nodes) | 400 (200 nodes) | 06:00:00             | 1                        | 1                        | 1                    |
+| hm-small    | 3700     | 480 (10 nodes) | 2400 (50 nodes) | 24:00:00              | 3                        | 2                        | 5                    |
+| hm-large    | 4000     | 2448 (51 nodes) | 4800 (100 nodes) | 12:00:00             | 2                        | 1                        | 3                    |
 
 - Request only the resources and walltime you need — over-requesting wastes the
   allocation and lengthens your own queue wait.
@@ -75,11 +83,11 @@ scheduling and usage reporting.
 
 | Filesystem | Soft quota |
 | --- | --- |
-| `/home/nsmext/$USER` | **1 TiB** |
-| `/scratch/nsmext/$USER` | **1 TiB** |
+| `$HOME` | **1 TiB** |
+| `$SCRATCH` | **1 TiB** |
 
 Stage inputs and run jobs in `/scratch`; copy results worth keeping back to
-`/home` (and off-cluster). Check usage with `lfs quota -h -u $USER /scratch`.
+`/home` (and off-system). Check usage with `lfs quota -h -u $USER /scratch`.
 See [Data Management](data.md).
 
 ## 8. Security and account hygiene
@@ -90,7 +98,7 @@ See [Data Management](data.md).
   your Authenticator device secure.
 - Do **not** grant other users permission to your home directory — it can expose
   your files.
-- Never store passwords, SSH private keys or access tokens on the cluster or in a
+- Never store passwords, SSH private keys or access tokens on the system or in a
   git repository.
 - Only install software from **reliable, safe sources** (ransomware is a real
   risk). Avoid spaces in file/directory names.

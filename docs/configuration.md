@@ -1,6 +1,6 @@
 # System  Architecture and Configuration
 
-The PARAM Rudra 20 PF HPC System is based on the Intel Xeon Gold 6240R with a total peak performance of 20 PFLOPS. The cluster consists of compute nodes connected with the InfiniBand NDR Low-Latency, High-Bandwidth InfiniBand interconnect network. The system uses the Lustre parallel file system.
+The PARAM Rudra 20 PF HPC System is based on the Intel Xeon Gold 6240R with a total peak performance of 20 PFLOPS. The system consists of compute nodes connected with the InfiniBand NDR Low-Latency, High-Bandwidth InfiniBand interconnect network. The system uses the Lustre parallel file system.
 
 - Total number of Nodes: 3074
     - Login Nodes: 14
@@ -28,7 +28,7 @@ Login nodes are typically used for administrative tasks such as editing files, w
 
 ## Service Nodes
 
-PARAM Rudra is an aggregation of a large number of nodes connected through networks. Management nodes play a crucial role in managing and monitoring every component of PARAM Rudra cluster. This includes monitoring the health, load, and utilization of individual components, as well as providing essential services such as security, management, and monitoring to ensure the cluster functions smoothly. 
+PARAM Rudra is an aggregation of a large number of nodes connected through networks. Management nodes play a crucial role in managing and monitoring every component of the PARAM Rudra system. This includes monitoring the health, load, and utilization of individual components, as well as providing essential services such as security, management, and monitoring to ensure the system functions smoothly. 
 
 ### Management Nodes
 
@@ -56,7 +56,7 @@ PARAM Rudra is an aggregation of a large number of nodes connected through netwo
 
 ## CPU Compute Nodes
 
-CPU nodes are the individual machines dedicated to performing computational tasks. These nodes collectively form the computational power of the cluster. All the CPU intensive activities are carried on these nodes. Users can access these nodes from the login node to run interactive or batch jobs. 
+CPU nodes are the individual machines dedicated to performing computational tasks. These nodes collectively form the computational power of the system. All the CPU intensive activities are carried on these nodes. Users can access these nodes from the login node to run interactive or batch jobs. 
 
 | **Specification** | **Value** |
 |-------------------|-----------|
@@ -104,7 +104,7 @@ High Memory Compute nodes are specialized nodes designed to handle workloads tha
 
 ## Trinetra Nodes
 
-Trinetra nodes are the individual machines dedicated to performing computational tasks. These nodes collectively form the computational power of the system. All the CPU intensive activities are carried on these nodes.
+It consists of 128 nodes connected with an indigenously developed Trinetra High performance interconnect. These nodes are connected in 5D torus topology to enable high bandwidth low latency communication.
 
 | **Trinetra Nodes: 128** | |
 |---|---|
@@ -166,12 +166,12 @@ is 13,824 CUDA cores and 160 GB of GPU memory per node.
 ## Operating System 
 The operating system on PARAM Rudra is Linux – Rocky 9.6
 
-A robust network infrastructure is essential for implementing the basic functionalities of a cluster. These functionalities include:
+A robust network infrastructure is essential for implementing the basic functionalities of a system. These functionalities include:
 
-- Management functionalities, such as monitoring, troubleshooting, starting and stopping various components of the cluster. The network/ or portion of the network that implements this functionality is referred to as the Management fabric.
+- Management functionalities, such as monitoring, troubleshooting, starting and stopping various components of the system. The network/ or portion of the network that implements this functionality is referred to as the Management fabric.
 Ensuring fast read/ writes access to the storage, the network or portion of the network that implements this functionality is referred to as the storage fabric.
 
-- Ensuring fast I/O operations, such as connecting to other clusters and connecting the cluster to various users on the campus LAN. The network or portion of the network that implements this functionality is referred to as the I/O Fabric.
+- Ensuring fast I/O operations, such as connecting to other clusters and connecting the system to various users on the campus LAN. The network or portion of the network that implements this functionality is referred to as the I/O Fabric.
 
 - Ensuring High-Bandwidth, Low-latency communication among processors is essential for achieving high-scalability. The network or portion of the network that implements this functionality is referred to as Message Passing Fabric.
 
@@ -200,10 +200,10 @@ Storage is a **Lustre** parallel filesystem:
 
 | Path | Purpose | Quota (soft) | Backed up? | Purge |
 | --- | --- | --- | --- | --- |
-| `/home/<user>` | Code, scripts, small inputs, results to keep | **1 TiB** | Per site policy | No |
-| `/scratch/<user>` | High-performance working space for jobs | **1 TiB** | **No** | As per the policy, files stored in /scratch will be retained for only one week, after which they will be permanently deleted. |
+| `$HOME` | Code, scripts, small inputs, results to keep | **1 TiB** | Per site policy | No |
+| `$SCRATCH` | High-performance working space for jobs | **1 TiB** | **No** | As per the policy, files stored in /scratch will be retained for only one week, after which they will be permanently deleted. |
 
-Total usable capacity is 10 PiB (primary) + 10 PiB (archival). See [Data Management](data.md) for quotas, Lustre striping and the
+Total usable capacity is 20 PiB (primary) + 10 PiB (archival). See [Data Management](data.md) for quotas, Lustre striping and the
 purge policy.
 
 ## Software stack
@@ -214,13 +214,13 @@ System administrators, on the other hand, are concerned with ensuring optimal re
 
 The software stack provided with this system has a wide range of software components that meet the needs of both users and administrators. Figure 2 illustrates the components of the software stack.
 
-C-CHAKSHU, a multi-cluster management tool designed to help administrators operate the HPC facility efficiently. It also enables the users to monitor system metrics relating to CPU, storage, interconnects, file system and application-specific utilization from a single dashboard. For more information, please follow the link:  **[CHAKSHU Dashboard](https://chakshu.paramrudra.cdacb.in/)**.
+C-CHAKSHU, a multi-system management tool designed to help administrators operate the HPC System efficiently. It also enables the users to monitor system metrics relating to CPU, storage, interconnects, file system and application-specific utilization from a single dashboard. For more information, please follow the link:  **[CHAKSHU Dashboard](https://chakshu.paramrudra.cdacb.in/)**.
 <br>
 <br>
 
 
 ![Software Stack -](assets/img/SoftwareStack.png){ loading=lazy}
-*Figure : Software Stack.*
+*Figure 2 : Software Stack.*
 <br>
 <br>
 
@@ -228,7 +228,7 @@ C-CHAKSHU, a multi-cluster management tool designed to help administrators opera
 | Functional area | Component(s) |
 | --- | --- |
 | Operating system | Rocky Linux 9.6 (x86_64) |
-| Provisioning / cluster manager | xCAT |
+| Provisioning / system manager | xCAT |
 | Monitoring | **C-CHAKSHU**, Nagios, Ganglia |
 | Resource manager | SLURM 25.11.6 |
 | I/O | Lustre client |

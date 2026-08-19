@@ -62,7 +62,7 @@ or
 #SBATCH --output=rfm_job.out
 #SBATCH --error=rfm_job.err
 #SBATCH --exclusive
-#SBATCH --partition=shiwalik
+#SBATCH --partition=debug
 
 
 # Load required packages
@@ -121,6 +121,4 @@ one isn't already installed.
 The commonly used `water_GMX50_bare` benchmark set is available from the GROMACS
 FTP site.
 
-!!! tip "Scaling"
-    `cpu` is capped at 1 node here. For larger runs use `hm` (≤8 nodes) or the
-    `gpu` partition, or contact [support](../support.md).
+

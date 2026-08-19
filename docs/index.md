@@ -1,9 +1,9 @@
 # PARAM Rudra — 20 PetaFlop System User Manual
 
-![C-DAC PARAM Rudra — 20 PetaFlop Supercomputer](assets/img/hero.png){ loading=lazy }
+![C-DAC PARAM Rudra — 20 PetaFlop Supercomputer](assets/img/home1.png){ loading=lazy }
 
 Welcome to the user documentation for **PARAM Rudra**, a ~20 PetaFlop
-supercomputer operated under the **National Supercomputing Mission (NSM)** by
+HPC system operated under the **National Supercomputing Mission (NSM)** by
 **C-DAC**. This guide walks you through everything from your first login to
 running large-scale CPU, high-memory and GPU jobs through the SLURM batch
 system.
@@ -19,6 +19,8 @@ supported by MeitY and DST, Government of India.*{ .cobrand-caption }
     2. [Environment](environment.md) — modules, shell and your `/home` & `/scratch` directories.
     3. [Batch System (SLURM)](batch.md) — never run compute on the login node; submit jobs instead.
 
+
+
 ## System at a glance
 
 | Resource | Count | Node name prefix |
@@ -28,6 +30,7 @@ supported by MeitY and DST, Government of India.*{ .cobrand-caption }
 | CPU-only nodes (2× Xeon Gold 6240R, 48c, 192 GB) | 2,266 | `cbcn####` |
 | GPU nodes (+ 2× NVIDIA A100 80 GB) | 320 | `cbgpu####` |
 | High-memory nodes (768 GB RAM) | 320 | `cbhm####` |
+| Trinetra nodes(2× Xeon Gold 6240R, 48c, 192 GB) | 128 | —
 | Peak performance | ~20 PFLOPS | — |
 | Interconnect | **InfiniBand NDR** | — |
 | Storage | **Lustre** (20 PiB + 10 PiB archival) | — |
@@ -82,6 +85,13 @@ supported by MeitY and DST, Government of India.*{ .cobrand-caption }
     notice** (repeat offences may cost you account access). Always submit work
     through SLURM — see the [Batch System](batch.md) page.
 
+
+!!! note
+    **$HOME:** `/home/<group_name>/<user_name>/`
+
+    **$SCRATCH:** `/scratch/<group_name>/<user_name>/`
+
+
 !!! warning "`/scratch` is purged"
     As per the policy, files stored in /scratch will be retained for only one week, after which they will be permanently deleted.
     `/scratch` is fast working space, **not** long-term
@@ -115,7 +125,7 @@ scancel <jobid>              # cancel a job
 
 !!! note "About this manual"
     This is a **community/user-maintained** guide for the C-DAC PARAM Rudra
-    20 PetaFlop supercomputer, grounded in the **official C-DAC PARAM Rudra User
+    20 PetaFlop system, grounded in the **official C-DAC PARAM Rudra User
     Manual** plus the live login banner and SLURM configuration. Where a value
     may change over time (versions, quotas, hashes), the page tells you the
     command to confirm it on the system. The authoritative source is always the

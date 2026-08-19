@@ -251,10 +251,10 @@ Use port **4422** for all transfers (SFTP too — not port 22).
 scp -r -P 4422 ./localdir <username>@paramrudra.cdacb.in:/home/<username>/
 
 # Download results
-scp -P 4422 <username>@paramrudra.cdacb.in:/scratch/<username>/out.nc ./
+scp -P 4422 <username>@paramrudra.cdacb.in:$SCRATCH/out.nc ./
 
 # Efficient, resumable sync (rsync/ssh use -p, lowercase)
-rsync -avP -e "ssh -p 4422" ./project/ <username>@paramrudra.cdacb.in:/scratch/<username>/project/
+rsync -avP -e "ssh -p 4422" ./project/ <username>@paramrudra.cdacb.in:$SCRATCH/project/
 ```
 
 GUI tools that work well on Windows:

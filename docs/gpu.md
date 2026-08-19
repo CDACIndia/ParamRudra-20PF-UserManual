@@ -1,9 +1,9 @@
 # GPU Computing
 
-PARAM Rudra has **320 GPU-accelerated nodes** (`cbgpu*`) in the `gpu` partition.
+PARAM Rudra has **320 GPU-accelerated nodes** (`cbgpu*`) in the `gpu-massive` partition.
 Each node carries **2× NVIDIA A100 (80 GB HBM2e, Ampere, `sm_80`)** — 6,912 CUDA
-cores per GPU — on top of 2× Intel Xeon Gold 6240R (48 cores). The `gpu`
-partition allows up to **128 nodes per job** and a **6-day** wall-time limit —
+cores per GPU — on top of 2× Intel Xeon Gold 6240R (48 cores). The `gpu-massive`
+partition allows up to **200 nodes per job** and a **6 Hr** wall-time limit —
 ideal for large AI/ML training and GPU-accelerated HPC.
 
 !!! info "A100 quick facts"
@@ -73,7 +73,7 @@ Request several GPUs and one task per GPU:
 
 ```bash
 #SBATCH --nodes=1
-#SBATCH --gres=gpu:4
+#SBATCH --gres=gpu:2
 #SBATCH --ntasks-per-node=4
 #SBATCH --cpus-per-task=8
 
@@ -91,7 +91,7 @@ use `srun` to launch one process per GPU across nodes:
 #SBATCH --account=myproject
 #SBATCH --partition=gpu-small
 #SBATCH --nodes=8
-#SBATCH --gres=gpu:4                 # GPUs per node
+#SBATCH --gres=gpu:2                 # GPUs per node
 #SBATCH --ntasks-per-node=4          # one task per GPU
 #SBATCH --cpus-per-task=8
 #SBATCH --time=12:00:00

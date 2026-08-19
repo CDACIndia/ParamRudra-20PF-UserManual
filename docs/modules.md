@@ -53,7 +53,7 @@ conda info --env          # list all environments
     conda install numpy scipy
     conda deactivate
     ```
-    Environments can be large — mind your **50 GB `/home` quota**
+    Environments can be large — mind your **1 TiB `/home` quota**
     (`du -sh ~/.conda`).
 
 Building your own conda environment gives you the control to manage and install your own packages, and they will be less likely to have version errors than the pip-installed packages. The easiest way to create your own environment is to clone an existing conda environment into your own directory, then modify it.
@@ -62,7 +62,7 @@ Creating an environment can take up a significant portion of your disk quota, de
 
 Conda based installation provides the latest version of DL framework, however users can install their own choice of DL framework or library version locally by following below steps.
 
-Step 1. Login to Rudra cluster by using your credential.
+Step 1. Login to Rudra system by using your credential.
 
 Step 2.  Activate conda environment. 
 
@@ -104,7 +104,7 @@ You can activate your machine learning environment, run your program, and deacti
 #!/bin/bash -x
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=<np>
-#SBATCH -p shiwalik
+#SBATCH -p debug
 #SBATCH -J <job_name>
 #SBATCH -t 05:00:00
 #SBATCH -o %j.out             # name of stdout output file(--output)

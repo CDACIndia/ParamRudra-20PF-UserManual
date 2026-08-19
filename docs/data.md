@@ -5,13 +5,13 @@ the file systems, the `/scratch` purge policy, quotas, and efficient transfers.
 
 ## File systems
 
-Storage is a **Lustre** parallel filesystem (10 PiB primary + 10 PiB archival)
+Storage is a **Lustre** parallel filesystem (20 PiB primary + 10 PiB archival)
 
 
 | Path | Role | Soft quota | Backed up? | Purge | Best for |
 | --- | --- | --- | --- | --- | --- |
-| `/home/nsmext/$USER` | Home — code, scripts, configs | **1 TiB** | Per site policy (keep your own copies too) | No | Small, important, permanent files |
-| `/scratch/$USER` | High-performance working space | **1 TiB** | **No** | **As per the policy, files stored in /scratch will be retained for only one week, after which they will be permanently deleted.** | Active job I/O, large temporary data |
+| `$HOME` | Home — code, scripts, configs | **1 TiB** | Per site policy (keep your own copies too) | No | Small, important, permanent files |
+| `$SCRATCH` | High-performance working space | **1 TiB** | **No** | **As per the policy, files stored in /scratch will be retained for only one week, after which they will be permanently deleted.** | Active job I/O, large temporary data |
 
 !!! danger "Two rules that will save you"
     1. **`/scratch` is not storage.**As per the policy, files stored in /scratch will be retained for only one week, after which they will be permanently deleted.
@@ -23,16 +23,16 @@ Storage is a **Lustre** parallel filesystem (10 PiB primary + 10 PiB archival)
 ![Data Management](assets/img/DataManagement.png){ loading=lazy }
 
 1. Keep source and job scripts in `/home`.
-2. Stage inputs into `/scratch/nsmext/$USER/<project>/<run>` and run there.
-3. As soon as a run finishes, **move the outputs you need off the cluster**.
+2. Stage inputs into `$SCRATCH/<project>/<run>` and run there.
+3. As soon as a run finishes, **move the outputs you need off the system**.
 4. Delete large intermediates from `/scratch` you no longer need.
 
 ## Checking usage and quota
 
 ```bash
 # Space used by your directories
-du -sh /home/nsmext/$USER            # (can be slow on large trees)
-du -sh /scratch/nsmext/$USER/*
+du -sh $HOME           # (can be slow on large trees)
+du -sh $SCRATCH
 
 # Free space on the filesystems
 df -h /home /scratch
@@ -72,18 +72,18 @@ performance:
 
 ```bash
 # Find your largest directories under scratch
-du -h --max-depth=1 /scratch/nsmext/$USER | sort -h | tail
+du -h --max-depth=1 $SCRATCH | sort -h | tail
 
-# Find files not accessed in >80 days (candidates before the 3-month purge)
-find /scratch/nsmext/$USER -atime +80 -type f -printf '%AY-%Am-%Ad  %p\n' 2>/dev/null | head
+# Find files not accessed in >80 days (candidates before the 1-week purge)
+find $SCRATCH -atime +80 -type f -printf '%AY-%Am-%Ad  %p\n' 2>/dev/null | head
 
-# Compress finished runs you still want to keep on-cluster short-term
+# Compress finished runs you still want to keep on-system short-term
 tar czf run01.tar.gz run01/ && rm -rf run01/
 ```
 
 !!! warning "`atime` and the purge"
     The purge is based on **access time**. Simply having files sit there does not
     protect them — As per the policy, files stored in /scratch will be retained for only one week, after which they will be permanently deleted. Move
-    anything important **off** the cluster rather than relying on touching files.
+    anything important **off** the system rather than relying on touching files.
 
 Next: review the [Policies](policies.md) that govern fair use.

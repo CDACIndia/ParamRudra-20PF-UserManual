@@ -23,37 +23,25 @@ finds nodes and runs your job when they are free.
 
 ## Partitions and limits
 
-| Partition | Max wall time | Max nodes / job | Hardware |
-| --- | --- | --- | --- |
-| `cpu` *(default)* | 4 days (`4-00:00:00`) | 1 | CPU `cbcn*` |
-| `hm` | 4 days (`4-00:00:00`) | 8 | High-mem `cbhm*` |
-| `gpu` | 6 days (`6-00:00:00`) | 128 | GPU `cbgpu*` |
+| NAME        | Priority | Min Core/GPU | Max Core/GPU | Max Walltime (HH:MM:SS) | Max Queued Jobs per User | Max Running Job per User | Overall Running Jobs |
+|-------------|----------|--------------|--------------|--------------------------|--------------------------|--------------------------|----------------------|
+| debug       | 4800     | 01           | 192 (4 nodes) | 01:00:00               | 2                        | 1                        | 20                   |
+| terai       | 3400     | 480 (10 nodes) | 2400 (50 nodes) | 24:00:00            | 4                        | 2                        | 70                   |
+| shiwalik    | 3700     | 2448 (51 nodes) | 12288 (256 nodes) | 24:00:00          | 2                        | 1                        | 15                   |
+| himachal    | 4000     | 12336 (257 nodes) | 24576 (512 nodes) | 12:00:00        | 2                        | 1                        | 3                    |
+| himadri     | 5000     | 24624 (513 nodes) | 72000 (1500 nodes) | 06:00:00       | 1                        | 1                        | 1                    |
+| gpu-debug   | 4800     | 1            | 4            | 01:00:00                  | 2                        | 1                        | 20                   |
+| gpu-small   | 3400     | 10 (5 nodes) | 50 (25 nodes) | 24:00:00                | 4                        | 2                        | 20                   |
+| gpu-large   | 4000     | 52 (26 nodes) | 200 (100 nodes) | 12:00:00              | 2                        | 1                        | 3                    |
+| gpu-massive | 5000     | 202 (101 nodes) | 400 (200 nodes) | 06:00:00             | 1                        | 1                        | 1                    |
+| hm-small    | 3700     | 480 (10 nodes) | 2400 (50 nodes) | 24:00:00              | 3                        | 2                        | 5                    |
+| hm-large    | 4000     | 2448 (51 nodes) | 4800 (100 nodes) | 12:00:00             | 2                        | 1                        | 3                    |
 
 ```bash
 sinfo -s                          # quick partition summary
-scontrol show partition gpu       # authoritative limits, live
+scontrol show partition gpu-small       # authoritative limits, live
 ```
 
-!!! note "The `cpu` partition caps a job at **1 node**"
-    On this system the `cpu` partition allows a maximum of **1 node per job**.
-    Multi-node scaling is done on `gpu` (up to 128 nodes) or `hm` (up to 8
-    nodes). Confirm current limits with `scontrol show partition <name>` before
-    designing a large run, and contact [support](support.md) if you need a
-    multi-node CPU reservation.
-
-## QoS and scheduling policy
-
-| Policy | Value |
-| --- | --- |
-| Max simultaneous jobs / user | **10** |
-| Default max walltime / job | 4 days (`4-00:00:00`) |
-| **Default walltime if unspecified** | **2 hours** — always set `--time` explicitly |
-| Scheduling | SLURM **backfill** (accurate `--time` improves your turnaround) |
-
-Indicative node × time trade-offs under fair-use policy: an 8-node job for
-4 days, a 16-node job for 2 days, or a 32-node job for 1 day (subject to the
-per-partition node limits above). Need longer/bigger? Raise a ticket — handled
-case-by-case.
 
 !!! tip "Set an accurate walltime"
     If you omit `--time`, your job gets only **2 hours** and will be killed when
@@ -81,7 +69,7 @@ Create `job.slurm`:
 #!/bin/bash
 #SBATCH --job-name=myjob            # name shown in squeue
 #SBATCH --account=myproject         # REQUIRED accounting code (-A)
-#SBATCH --partition=shiwalik             # cpu | hm | gpu
+#SBATCH --partition=debug           
 #SBATCH --nodes=1                   # number of nodes
 #SBATCH --ntasks-per-node=48        # MPI ranks per node (match core count)
 #SBATCH --cpus-per-task=1           # threads per rank (OpenMP)
@@ -92,14 +80,15 @@ Create `job.slurm`:
 set -euo pipefail
 
 # 1) Reproducible environment
-module purge
-module load gcc/12 openmpi/4.1.5
+source /home/apps/spack/share/spack/setup-env.sh
+spack load gcc@12.5.0 /2abo2si
+spack load openmpi@5.0.10 /cw7xezt
 
 # 2) Thread control for OpenMP / hybrid codes
 export OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK:-1}
 
 # 3) Work in scratch
-cd /scratch/$USER/myproject/run01
+cd $SCRATCH/myproject/run01
 
 # 4) Launch through srun (uses the SLURM allocation)
 srun ./app_mpi

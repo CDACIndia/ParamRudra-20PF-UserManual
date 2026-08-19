@@ -4,7 +4,7 @@ Copy-and-adapt SLURM scripts for common workloads. Replace `myproject` with your
 [account](batch.md#your-account--a-is-mandatory) and set core/GPU counts to match
 the [hardware you confirmed](configuration.md#node-types-and-per-node-hardware).
 
-!!! note "Save these on the cluster"
+!!! note "Save these on the system"
     Put job scripts in `$HOME` (with your code) and run from `/scratch`. Submit
     with `sbatch script.slurm`.
 
@@ -27,7 +27,7 @@ the [hardware you confirmed](configuration.md#node-types-and-per-node-hardware).
 #!/bin/bash
 #SBATCH --job-name=serial
 #SBATCH --account=myproject
-#SBATCH --partition=shiwalik
+#SBATCH --partition=debug
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
@@ -38,7 +38,7 @@ set -euo pipefail
 source /home/apps/spack/share/spack/setup-env.sh
 spack load gcc@12.5.0 /2abo2si
 
-cd /scratch/$USER/serial_run
+cd $SCRATCH/serial_run
 ./my_serial_app input.dat
 ```
 
@@ -48,7 +48,7 @@ cd /scratch/$USER/serial_run
 #!/bin/bash
 #SBATCH --job-name=openmp
 #SBATCH --account=myproject
-#SBATCH --partition=shiwalik
+#SBATCH --partition=debug
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=48        # threads = cores on the node
@@ -63,7 +63,7 @@ export OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK}
 export OMP_PLACES=cores
 export OMP_PROC_BIND=close
 
-cd /scratch/$USER/omp_run
+cd $SCRATCH/omp_run
 srun ./my_openmp_app
 ```
 
@@ -73,7 +73,7 @@ srun ./my_openmp_app
 #!/bin/bash
 #SBATCH --job-name=mpi1node
 #SBATCH --account=myproject
-#SBATCH --partition=shiwalik
+#SBATCH --partition=debug
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=48      # ranks = cores on the node
 #SBATCH --cpus-per-task=1
@@ -85,7 +85,7 @@ source /home/apps/spack/share/spack/setup-env.sh
 spack load gcc@12.5.0 /2abo2si
 spack load openmpi@5.0.10 /cw7xezt
 
-cd /scratch/$USER/mpi_run
+cd $SCRATCH/mpi_run
 srun --cpu-bind=cores ./my_mpi_app
 ```
 
@@ -100,7 +100,7 @@ srun --cpu-bind=cores ./my_mpi_app
 #!/bin/bash
 #SBATCH --job-name=hybrid
 #SBATCH --account=myproject
-#SBATCH --partition=shiwalik
+#SBATCH --partition=debug
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=4       # 4 MPI ranks
 #SBATCH --cpus-per-task=12        # 12 threads each -> 48 cores
@@ -116,7 +116,7 @@ export OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK}
 export OMP_PROC_BIND=close
 export OMP_PLACES=cores
 
-cd /scratch/$USER/hybrid_run
+cd $SCRATCH/hybrid_run
 srun --cpu-bind=cores ./my_hybrid_app
 ```
 
@@ -139,7 +139,7 @@ source /home/apps/spack/share/spack/setup-env.sh
 spack load gcc@12.5.0 /2abo2si
 
 export OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK}
-cd /scratch/$USER/bigmem_run
+cd $SCRATCH/bigmem_run
 srun ./memory_hungry_app large_input
 ```
 
@@ -162,7 +162,7 @@ source /home/apps/spack/share/spack/setup-env.sh
 spack load cuda@12.2.2 /jlytfxg
 
 nvidia-smi
-cd /scratch/$USER/gpu_run
+cd $SCRATCH/gpu_run
 srun ./my_gpu_app
 ```
 
@@ -174,7 +174,7 @@ srun ./my_gpu_app
 #SBATCH --account=myproject
 #SBATCH --partition=gpu-small
 #SBATCH --nodes=4
-#SBATCH --gres=gpu:4
+#SBATCH --gres=gpu:2
 #SBATCH --ntasks-per-node=4       # one task per GPU
 #SBATCH --cpus-per-task=8
 #SBATCH --time=12:00:00
@@ -201,7 +201,7 @@ srun python train_ddp.py
 #!/bin/bash
 #SBATCH --job-name=sweep
 #SBATCH --account=myproject
-#SBATCH --partition=shiwalik
+#SBATCH --partition=debug
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
@@ -214,7 +214,7 @@ source /home/apps/spack/share/spack/setup-env.sh
 spack load gcc@12.5.0 /2abo2si
 
 PARAM=$(sed -n "${SLURM_ARRAY_TASK_ID}p" params.txt)
-cd /scratch/$USER/sweep
+cd $SCRATCH/sweep
 srun ./my_app --param "$PARAM"
 ```
 
@@ -234,11 +234,11 @@ echo "Submitted pipeline: $jid1 -> $jid2 -> $jid3"
 
 ```bash
 # CPU
-salloc -A myproject -p cpu -N 1 -t 01:00:00
+salloc -A myproject -p debug -N 1 -t 01:00:00
 srun --pty bash
 
 # GPU
-salloc -A myproject -p gpu -N 1 --gres=gpu:1 -c 8 -t 00:30:00
+salloc -A myproject -p gpu-small -N 1 --gres=gpu:1 -c 8 -t 00:30:00
 srun --pty bash
 ```
 

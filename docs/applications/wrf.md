@@ -43,7 +43,7 @@ or
 #SBATCH --output=rfm_job.out
 #SBATCH --error=rfm_job.err
 #SBATCH --exclusive
-#SBATCH --partition=shiwalik
+#SBATCH --partition=debug
 export SPACK_ROOT=/home/apps/spack
 . $SPACK_ROOT/share/spack/setup-env.sh
 spack load wrf@4.7.1

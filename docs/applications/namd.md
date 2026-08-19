@@ -55,7 +55,7 @@ or
 #SBATCH --output=rfm_job.out
 #SBATCH --error=rfm_job.err
 #SBATCH --exclusive
-#SBATCH --partition=shiwalik
+#SBATCH --partition=debug
 spack load namd/syvixe4
 export OMP_NUM_THREADS=1
 tar -xvf apoa1.tar.gz
@@ -81,6 +81,4 @@ Users can compare their results with the reference output to verify successful e
 The **ApoA1** benchmark is a common test case (available from the NAMD
 utilities page).
 
-!!! tip "GPU runs"
-    A CUDA-enabled NAMD build can use the A100 GPUs — submit to the `gpu`
-    partition with `--gres=gpu:1` (or `:2`). See [GPU Computing](../gpu.md).
+

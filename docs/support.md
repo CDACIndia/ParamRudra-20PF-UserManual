@@ -55,7 +55,7 @@ On the Support Center home page (or the top navigation bar), click Open a New Ti
 Choose the topic that best matches your issue from the drop-down list:
 
 1.   Application Support — for issues related to any software, application, or job script, such as compilation errors, library issues, or job failures.
-2.   System Support — for issues related to login, accessibility, or resource/quota management on the cluster.
+2.   System Support — for issues related to login, accessibility, or resource/quota management on the system.
 
 ![help](assets/img/help4.png){loading=lazy}
 
@@ -128,7 +128,7 @@ To provide more information or respond to a support agent, type your message in 
 
 If you are unable to access the Support Center, or need urgent assistance outside the ticketing system, contact the PARAM Rudra team at <rudrasupport@cdac.in>
 
-## Cluster Usage Policy
+## system Usage Policy
 
 Please read and follow them:
 
@@ -159,8 +159,8 @@ When once you have completed your research work and you no longer need to use PA
     [Policies](policies.md) and the [Batch System](batch.md).
 
 ??? question "My files in /scratch disappeared."
-    `/scratch` is purged: files **not accessed in 3 months** are permanently
-    deleted, with no recovery. Move important data off the cluster promptly. See
+    `/scratch` is purged: files **not accessed in 1 week** are permanently
+    deleted, with no recovery. Move important data off the system promptly. See
     [Data Management](data.md).
 
 ??? question "Why is my job stuck in PENDING?"
@@ -174,11 +174,7 @@ When once you have completed your research work and you no longer need to use PA
     Every job needs a valid `#SBATCH -A <account>`. List yours with
     `sacctmgr show assoc user=$USER format=account,partition -p`. See
     [Your account](batch.md#your-account--a-is-mandatory).
-
-??? question "I need more than 1 node on the CPU partition."
-    The `cpu` partition caps jobs at **1 node**. Multi-node scaling is available
-    on `gpu` (≤128 nodes) and `hm` (≤8 nodes). For large multi-node CPU runs,
-    contact the support desk to discuss options.
+  
 
 ??? question "How do I know how many cores / how much memory a node has?"
     Confirm on an allocated node (not the login node): `lscpu`, `nproc`,
