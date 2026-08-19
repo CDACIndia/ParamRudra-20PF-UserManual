@@ -38,7 +38,7 @@ set -euo pipefail
 source /home/apps/spack/share/spack/setup-env.sh
 spack load gcc@12.5.0 /2abo2si
 
-cd /scratch/$USER/serial_run
+cd $SCRATCH/serial_run
 ./my_serial_app input.dat
 ```
 
@@ -63,7 +63,7 @@ export OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK}
 export OMP_PLACES=cores
 export OMP_PROC_BIND=close
 
-cd /scratch/$USER/omp_run
+cd $SCRATCH/omp_run
 srun ./my_openmp_app
 ```
 
@@ -85,7 +85,7 @@ source /home/apps/spack/share/spack/setup-env.sh
 spack load gcc@12.5.0 /2abo2si
 spack load openmpi@5.0.10 /cw7xezt
 
-cd /scratch/$USER/mpi_run
+cd $SCRATCH/mpi_run
 srun --cpu-bind=cores ./my_mpi_app
 ```
 
@@ -116,7 +116,7 @@ export OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK}
 export OMP_PROC_BIND=close
 export OMP_PLACES=cores
 
-cd /scratch/$USER/hybrid_run
+cd $SCRATCH/hybrid_run
 srun --cpu-bind=cores ./my_hybrid_app
 ```
 
@@ -139,7 +139,7 @@ source /home/apps/spack/share/spack/setup-env.sh
 spack load gcc@12.5.0 /2abo2si
 
 export OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK}
-cd /scratch/$USER/bigmem_run
+cd $SCRATCH/bigmem_run
 srun ./memory_hungry_app large_input
 ```
 
@@ -162,7 +162,7 @@ source /home/apps/spack/share/spack/setup-env.sh
 spack load cuda@12.2.2 /jlytfxg
 
 nvidia-smi
-cd /scratch/$USER/gpu_run
+cd $SCRATCH/gpu_run
 srun ./my_gpu_app
 ```
 
@@ -214,7 +214,7 @@ source /home/apps/spack/share/spack/setup-env.sh
 spack load gcc@12.5.0 /2abo2si
 
 PARAM=$(sed -n "${SLURM_ARRAY_TASK_ID}p" params.txt)
-cd /scratch/$USER/sweep
+cd $SCRATCH/sweep
 srun ./my_app --param "$PARAM"
 ```
 
@@ -234,11 +234,11 @@ echo "Submitted pipeline: $jid1 -> $jid2 -> $jid3"
 
 ```bash
 # CPU
-salloc -A myproject -p cpu -N 1 -t 01:00:00
+salloc -A myproject -p debug -N 1 -t 01:00:00
 srun --pty bash
 
 # GPU
-salloc -A myproject -p gpu -N 1 --gres=gpu:1 -c 8 -t 00:30:00
+salloc -A myproject -p gpu-small -N 1 --gres=gpu:1 -c 8 -t 00:30:00
 srun --pty bash
 ```
 

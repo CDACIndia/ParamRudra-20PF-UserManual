@@ -159,7 +159,7 @@ When once you have completed your research work and you no longer need to use PA
     [Policies](policies.md) and the [Batch System](batch.md).
 
 ??? question "My files in /scratch disappeared."
-    `/scratch` is purged: files **not accessed in 3 months** are permanently
+    `/scratch` is purged: files **not accessed in 1 week** are permanently
     deleted, with no recovery. Move important data off the cluster promptly. See
     [Data Management](data.md).
 
@@ -174,11 +174,7 @@ When once you have completed your research work and you no longer need to use PA
     Every job needs a valid `#SBATCH -A <account>`. List yours with
     `sacctmgr show assoc user=$USER format=account,partition -p`. See
     [Your account](batch.md#your-account--a-is-mandatory).
-
-??? question "I need more than 1 node on the CPU partition."
-    The `cpu` partition caps jobs at **1 node**. Multi-node scaling is available
-    on `gpu` (≤128 nodes) and `hm` (≤8 nodes). For large multi-node CPU runs,
-    contact the support desk to discuss options.
+  
 
 ??? question "How do I know how many cores / how much memory a node has?"
     Confirm on an allocated node (not the login node): `lscpu`, `nproc`,

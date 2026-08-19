@@ -8,7 +8,7 @@ With Open OnDemand, you can:
 
 - Upload, download, and manage files through a graphical file browser.
 - Submit, monitor, and manage computing jobs.
-- Access the command-line shell on the cluster's login nodes, directly from the browser.
+- Access the command-line shell on the system's login nodes, directly from the browser.
 - Access and manage files in your designated storage locations.
 
 ```
@@ -20,7 +20,7 @@ https://ood.paramrudra.cdacb.in/
 
 By default, Open OnDemand starts you in your home directory, located at:
 
-/home/nsmext/$USER
+$HOME
 
 Here, $USER represents your own PARAM Rudra username.
 
@@ -28,8 +28,8 @@ You are provided with the following storage:
 
 | **Location**        | **Quota** | **Recommended Use**                                                   |
 |---------------------|-----------|------------------------------------------------------------------------|
-| Home directory      | 1 TiB     | Configuration files, source code, important user data                 |
-| Scratch storage     | 1 TiB     | Temporary files, computational / job data                              |
+| $HOME      | 1 TiB     | Configuration files, source code, important user data                 |
+| $SCRATCH     | 1 TiB     | Temporary files, computational / job data                              |
 
 Use your home directory for configuration files, source code, and important user data. Use scratch storage for temporary files and computational (job) data.
 
@@ -55,8 +55,8 @@ From the file browser you can:
 
  - Browse directories and files.
  - Create and delete files and directories.
- - Upload files from your local computer to the cluster.
- - Download files from the cluster to your local computer.
+ - Upload files from your local computer to the system.
+ - Download files from the system to your local computer.
  - Perform basic file operations — Copy/Move, Delete, New Directory, New File — through the toolbar shown above.
  - Open a terminal directly in the current directory using Open in Terminal.
 
@@ -80,7 +80,7 @@ Open OnDemand provides the Job Composer to simplify creating and submitting SLUR
 
 **Figure 2 — Job Composer — create, edit, submit, and monitor SLURM jobs**
 
-The Job Composer also lets you monitor the status of submitted jobs and view details about running or completed jobs — including Created, Name, ID, Cluster, and Status — from the Jobs list.
+The Job Composer also lets you monitor the status of submitted jobs and view details about running or completed jobs — including Created, Name, ID, system, and Status — from the Jobs list.
 
 ## 5. Accessing the PARAM Rudra Shell
 
@@ -88,9 +88,9 @@ Open OnDemand also provides command-line access to the PARAM Rudra system throug
 
 **Step 1 — Open the shell**
 
-- Click Clusters in the navigation bar.
+- Click systems in the navigation bar.
 - Select Login Shell Access.
-- A terminal session opens in your browser and connects you to one of the cluster's login nodes.
+- A terminal session opens in your browser and connects you to one of the system's login nodes.
 
 You can use this shell to execute Linux commands, manage files, prepare applications, and perform other tasks that require command-line access.
 
@@ -104,13 +104,13 @@ You can use this shell to execute Linux commands, manage files, prepare applicat
     In most cases, the shell session will reconnect successfully.
 
 
-# How to access the cluster using Passwordless (SSH Key-Based) Access
+# How to access the system using Passwordless (SSH Key-Based) Access
 
 ## 1. Overview
 
 This part explains how to set up passwordless (SSH key-based) login to the PARAM Rudra 20 PF HPC System, deployed under the National Supercomputing Mission (NSM) and hosted by C-DAC.
 
-Once configured, you can connect directly to the cluster login nodes from your workstation using an SSH client (e.g. MobaXterm, PowerShell, or any terminal) without entering a password each time.
+Once configured, you can connect directly to the system login nodes from your workstation using an SSH client (e.g. MobaXterm, PowerShell, or any terminal) without entering a password each time.
 
 !!! note
     Two ways to set this up
@@ -140,10 +140,10 @@ From the top menu bar, click **ssh keys → SSH Keys.**
 
 ![access image](assets/img/access14.png){loading=lazy}
 
-**Figure 2 — SSH Keys for password-less cluster login page**
+**Figure 2 — SSH Keys for password-less system login page**
 
 !!! note 
-    Password login remains available only through this OOD web portal. Direct SSH access to the cluster requires a key added on this page.
+    Password login remains available only through this OOD web portal. Direct SSH access to the system requires a key added on this page.
 
 
 ## 4. Option 1 — Generate a New Key Pair on the Portal
@@ -176,7 +176,7 @@ If you are using MobaXterm, place the downloaded key inside its SSH folder, typi
 
 **Step 4 — Connect using the key**
 
-From the MobaXterm terminal (or any SSH client on the same machine), connect using the -i flag to point to your private key and -p for the cluster's SSH port:
+From the MobaXterm terminal (or any SSH client on the same machine), connect using the -i flag to point to your private key and -p for the system's SSH port:
 
 ```
 ssh -i ~/.ssh/paramrudra_id_rsa -p 4422 testuser01@paramrudra.cdacb.in
@@ -192,7 +192,7 @@ On success, you will be logged directly into a PARAM Rudra login node without be
 
 ![access image](assets/img/access18.png){loading=lazy}
 
-**Figure 6 — Successful passwordless login — cluster message of the day and shell prompt**
+**Figure 6 — Successful passwordless login — system message of the day and shell prompt**
 
 ## 5. Option 2 — Import a Key From Your Workstation
 
@@ -260,7 +260,7 @@ The portal confirms the key was added and saved to your account's authorized key
 
 **Step 5 — Connect from PowerShell**
 
-Return to PowerShell and connect to the cluster using the standard ssh command with the cluster's port:
+Return to PowerShell and connect to the system using the standard ssh command with the system's port:
 
 ```
 ssh testuser01@paramrudra.cdacb.in -p 4422
@@ -271,14 +271,14 @@ Replace testuser01 with your own PARAM Rudra username.
 
 **Figure 13 — SSH connection command in PowerShell**
 
-You will be logged in directly — no password prompt — and greeted with the cluster's message of the day:
+You will be logged in directly — no password prompt — and greeted with the system's message of the day:
 
 ![access image](assets/img/access26.png){loading=lazy}
 
-**Figure 14 — Successful passwordless login via PowerShell, showing cluster usage policies**
+**Figure 14 — Successful passwordless login via PowerShell, showing system usage policies**
 
 !!! note
-    Please do not share your private key with anyone. Sharing it may allow unauthorized access to the cluster using your username and would constitute a violation of the terms and conditions of the PARAM Rudra HPC System.
+    Please do not share your private key with anyone. Sharing it may allow unauthorized access to the system using your username and would constitute a violation of the terms and conditions of the PARAM Rudra HPC System.
 
 
 

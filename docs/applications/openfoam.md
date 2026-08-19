@@ -117,6 +117,4 @@ Reference output files for verification are available at:
   `sed` line above keeps them in sync.
 - The Motorbike tutorial (`Motorbike_bench_template`) is a common benchmark case.
 
-!!! tip "Scaling"
-    `cpu` is capped at 1 node here (48 subdomains). For larger decompositions use
-    `hm` (≤8 nodes), or contact [support](../support.md).
+

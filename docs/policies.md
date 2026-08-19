@@ -24,10 +24,10 @@ through **SLURM** (`sbatch` / `salloc` / `srun`). See the
 **How to tell:** if `hostname` shows a `login*` node, do **not** launch
 simulations, training runs, big `make -j`, or large data crunching there.
 
-## 2. `/scratch` purge — 3 months
+## 2. `/scratch` purge — 1 week
 
 !!! warning "Automatic deletion"
-    Files in `/scratch` **not accessed in the last 3 months are permanently
+    Files in `/scratch` **not accessed in the last 1 week are permanently
     deleted.** `/scratch` is temporary working space, not storage.
 
 - No recovery after purge.
@@ -83,8 +83,8 @@ scheduling and usage reporting.
 
 | Filesystem | Soft quota |
 | --- | --- |
-| `/home/nsmext/$USER` | **1 TiB** |
-| `/scratch/nsmext/$USER` | **1 TiB** |
+| `$HOME` | **1 TiB** |
+| `$SCRATCH` | **1 TiB** |
 
 Stage inputs and run jobs in `/scratch`; copy results worth keeping back to
 `/home` (and off-cluster). Check usage with `lfs quota -h -u $USER /scratch`.

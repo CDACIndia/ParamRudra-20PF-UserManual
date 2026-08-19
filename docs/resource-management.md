@@ -36,7 +36,7 @@ The walltime parameter defines the maximum amount of time for which a job is all
 
 **#SBATCH --time=02:00:00**
 
-The maximum walltime depends on the selected QoS. For example, DEBUG and GPU-DEBUG jobs are limited to 1 hour, while terai and shiwalik jobs can run for up to 24 hours. himachal and GPU-LARGE jobs are limited to 12 hours, whereas himadri and GPU-MASSIVE jobs are limited to 6 hours. If a job exceeds the walltime specified in the SLURM script, the job will be terminated by SLURM. Therefore, users should provide a realistic walltime based on their expected execution time.
+The maximum walltime depends on the selected QoS. For example, debug and gpu-debug jobs are limited to 1 hour, while terai and cpu jobs can run for up to 24 hours. himachal and gpu-large jobs are limited to 12 hours, whereas himadri and gpu-massive jobs are limited to 6 hours. If a job exceeds the walltime specified in the SLURM script, the job will be terminated by SLURM. Therefore, users should provide a realistic walltime based on their expected execution time.
 
 
 ### Scheduling Type
@@ -199,9 +199,9 @@ example: N1 -one node, N4 - four nodes. Instead of tmp here you can use the belo
 
 source /home/apps/spack/share/spack/setup-env.sh
 spack load intel-oneapi-compilers /nizifpn
-cd /home/nsmext/testuser01	#change to your required directory
+cd $HOME/testuser01	#change to your required directory
 export OMP_NUM_THREADS=${SLURM_ARRAY_TASK_ID}
-/home/nsmext/testuser01/md_omp
+$HOME/testuser01/md_omp
 ```
 
 <span style="color:#4DA6FF;">Running Interactive Jobs</span>
@@ -529,7 +529,7 @@ The exit code of a job is captured by Slurm and saved as part of the job record.
 
 - Every user will have a quota of 1TiB of soft limit in the HOME file system (/home) and 1 TiB of soft limit in the SCRATCH(/scratch) file system.
 
-- Users are recommended to copy their execution environment and input files to scratch file system (/scratch/<username>) during job running and copy output data back to HOME area
+- Users are recommended to copy their execution environment and input files to scratch file system ($SCRATCH) during job running and copy output data back to HOME area
 
 - File retention policy has been implemented on Lustre storage for the "/scratch" file system. After the jobs are completed, you need to store the data in /home. Users are requested to regularly back up their data from the /scratch directory. As per the policy, files stored in /scratch will be retained for only one week, after which they will be permanently deleted.
 

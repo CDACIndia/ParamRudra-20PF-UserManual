@@ -129,7 +129,7 @@ spack uninstall zlib %gcc@13.4.0
     Spack builds land under your space and can be large and slow. Do big
     installs inside an [interactive job](batch.md#interactive-jobs), and mind
     your 1 TiB  `/home` quota — consider `/scratch` for bulky builds (subject to
-    the [3-month purge](data.md)).
+    the [1-week purge](data.md)).
 
 ## Spack environments
 

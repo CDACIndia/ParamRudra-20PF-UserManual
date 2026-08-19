@@ -28,7 +28,7 @@ Login nodes are typically used for administrative tasks such as editing files, w
 
 ## Service Nodes
 
-PARAM Rudra is an aggregation of a large number of nodes connected through networks. Management nodes play a crucial role in managing and monitoring every component of the PARAM Rudra system. This includes monitoring the health, load, and utilization of individual components, as well as providing essential services such as security, management, and monitoring to ensure the cluster functions smoothly. 
+PARAM Rudra is an aggregation of a large number of nodes connected through networks. Management nodes play a crucial role in managing and monitoring every component of the PARAM Rudra system. This includes monitoring the health, load, and utilization of individual components, as well as providing essential services such as security, management, and monitoring to ensure the system functions smoothly. 
 
 ### Management Nodes
 
@@ -104,7 +104,7 @@ High Memory Compute nodes are specialized nodes designed to handle workloads tha
 
 ## Trinetra Nodes
 
-Trinetra B nodes are 128 nodes connected with indigenously developed Trinetra High performance interconnect. These nodes are connected in 5D torus topology to enable high bandwidth low latency communication.
+It consists of 128 nodes connected with an indigenously developed Trinetra High performance interconnect. These nodes are connected in 5D torus topology to enable high bandwidth low latency communication.
 
 | **Trinetra Nodes: 128** | |
 |---|---|
@@ -200,8 +200,8 @@ Storage is a **Lustre** parallel filesystem:
 
 | Path | Purpose | Quota (soft) | Backed up? | Purge |
 | --- | --- | --- | --- | --- |
-| `/home/<user>` | Code, scripts, small inputs, results to keep | **1 TiB** | Per site policy | No |
-| `/scratch/<user>` | High-performance working space for jobs | **1 TiB** | **No** | As per the policy, files stored in /scratch will be retained for only one week, after which they will be permanently deleted. |
+| `$HOME` | Code, scripts, small inputs, results to keep | **1 TiB** | Per site policy | No |
+| `$SCRATCH` | High-performance working space for jobs | **1 TiB** | **No** | As per the policy, files stored in /scratch will be retained for only one week, after which they will be permanently deleted. |
 
 Total usable capacity is 10 PiB (primary) + 10 PiB (archival). See [Data Management](data.md) for quotas, Lustre striping and the
 purge policy.

@@ -13,18 +13,18 @@ and SLURM configuration.
 
 ## What's inside
 
-- **Getting Access** — SSH on port `4422`, 2FA (Google Authenticator), file transfer
+- **Getting Access** — Visit the PARAM Rudra Open OnDemand (OOD) portal.
 - **System Configuration** — 2,906 nodes (2× Xeon 6240R; A100 GPUs; 768 GB HM), InfiniBand NDR, Lustre
-- **Environment / Modules & Conda** — shell, modules, Miniconda, `/home` & `/scratch` (50/200 GB)
+- **Environment / Modules & Conda** — shell, modules, Miniconda, `/home` & `/scratch` (1 TiB)
 - **Spack Packages** — the primary package manager (`spack load`, environments, hashes)
 - **Building Software** — Intel/GNU/CUDA/MKL/OpenACC toolchains with real versions
-- **Batch System (SLURM)** — partitions (`cpu`/`hm`/`gpu`), QoS, dependencies, arrays, PBS→SLURM
+- **Batch System (SLURM)** — partitions, QoS, dependencies, arrays, PBS→SLURM
 - **GPU Computing** — A100 `sm_80`, GRES, multi-GPU, multi-node DDP, MPS
 - **Machine Learning / DL** — pre-built PyTorch/TensorFlow envs, Jupyter via SSH tunnel
 - **Applications** — GROMACS, LAMMPS, NAMD, OpenFOAM, WRF, CP2K, NWChem via Spack
 - **Job Script Examples** — 10 ready-to-copy templates
 - **Debugging** — gdb basics + job-failure diagnosis
-- **Data Management** — Lustre striping, `/scratch` 3-month purge, quotas, transfers
+- **Data Management** — Lustre striping, `/scratch` 1-week purge, quotas, transfers
 - **Accounts & Acknowledgement** — NSM account process, CPU-hour accounting, NSM citation
 - **Policies & FAQ**
 

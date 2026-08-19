@@ -1,9 +1,9 @@
 # PARAM Rudra — 20 PetaFlop System User Manual
 
-![C-DAC PARAM Rudra — 20 PetaFlop Supercomputer](assets/img/hero.png){ loading=lazy }
+![C-DAC PARAM Rudra — 20 PetaFlop Supercomputer](assets/img/home1.png){ loading=lazy }
 
 Welcome to the user documentation for **PARAM Rudra**, a ~20 PetaFlop
-supercomputer operated under the **National Supercomputing Mission (NSM)** by
+HPC system operated under the **National Supercomputing Mission (NSM)** by
 **C-DAC**. This guide walks you through everything from your first login to
 running large-scale CPU, high-memory and GPU jobs through the SLURM batch
 system.
@@ -30,6 +30,7 @@ supported by MeitY and DST, Government of India.*{ .cobrand-caption }
 | CPU-only nodes (2× Xeon Gold 6240R, 48c, 192 GB) | 2,266 | `cbcn####` |
 | GPU nodes (+ 2× NVIDIA A100 80 GB) | 320 | `cbgpu####` |
 | High-memory nodes (768 GB RAM) | 320 | `cbhm####` |
+| Trinetra nodes(2× Xeon Gold 6240R, 48c, 192 GB) | 128 | —
 | Peak performance | ~20 PFLOPS | — |
 | Interconnect | **InfiniBand NDR** | — |
 | Storage | **Lustre** (20 PiB + 10 PiB archival) | — |
@@ -84,14 +85,11 @@ supported by MeitY and DST, Government of India.*{ .cobrand-caption }
     notice** (repeat offences may cost you account access). Always submit work
     through SLURM — see the [Batch System](batch.md) page.
 
->**Note:** 
 
-> **PARAM Rudra 20 PF HPC System** is hereinafter referred to as the **“HPC Cluster”** or simply the **“Cluster.”**
+!!! note
+    **$HOME:** `/home/<group_name>/<user_name>/`
 
-> `$HOME` is `/home/<group_name>/<user_name>/`
-
-> `$SCRATCH` is `/scratch/<group_name>/<user_name>/`
-
+    **$SCRATCH:** `/scratch/<group_name>/<user_name>/`
 
 
 !!! warning "`/scratch` is purged"

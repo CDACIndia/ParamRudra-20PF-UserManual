@@ -53,7 +53,7 @@ conda info --env          # list all environments
     conda install numpy scipy
     conda deactivate
     ```
-    Environments can be large — mind your **50 GB `/home` quota**
+    Environments can be large — mind your **1 TiB `/home` quota**
     (`du -sh ~/.conda`).
 
 Building your own conda environment gives you the control to manage and install your own packages, and they will be less likely to have version errors than the pip-installed packages. The easiest way to create your own environment is to clone an existing conda environment into your own directory, then modify it.

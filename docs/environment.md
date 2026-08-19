@@ -31,8 +31,8 @@ Customise your environment through the usual bash startup files in `/home`:
 
 | Variable / Path | Use it for | Soft quota | Watch out for |
 | --- | --- | --- | --- |
-| `/home/nsmext/$USER` (`$HOME`) | Code, scripts, configs, small files | **1 TiB** | Not for heavy job I/O |
-| `/scratch/$USER` | Fast working space for running jobs | **1 TiB** | **As per the policy, files stored in /scratch will be retained for only one week, after which they will be permanently deleted. |
+| `$HOME` | Code, scripts, configs, small files | **1 TiB** | Not for heavy job I/O |
+| `$SCRATCH` | Fast working space for running jobs | **1 TiB** | As per the policy, files stored in /scratch will be retained for only one week, after which they will be permanently deleted. |
 
 Both live on the **Lustre** parallel filesystem. Stage inputs into `/scratch`,
 run there, then copy results you want to keep back to `/home` (or off-cluster).
@@ -44,8 +44,8 @@ Recommended pattern:
 cd $HOME/myproject
 
 # 2. Stage inputs and run in /scratch (fast parallel filesystem)
-mkdir -p /scratch/$USER/myproject/run01
-cd /scratch/$USER/myproject/run01
+mkdir -p $SCRATCH/myproject/run01
+cd $SCRATCH/myproject/run01
 
 # 3. After the run, move important results to safe long-term storage
 ```
@@ -54,7 +54,7 @@ Check your usage and quota:
 
 ```bash
 # Disk usage of a directory
-du -sh /scratch/$USER/*
+du -sh $SCRATCH/*
 
 # Lustre quota (soft: 1TiB  /home, 1TiB /scratch)
 lfs quota -h -u $USER /home
@@ -145,7 +145,7 @@ See [Building Software](building.md) for compilers, MPI and CUDA, and for using
 
 Users need to have their data and applications related to their project or research work on PARAM Rudra. To store the data, special directories named “home” have been made available to the users. While these directories are common to all the users, each user will have their own directory with their username in the “/home/” directory, where they can store their data.
 
-`/home/nsmext/<username>/`  This directory is generally used by the user to store their data and if needed install their own applications.
+`$HOME/`  This directory is generally used by the user to store their data and if needed install their own applications.
 However, there is a limit to the storage provided to users. The limits have been defined according to quota over these directories, and all users will be allotted the same quota by default. When a user wishes to transfer data from their local system (laptop/desktop) to the HPC system, they can use various methods and tools.
 
 A user using the ‘Windows’ operating system will have access to methods and tools native to Microsoft Windows, as well as tools that can be installed on their Windows machine. Linux operating system users, however, do not require any tool. They can simply use the “scp” command on 
@@ -164,7 +164,6 @@ Use -i with the path where your private key is saved.
 **Note:** The local system (laptop/desktop) must be connected to a network that allows access to the HPC system. Additionally, please ensure that the firewall settings on your laptop are configured to allow access from the HPC system.
 Users are advised to keep a copy of their data once their project or research work is completed by transferring the data from PARAM Rudra to their local system (laptop/desktop). 
 
-## Tools
 
 ### WinSCP (Windows installable application)
 
