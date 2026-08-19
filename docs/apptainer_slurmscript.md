@@ -44,7 +44,7 @@ Create a Slurm batch script named `cpu_apptainer.slurm`.
 #!/bin/bash
 #SBATCH --job-name=apptainer-cpu
 #SBATCH --nodes=1
-#SBATCH --ntasks=1
+#SBATCH --partition=debug
 #SBATCH --cpus-per-task=4
 #SBATCH --time=00:05:00
 #SBATCH --output=cpu-%j.out
@@ -95,7 +95,7 @@ Create a Slurm batch script named `gpu_apptainer.slurm`.
 #!/bin/bash
 #SBATCH --job-name=apptainer-gpu
 #SBATCH --nodes=1
-#SBATCH --ntasks=1
+#SBATCH --partition=gpu-debug
 #SBATCH --gres=gpu:1
 #SBATCH --time=00:05:00
 #SBATCH --output=gpu-%j.out

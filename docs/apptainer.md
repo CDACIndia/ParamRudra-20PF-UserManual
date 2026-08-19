@@ -45,7 +45,7 @@ Apptainer can pull images directly from Docker/OCI registries and stores them in
 Example:
 
 ```bash
-srun --pty -N1 -n1 --cpus-per-task=4 bash
+srun -N 1 -n 1 -p debug --cpus-per-task=4 --pty /bin/bash
 ```
 
 Adjust the resource request according to your allocation.
@@ -91,7 +91,7 @@ The `exec`, `shell`, and `run` commands are the primary methods for executing ap
 Example:
 
 ```bash
-srun --pty -N1 --gres=gpu:1 bash
+srun -N 1 -p gpu-debug --gres=gpu:1 --pty /bin/bash
 ```
 
 Use the GPU resource request appropriate for your cluster.
