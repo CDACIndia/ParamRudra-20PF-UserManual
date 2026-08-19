@@ -2,7 +2,7 @@
 
 ## 1. Introduction
 
-Open OnDemand (OOD) provides a simple, browser-based interface for using the PARAM Rudra HPC facility. It lets you carry out common HPC tasks without needing to know command-line tools in depth, by wrapping file management, job submission, and shell access in a single web portal.
+Open OnDemand (OOD) provides a simple, browser-based interface for using the PARAM Rudra HPC System. It lets you carry out common HPC tasks without needing to know command-line tools in depth, by wrapping file management, job submission, and shell access in a single web portal.
 
 With Open OnDemand, you can:
 
@@ -108,7 +108,7 @@ You can use this shell to execute Linux commands, manage files, prepare applicat
 
 ## 1. Overview
 
-This part explains how to set up passwordless (SSH key-based) login to the PARAM Rudra 20 PF HPC Facility, deployed under the National Supercomputing Mission (NSM) and hosted by C-DAC.
+This part explains how to set up passwordless (SSH key-based) login to the PARAM Rudra 20 PF HPC System, deployed under the National Supercomputing Mission (NSM) and hosted by C-DAC.
 
 Once configured, you can connect directly to the cluster login nodes from your workstation using an SSH client (e.g. MobaXterm, PowerShell, or any terminal) without entering a password each time.
 
@@ -278,7 +278,7 @@ You will be logged in directly — no password prompt — and greeted with the c
 **Figure 14 — Successful passwordless login via PowerShell, showing cluster usage policies**
 
 !!! note
-    Please do not share your private key with anyone. Sharing it may allow unauthorized access to the cluster using your username and would constitute a violation of the terms and conditions of the PARAM Rudra HPC Facility.
+    Please do not share your private key with anyone. Sharing it may allow unauthorized access to the cluster using your username and would constitute a violation of the terms and conditions of the PARAM Rudra HPC System.
 
 
 

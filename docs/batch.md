@@ -81,7 +81,7 @@ Create `job.slurm`:
 #!/bin/bash
 #SBATCH --job-name=myjob            # name shown in squeue
 #SBATCH --account=myproject         # REQUIRED accounting code (-A)
-#SBATCH --partition=shiwalik             # cpu | hm | gpu
+#SBATCH --partition=debug           
 #SBATCH --nodes=1                   # number of nodes
 #SBATCH --ntasks-per-node=48        # MPI ranks per node (match core count)
 #SBATCH --cpus-per-task=1           # threads per rank (OpenMP)
@@ -92,8 +92,9 @@ Create `job.slurm`:
 set -euo pipefail
 
 # 1) Reproducible environment
-module purge
-module load gcc/12 openmpi/4.1.5
+source /home/apps/spack/share/spack/setup-env.sh
+spack load gcc@12.5.0 /2abo2si
+spack load openmpi@5.0.10 /cw7xezt
 
 # 2) Thread control for OpenMP / hybrid codes
 export OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK:-1}

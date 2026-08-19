@@ -27,7 +27,7 @@ the [hardware you confirmed](configuration.md#node-types-and-per-node-hardware).
 #!/bin/bash
 #SBATCH --job-name=serial
 #SBATCH --account=myproject
-#SBATCH --partition=shiwalik
+#SBATCH --partition=debug
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
@@ -48,7 +48,7 @@ cd /scratch/$USER/serial_run
 #!/bin/bash
 #SBATCH --job-name=openmp
 #SBATCH --account=myproject
-#SBATCH --partition=shiwalik
+#SBATCH --partition=debug
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=48        # threads = cores on the node
@@ -73,7 +73,7 @@ srun ./my_openmp_app
 #!/bin/bash
 #SBATCH --job-name=mpi1node
 #SBATCH --account=myproject
-#SBATCH --partition=shiwalik
+#SBATCH --partition=debug
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=48      # ranks = cores on the node
 #SBATCH --cpus-per-task=1
@@ -100,7 +100,7 @@ srun --cpu-bind=cores ./my_mpi_app
 #!/bin/bash
 #SBATCH --job-name=hybrid
 #SBATCH --account=myproject
-#SBATCH --partition=shiwalik
+#SBATCH --partition=debug
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=4       # 4 MPI ranks
 #SBATCH --cpus-per-task=12        # 12 threads each -> 48 cores
@@ -174,7 +174,7 @@ srun ./my_gpu_app
 #SBATCH --account=myproject
 #SBATCH --partition=gpu-small
 #SBATCH --nodes=4
-#SBATCH --gres=gpu:4
+#SBATCH --gres=gpu:2
 #SBATCH --ntasks-per-node=4       # one task per GPU
 #SBATCH --cpus-per-task=8
 #SBATCH --time=12:00:00
@@ -201,7 +201,7 @@ srun python train_ddp.py
 #!/bin/bash
 #SBATCH --job-name=sweep
 #SBATCH --account=myproject
-#SBATCH --partition=shiwalik
+#SBATCH --partition=debug
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4

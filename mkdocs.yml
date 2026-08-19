@@ -134,5 +134,6 @@ nav:
       - Policies: policies.md
       - Accounts & Acknowledgement: acknowledgement.md
       - FAQ & Support: support.md
+      - NSM Forum: nsmforum.md
 
   - Contributing: contributing.md

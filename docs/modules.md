@@ -104,7 +104,7 @@ You can activate your machine learning environment, run your program, and deacti
 #!/bin/bash -x
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=<np>
-#SBATCH -p shiwalik
+#SBATCH -p debug
 #SBATCH -J <job_name>
 #SBATCH -t 05:00:00
 #SBATCH -o %j.out             # name of stdout output file(--output)

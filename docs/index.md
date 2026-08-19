@@ -19,6 +19,8 @@ supported by MeitY and DST, Government of India.*{ .cobrand-caption }
     2. [Environment](environment.md) — modules, shell and your `/home` & `/scratch` directories.
     3. [Batch System (SLURM)](batch.md) — never run compute on the login node; submit jobs instead.
 
+
+
 ## System at a glance
 
 | Resource | Count | Node name prefix |
@@ -82,6 +84,16 @@ supported by MeitY and DST, Government of India.*{ .cobrand-caption }
     notice** (repeat offences may cost you account access). Always submit work
     through SLURM — see the [Batch System](batch.md) page.
 
+>**Note:** 
+
+> **PARAM Rudra 20 PF HPC System** is hereinafter referred to as the **“HPC Cluster”** or simply the **“Cluster.”**
+
+> `$HOME` is `/home/<group_name>/<user_name>/`
+
+> `$SCRATCH` is `/scratch/<group_name>/<user_name>/`
+
+
+
 !!! warning "`/scratch` is purged"
     As per the policy, files stored in /scratch will be retained for only one week, after which they will be permanently deleted.
     `/scratch` is fast working space, **not** long-term
@@ -115,7 +127,7 @@ scancel <jobid>              # cancel a job
 
 !!! note "About this manual"
     This is a **community/user-maintained** guide for the C-DAC PARAM Rudra
-    20 PetaFlop supercomputer, grounded in the **official C-DAC PARAM Rudra User
+    20 PetaFlop system, grounded in the **official C-DAC PARAM Rudra User
     Manual** plus the live login banner and SLURM configuration. Where a value
     may change over time (versions, quotas, hashes), the page tells you the
     command to confirm it on the system. The authoritative source is always the

@@ -28,7 +28,7 @@ Login nodes are typically used for administrative tasks such as editing files, w
 
 ## Service Nodes
 
-PARAM Rudra is an aggregation of a large number of nodes connected through networks. Management nodes play a crucial role in managing and monitoring every component of PARAM Rudra cluster. This includes monitoring the health, load, and utilization of individual components, as well as providing essential services such as security, management, and monitoring to ensure the cluster functions smoothly. 
+PARAM Rudra is an aggregation of a large number of nodes connected through networks. Management nodes play a crucial role in managing and monitoring every component of the PARAM Rudra system. This includes monitoring the health, load, and utilization of individual components, as well as providing essential services such as security, management, and monitoring to ensure the cluster functions smoothly. 
 
 ### Management Nodes
 
@@ -104,7 +104,7 @@ High Memory Compute nodes are specialized nodes designed to handle workloads tha
 
 ## Trinetra Nodes
 
-Trinetra nodes are the individual machines dedicated to performing computational tasks. These nodes collectively form the computational power of the system. All the CPU intensive activities are carried on these nodes.
+Trinetra B nodes are 128 nodes connected with indigenously developed Trinetra High performance interconnect. These nodes are connected in 5D torus topology to enable high bandwidth low latency communication.
 
 | **Trinetra Nodes: 128** | |
 |---|---|
@@ -214,13 +214,13 @@ System administrators, on the other hand, are concerned with ensuring optimal re
 
 The software stack provided with this system has a wide range of software components that meet the needs of both users and administrators. Figure 2 illustrates the components of the software stack.
 
-C-CHAKSHU, a multi-cluster management tool designed to help administrators operate the HPC facility efficiently. It also enables the users to monitor system metrics relating to CPU, storage, interconnects, file system and application-specific utilization from a single dashboard. For more information, please follow the link:  **[CHAKSHU Dashboard](https://chakshu.paramrudra.cdacb.in/)**.
+C-CHAKSHU, a multi-cluster management tool designed to help administrators operate the HPC System efficiently. It also enables the users to monitor system metrics relating to CPU, storage, interconnects, file system and application-specific utilization from a single dashboard. For more information, please follow the link:  **[CHAKSHU Dashboard](https://chakshu.paramrudra.cdacb.in/)**.
 <br>
 <br>
 
 
 ![Software Stack -](assets/img/SoftwareStack.png){ loading=lazy}
-*Figure : Software Stack.*
+*Figure 2 : Software Stack.*
 <br>
 <br>
 

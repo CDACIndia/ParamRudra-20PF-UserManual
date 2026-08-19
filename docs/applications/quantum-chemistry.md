@@ -14,7 +14,7 @@ Ab-initio computational chemistry (quantum chemistry + molecular dynamics).
 Site: <https://www.nwchem-sw.org/>.
 
 ```bash
-#SBATCH --partition=shiwalik
+#SBATCH --partition=debug
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=48
 spack load nwchem
@@ -42,7 +42,7 @@ Biomolecular molecular dynamics (proteins, DNA, RNA), with CPU and GPU engines
 (`pmemd`, `pmemd.cuda`). Site: <https://ambermd.org/>.
 
 ```bash
-#SBATCH --partition=shiwalik
+#SBATCH --partition=debug
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=48
 export OMP_NUM_THREADS=1

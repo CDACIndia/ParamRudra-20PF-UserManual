@@ -47,7 +47,7 @@ or
 #SBATCH --output=rfm_job.out
 #SBATCH --error=rfm_job.err
 #SBATCH --exclusive
-#SBATCH --partition=shiwalik
+#SBATCH --partition=debug
 spack load nwchem/zsq4xv3
 spack load intel-oneapi-mpi/ptyduik
 time \

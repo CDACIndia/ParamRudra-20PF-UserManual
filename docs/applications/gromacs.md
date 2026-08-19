@@ -62,7 +62,7 @@ or
 #SBATCH --output=rfm_job.out
 #SBATCH --error=rfm_job.err
 #SBATCH --exclusive
-#SBATCH --partition=shiwalik
+#SBATCH --partition=debug
 
 
 # Load required packages

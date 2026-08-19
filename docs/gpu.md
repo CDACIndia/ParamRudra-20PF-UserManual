@@ -73,7 +73,7 @@ Request several GPUs and one task per GPU:
 
 ```bash
 #SBATCH --nodes=1
-#SBATCH --gres=gpu:4
+#SBATCH --gres=gpu:2
 #SBATCH --ntasks-per-node=4
 #SBATCH --cpus-per-task=8
 
@@ -91,7 +91,7 @@ use `srun` to launch one process per GPU across nodes:
 #SBATCH --account=myproject
 #SBATCH --partition=gpu-small
 #SBATCH --nodes=8
-#SBATCH --gres=gpu:4                 # GPUs per node
+#SBATCH --gres=gpu:2                 # GPUs per node
 #SBATCH --ntasks-per-node=4          # one task per GPU
 #SBATCH --cpus-per-task=8
 #SBATCH --time=12:00:00
