@@ -62,7 +62,7 @@ Creating an environment can take up a significant portion of your disk quota, de
 
 Conda based installation provides the latest version of DL framework, however users can install their own choice of DL framework or library version locally by following below steps.
 
-Step 1. Login to Rudra cluster by using your credential.
+Step 1. Login to Rudra system by using your credential.
 
 Step 2.  Activate conda environment. 
 

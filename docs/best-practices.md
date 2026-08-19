@@ -18,7 +18,7 @@ optimization** (GCC, NVIDIA HPC SDK, Intel LLVM), **OpenMP**, **MPI**, and
   are terminated.
 - **Run in `/scratch`, keep source in `/home`.** Stage inputs to
   `$SCRATCH`, run there (fast Lustre I/O), then copy results worth keeping
-  back to `/home` or off-cluster. `/scratch` is **not backed up** and is
+  back to `/home` or off-system. `/scratch` is **not backed up** and is
   [purged after 1 week](data.md).
 - **Compile and run with the *same* compiler and library versions.** Load
   identical [Spack](spack.md)/modules in your build and your job script. Mixing

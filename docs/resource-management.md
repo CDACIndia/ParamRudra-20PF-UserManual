@@ -1,7 +1,7 @@
 
-This section explains how you interact with the resource manager. It covers information about the resource manager, the definition of nodes within partitions, job policies, scheduler information, the process of submitting jobs to the cluster, monitoring active jobs and getting useful information about resource usage.
+This section explains how you interact with the resource manager. It covers information about the resource manager, the definition of nodes within partitions, job policies, scheduler information, the process of submitting jobs to the system, monitoring active jobs and getting useful information about resource usage.
 
-A cluster is a group of computers that work together to solve complex computational tasks and presents itself to the user as a single system. For the resources of a cluster (e.g. CPUs, GPUs, memory) to be used efficiently, a resource manager (also called workload manager or batch-queuing system) is important. While there are many different resource managers available, the resource manager at PARAM Rudra is SLURM. After submitting a job to the cluster, SLURM will try to fulfill the job’s resource request by allocating resources to the job. If the requested resources are already available, the job can start immediately. Otherwise, the start of the job is delayed (pending) until enough resources are available. SLURM allows you to monitor active (pending, running) jobs and to retrieve statistics about finished jobs. 
+A system is a group of computers that work together to solve complex computational tasks and presents itself to the user as a single system. For the resources of a system (e.g. CPUs, GPUs, memory) to be used efficiently, a resource manager (also called workload manager or batch-queuing system) is important. While there are many different resource managers available, the resource manager at PARAM Rudra is SLURM. After submitting a job to the system, SLURM will try to fulfill the job’s resource request by allocating resources to the job. If the requested resources are already available, the job can start immediately. Otherwise, the start of the job is delayed (pending) until enough resources are available. SLURM allows you to monitor active (pending, running) jobs and to retrieve statistics about finished jobs. 
 
 SLURM, which is an open-source workload manager, efficiently allocates computing resources such as CPUs, GPUs, and memory to users' jobs, ensuring optimal resource utilization and job scheduling. SLURM provides features for job submission, monitoring, and management, allowing users to specify job requirements and dependencies. Slurm is a widely used batch scheduler in the top500 HPC list.
 
@@ -29,7 +29,7 @@ The following partitions/queues have been defined to meet user requirements:
 
 ### QoS Job policy
 
-Users have the flexibility to run up to 10 simultaneous jobs. They can run an 8-node job for 4 days, a 16-node job for 2 days, or a 32-node job for 1 day. The default policy of the cluster allows for a maximum wall time of 4 days per job. However, this policy can be tailored to individual user needs or adjusted for all users in the future, depending on cluster usage. Users will be informed about any changes made to the SLURM policy.
+Users have the flexibility to run up to 10 simultaneous jobs. They can run an 8-node job for 4 days, a 16-node job for 2 days, or a 32-node job for 1 day. The default policy of the system allows for a maximum wall time of 4 days per job. However, this policy can be tailored to individual user needs or adjusted for all users in the future, depending on system usage. Users will be informed about any changes made to the SLURM policy.
 
 **Walltime :** 
 The walltime parameter defines the maximum amount of time for which a job is allowed to run under a particular QoS. The maximum walltime is determined by the selected QoS and the resources requested by the user.Users are requested to explicitly specify the required walltime in their SLURM job script using the --time parameter. For example:
@@ -81,7 +81,7 @@ All of the factors in this formula are floating point numbers that range from 0.
 
 ### Job Submission
 
-We can submit jobs either through a Slurm script or by using the interactive method. Creating a Slurm script is the optimal way to submit a job to the cluster.
+We can submit jobs either through a Slurm script or by using the interactive method. Creating a Slurm script is the optimal way to submit a job to the system.
 
 **Submitting Batch Scripts Jobs**
 
@@ -378,7 +378,7 @@ time mpiexec.hydra -n 32 lammps.exe -in in.lj
 
 ### Listing Partition
 
-<span style="color:#4DA6FF;">sinfo</span> displays information about nodes and partitions allowing users to view available nodes in the partition within the cluster.
+<span style="color:#4DA6FF;">sinfo</span> displays information about nodes and partitions allowing users to view available nodes in the partition within the system.
 
 ### Monitoring jobs
 

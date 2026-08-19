@@ -4,7 +4,7 @@ Copy-and-adapt SLURM scripts for common workloads. Replace `myproject` with your
 [account](batch.md#your-account--a-is-mandatory) and set core/GPU counts to match
 the [hardware you confirmed](configuration.md#node-types-and-per-node-hardware).
 
-!!! note "Save these on the cluster"
+!!! note "Save these on the system"
     Put job scripts in `$HOME` (with your code) and run from `/scratch`. Submit
     with `sbatch script.slurm`.
 

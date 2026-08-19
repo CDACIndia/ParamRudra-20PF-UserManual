@@ -32,7 +32,7 @@ simulations, training runs, big `make -j`, or large data crunching there.
 
 - No recovery after purge.
 - The clock is based on **access time**, not just existence.
-- Move important results **off the cluster** promptly ([Data Management](data.md)).
+- Move important results **off the system** promptly ([Data Management](data.md)).
 
 ## 3. Back up your own data
 
@@ -40,7 +40,7 @@ simulations, training runs, big `make -j`, or large data crunching there.
     *"Users are advised to regularly back up their data in `/home` & `/scratch`
     directory."*
 
-Treat the cluster as compute infrastructure, not an archive. Keep authoritative
+Treat the system as compute infrastructure, not an archive. Keep authoritative
 copies of code (in version control) and results (in institutional storage).
 
 ## 4. Use your accounting code
@@ -87,7 +87,7 @@ scheduling and usage reporting.
 | `$SCRATCH` | **1 TiB** |
 
 Stage inputs and run jobs in `/scratch`; copy results worth keeping back to
-`/home` (and off-cluster). Check usage with `lfs quota -h -u $USER /scratch`.
+`/home` (and off-system). Check usage with `lfs quota -h -u $USER /scratch`.
 See [Data Management](data.md).
 
 ## 8. Security and account hygiene
@@ -98,7 +98,7 @@ See [Data Management](data.md).
   your Authenticator device secure.
 - Do **not** grant other users permission to your home directory — it can expose
   your files.
-- Never store passwords, SSH private keys or access tokens on the cluster or in a
+- Never store passwords, SSH private keys or access tokens on the system or in a
   git repository.
 - Only install software from **reliable, safe sources** (ransomware is a real
   risk). Avoid spaces in file/directory names.

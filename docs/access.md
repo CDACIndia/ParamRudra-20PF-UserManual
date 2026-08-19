@@ -142,13 +142,13 @@ You should now be able to access the PARAM Rudra home page.
 
 You are now successfully registered and will see the PARAM Rudra Open OnDemand (OOD) home page.
 
-Open OnDemand provides a convenient web-based interface for accessing and using the PARAM Rudra cluster.
+Open OnDemand provides a convenient web-based interface for accessing and using the PARAM Rudra system.
 
-For additional information about using Open OnDemand and the available cluster applications and features, please refer to the PARAM Rudra documentation.
+For additional information about using Open OnDemand and the available system applications and features, please refer to the PARAM Rudra documentation.
 
 ## 8.  You are now on the main home page of OOD.
 
-Here we are using the OpenOnDemand application for cluster access. This tool has many advantages. For more information, please go to the docs of PARAM Rudra.
+Here we are using the OpenOnDemand application for system access. This tool has many advantages. For more information, please go to the docs of PARAM Rudra.
 
 For the second time onwards, you can go to the url: <https://ood.paramrudra.cdacb.in>, sign in with the username and the password you have set, and press the sign in button.
 

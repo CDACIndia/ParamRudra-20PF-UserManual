@@ -24,7 +24,7 @@ Storage is a **Lustre** parallel filesystem (20 PiB primary + 10 PiB archival)
 
 1. Keep source and job scripts in `/home`.
 2. Stage inputs into `$SCRATCH/<project>/<run>` and run there.
-3. As soon as a run finishes, **move the outputs you need off the cluster**.
+3. As soon as a run finishes, **move the outputs you need off the system**.
 4. Delete large intermediates from `/scratch` you no longer need.
 
 ## Checking usage and quota
@@ -77,13 +77,13 @@ du -h --max-depth=1 $SCRATCH | sort -h | tail
 # Find files not accessed in >80 days (candidates before the 1-week purge)
 find $SCRATCH -atime +80 -type f -printf '%AY-%Am-%Ad  %p\n' 2>/dev/null | head
 
-# Compress finished runs you still want to keep on-cluster short-term
+# Compress finished runs you still want to keep on-system short-term
 tar czf run01.tar.gz run01/ && rm -rf run01/
 ```
 
 !!! warning "`atime` and the purge"
     The purge is based on **access time**. Simply having files sit there does not
     protect them — As per the policy, files stored in /scratch will be retained for only one week, after which they will be permanently deleted. Move
-    anything important **off** the cluster rather than relying on touching files.
+    anything important **off** the system rather than relying on touching files.
 
 Next: review the [Policies](policies.md) that govern fair use.
