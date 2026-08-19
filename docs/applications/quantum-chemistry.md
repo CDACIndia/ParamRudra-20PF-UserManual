@@ -31,7 +31,7 @@ Multiconfigurational quantum chemistry. Site: <https://www.molcas.org/>.
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=12
 #SBATCH -t 24:00:00
-module load miniconda
+module load AIStack/miniconda/26.7.0
 spack load openmolcas
 pymolcas grid.inp > grid.out
 ```
