@@ -214,7 +214,7 @@ See the **[Contributing](contributing.md)** page for stepwise instructions.
 - Quickest way: click the ✏️ **edit** link (top right of any page) → propose a
   change → it becomes a reviewed pull request.
 - Or open an issue in the
-  [project's GitHub repository](https://github.com/samcom12/paramrudra-user-manual).
+  [project's GitHub repository](https://github.com/CDACIndia/ParamRudra-20PF-UserManual).
 
 !!! warning "Never include secrets in a contribution"
     Do not paste passwords, SSH private keys, or access tokens into issues, pull

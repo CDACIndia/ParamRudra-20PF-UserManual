@@ -4,10 +4,10 @@ site_description: >-
   (National Supercomputing Mission) — access, environment, Spack, SLURM batch
   system, GPU computing, applications and data management.
 site_author: C-DAC HPC Technologies · PARAM Rudra (20 PF) · National Supercomputing Mission
-site_url: https://samcom12.github.io/paramrudra-user-manual/
+site_url: https://cdacindia.github.io/ParamRudra-20PF-UserManual/
 
 repo_name: C-DAC PARAM Rudra · 20 PF
-repo_url: https://github.com/samcom12/paramrudra-user-manual
+repo_url: https://github.com/CDACIndia/ParamRudra-20PF-UserManual
 edit_uri: edit/main/docs/
 
 copyright: >-
@@ -89,7 +89,7 @@ plugins:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/samcom12/paramrudra-user-manual
+      link: https://github.com/CDACIndia/ParamRudra-20PF-UserManual
   generator: false
 
 nav:
@@ -131,6 +131,7 @@ nav:
 
   - User Guide:
       - Best Practices & Performance: best-practices.md
+      - Important Facts : important-facts.md
       - Debugging: debugging.md
       - Data Management: data.md
       - Policies: policies.md

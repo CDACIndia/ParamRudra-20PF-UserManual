@@ -18,7 +18,7 @@ Best for small text fixes. No git install needed — GitHub handles the fork for
 you.
 
 1. Open the live page you want to change, e.g.
-   `https://samcom12.github.io/paramrudra-user-manual/batch/`.
+   `https://cdacindia.github.io/ParamRudra-20PF-UserManual/batch/`.
 2. Click the **:material-pencil: (Edit this page)** icon at the top-right — it
    jumps to that file on GitHub.
 3. Click the **pencil / "Edit this file"** button. GitHub shows *"You need to
@@ -36,7 +36,7 @@ Best for larger edits, new pages, or previewing before you submit.
 ### One-time setup
 
 1. **Fork** the repository — on
-   [github.com/samcom12/paramrudra-user-manual](https://github.com/samcom12/paramrudra-user-manual)
+   [github.com/CDACIndia/ParamRudra-20PF-UserManual](https://github.com/CDACIndia/ParamRudra-20PF-UserManual)
    click **Fork** (top-right).
 2. **Clone** your fork:
    ```bash
@@ -45,7 +45,7 @@ Best for larger edits, new pages, or previewing before you submit.
    ```
 3. *(Optional)* add the original repo as `upstream` to stay in sync:
    ```bash
-   git remote add upstream https://github.com/samcom12/paramrudra-user-manual.git
+   git remote add upstream https://github.com/CDACIndia/ParamRudra-20PF-UserManual.git
    ```
 
 ### For each change
@@ -69,7 +69,7 @@ Best for larger edits, new pages, or previewing before you submit.
    git push origin fix/batch-typo
    ```
 8. On GitHub, open a **pull request** from your branch → base repo
-   `samcom12/paramrudra-user-manual`, base branch `main`. Fill in the PR
+   `CDACIndia/ParamRudra-20PF-UserManual`, base branch `main`. Fill in the PR
    template.
 
 ## What happens after you open a pull request
@@ -105,7 +105,7 @@ Both paths converge here:
 ## Reporting an issue
 
 Spotted something wrong but can't fix it yourself? Open an
-[issue](https://github.com/samcom12/paramrudra-user-manual/issues) describing the
+[issue](https://github.com/CDACIndia/ParamRudra-20PF-UserManual/issues) describing the
 problem and the page it's on — that's a valuable contribution too.
 
 Thank you for helping keep the PARAM Rudra user guide accurate and useful!
