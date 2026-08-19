@@ -203,7 +203,7 @@ Storage is a **Lustre** parallel filesystem:
 | `$HOME` | Code, scripts, small inputs, results to keep | **1 TiB** | Per site policy | No |
 | `$SCRATCH` | High-performance working space for jobs | **1 TiB** | **No** | As per the policy, files stored in /scratch will be retained for only one week, after which they will be permanently deleted. |
 
-Total usable capacity is 10 PiB (primary) + 10 PiB (archival). See [Data Management](data.md) for quotas, Lustre striping and the
+Total usable capacity is 20 PiB (primary) + 10 PiB (archival). See [Data Management](data.md) for quotas, Lustre striping and the
 purge policy.
 
 ## Software stack

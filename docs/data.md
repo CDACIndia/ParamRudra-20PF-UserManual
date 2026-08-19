@@ -5,7 +5,7 @@ the file systems, the `/scratch` purge policy, quotas, and efficient transfers.
 
 ## File systems
 
-Storage is a **Lustre** parallel filesystem (10 PiB primary + 10 PiB archival)
+Storage is a **Lustre** parallel filesystem (20 PiB primary + 10 PiB archival)
 
 
 | Path | Role | Soft quota | Backed up? | Purge | Best for |
