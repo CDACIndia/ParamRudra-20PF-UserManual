@@ -42,5 +42,5 @@ The `main` branch is protected:
 ## Reporting issues
 
 Spot something wrong but can't fix it yourself? Open an
-[issue](https://github.com/samcom12/paramrudra-user-manual/issues) describing the
+[issue](https://github.com/CDACIndia/ParamRudra-20PF-UserManual/issues) describing the
 problem and the page it's on.

@@ -131,4 +131,4 @@ scancel <jobid>              # cancel a job
     command to confirm it on the system. The authoritative source is always the
     **login banner** and the C-DAC support desk (`rudrasupport@cdac.in`).
     Corrections are welcome via
-    [pull request](https://github.com/samcom12/paramrudra-user-manual).
+    [pull request](https://github.com/CDACIndia/ParamRudra-20PF-UserManual).
