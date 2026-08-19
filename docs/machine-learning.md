@@ -23,7 +23,7 @@ Loading the Conda Base Module and Activating the Environments
 In order to use base conda environment we first, access and load the miniconda module, which provides access to the base environment which is installed with default packages:
 
 ```bash
-$ module load miniconda
+$ module load AIStack/miniconda/26.7.0
 ```
 
 To see the list of other packages installed, use the command given below,
@@ -36,20 +36,42 @@ We provide multiple conda environments that include basic machine learning packa
 
 The following table shows currently available conda environments with their version (all include GPU support):
 
-| Category | Module(s) | Version |
-| --- | --- | --- |
-| Deep learning | `Tensorflow` / `Tensorflow-gpu` | 2.15.0 |
-| | `Pytorch` / `Pytorch-gpu` | 2.2.0 / 2.2.1 |
-| | `Keras` / `Keras-gpu` | 3.0.5 |
-| | `Theano` / `Theano-gpu` | 1.0.5 |
-| | `Caffe` / `Caffe-gpu` | 1.0 |
-| Distributed DL | `Horovod` (TF / PyTorch) | 0.28.1 |
-| Data science | `Rapids` | 21.06 |
+| **Environment**                | **Package**  | **Version** |
+| ------------------------------ | ------------ | ----------- |
+| **Deep Learning Framework**    | TensorFlow   | 2.20.0      |
+| <br>                           | PyTorch      | 2.8.0+cu126 |
+| <br>                           | Caffe        | 1.0         |
+| <br>                           | Theano       | 1.0.5       |
+| **LLM / Generative AI**        | Transformers | 5.15.0      |
+| <br>                           | vLLM         | 0.27.1      |
+| <br>                           | SGLang       | 0.5.17      |
+| <br>                           | TensorRT-LLM | 1.2.1       |
+| <br>                           | TGI          | 0.7.0       |
+| <br>                           | NeMo         | 3.0.0       |
+| <br>                           | LlamaFactory | 0.9.5       |
+| <br>                           | LlamaIndex   | 0.14.23     |
+| <br>                           | LangChain    | 1.3.15      |
+| <br>                           | Haystack     | 3.0.0       |
+| <br>                           | TRL          | 1.9.2       |
+| <br>                           | Axolotl      | 0.18.0      |
+| <br>                           | Unsloth      | 2026.8.15   |
+| <br>                           | TorchTune    | 0.6.1       |
+| **Distributed DL Framework**   | DeepSpeed    | 0.19.5      |
+| <br>                           | Ray Serve    | 2.57.0      |
+| <br>                           | Accelerate   | 1.14.0      |
+| **ML Platform / Data Science** | MLflow       | 3.15.1      |
+| <br>                           | RAPIDS       | 21.6.1      |
+| **GPU / ML Tools**             | Nsight       | 12.9.1      |
+| <br>                           | Diffusion    | 0.39.0      |
+| <br>                           | LMDeploy     | 0.15.0      |
+| **Environment / Container**    | Miniconda    | 26.7.0      |
+| <br>                           | Apptainer    | 1.5.1       |
+
 
 Also available: cuDNN, NumPy, SciPy, scikit-learn.
 
 ```bash
-module load Pytorch
+module load AIStack/pytorch/2.8.0+cu126
 python -c "import torch; print(torch.__version__, torch.cuda.is_available())"
 ```
 
@@ -71,7 +93,7 @@ Once the **ENV_NAME** module is loaded, end-users can use all libraries inside t
 Example: To activate Pytorch environment we can load it on PARAM Rudra, using module load Pytorch as shown below: 
 
 ```bash
-$ module load Pytorch
+$ module load AIStack/pytorch/2.8.0+cu126
 ```
 
 This will activate Pytorch environment in which users can use pytorch library and its related functionalities
@@ -137,7 +159,7 @@ Conda based installation provides the latest version of DL framework, however us
 **Step 2.**  Activate conda environment. 
 
 ```bash
-$ module load miniconda
+$ module load AIStack/miniconda/26.7.0
 ```
 
 **Step 3.** Create the local environment myenv  (myenv is the environment name, you can give any name of your choice).
@@ -183,7 +205,7 @@ Activate the environment inside the job, run, then deactivate:
 
 cd $SLURM_SUBMIT_DIR
 module purge
-module load miniconda/26.7.0
+module load AIStack/miniconda/26.7.0
 conda activate myenv              # or: module load Pytorch
 python train.py
 conda deactivate
@@ -210,7 +232,7 @@ ssh cbgpu0044                     # hop onto it
 **2. Start the notebook on the compute node**
 
 ```bash
-module load miniconda/26.7.0
+module load AIStack/miniconda/26.7.0
 jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser
 # copy the token printed in the terminal
 ```

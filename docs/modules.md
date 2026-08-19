@@ -26,7 +26,7 @@ This page covers `module` and Conda. For `spack`, see the
 module avail
 module avail 2>&1 | grep -i conda    # module output goes to stderr — use 2>&1
 module load spack                    # enable Spack
-module load miniconda                # enable the Conda/Python base
+module load AIStack/miniconda/26.7.0                # enable the Conda/Python base
 module list
 ```
 
@@ -39,7 +39,7 @@ You typically land in a Conda **base** environment (`(base)` in your prompt).
 Load the module explicitly if needed:
 
 ```bash
-module load miniconda/26.7.0
+module load AIStack/miniconda/26.7.0/26.7.0
 conda list                # packages in the current environment
 conda info --env          # list all environments
 ```
@@ -67,7 +67,7 @@ Step 1. Login to Rudra cluster by using your credential.
 Step 2.  Activate conda environment. 
 
 ```bash
- $ module load miniconda/26.7.0
+ $ module load AIStack/miniconda/26.7.0/26.7.0
 ```
 <br>
 Step 3. Create the local environment myenv  (myenv is the environment name, you can give any name of your choice).
@@ -111,7 +111,7 @@ You can activate your machine learning environment, run your program, and deacti
 #SBATCH -e %j.err             # name of stderr error file(--error)
 cd $SLURM_WORKDIR
 module purge
-module load miniconda/26.7.0		# load the module and environment
+module load AIStack/miniconda/26.7.0/26.7.0		# load the module and environment
 conda activate <env_name>	# load working environment
 python <script>.py		# run python script
 conda deactivate 		# deactivate environment

@@ -17,7 +17,7 @@ Create a Slurm batch script named `enroot_create.slurm`.
 #!/bin/bash
 #SBATCH --job-name=enroot-create
 #SBATCH --nodes=1
-#SBATCH --ntasks=1
+#SBATCH --partition=gpu-debug
 #SBATCH --gres=gpu:1
 #SBATCH --time=00:10:00
 #SBATCH --output=enroot-create-%j.out
@@ -58,7 +58,7 @@ Create a Slurm batch script named `gpu_enroot.slurm`.
 #!/bin/bash
 #SBATCH --job-name=enroot-gpu
 #SBATCH --nodes=1
-#SBATCH --ntasks=1
+#SBATCH --partition=gpu-debug
 #SBATCH --gres=gpu:1
 #SBATCH --time=00:05:00
 #SBATCH --output=gpu-%j.out
