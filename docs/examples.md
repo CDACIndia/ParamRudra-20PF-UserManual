@@ -184,7 +184,7 @@ set -euo pipefail
 source /home/apps/spack/share/spack/setup-env.sh
 spack load cuda@12.2.2 /jlytfxg
 
-module load AIStack/miniconda/26.7.0/26.7.0
+module load AIStack/miniconda/26.7.0
 #Load your own created conda environment
 conda activate myenv
 
