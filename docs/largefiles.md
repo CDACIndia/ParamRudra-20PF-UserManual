@@ -112,12 +112,51 @@ This reports the stripe count, stripe size, and the specific OSTs the file's dat
 !!! Tip
     For questions or storage-tuning guidance beyond this manual, contact your HPC systems/storage support team.
 
+## Explaining a Progressive File Layout (PFL) setstripe Command
 
+This document explains the following Lustre command, which defines a Progressive File Layout (PFL) for a file or
+directory
 
+`lfs setstripe -E 1G -c 1 -E 10G -c 4 -E eof -c 8 /path/to/file_or_dir`
 
+### What the Command Does
 
+Instead of striping a file across a fixed number of OSTs for its entire length, this command tells Lustre to use a
+different stripe count depending on how large the file grows. Each -E flag defines the end offset (the upper size
+boundary) of a layout "component", and the -c flag right after it sets the stripe count to use for that component.
 
+### Component Breakdown
 
+| **Component** | **Byte Range** | **Stripe Count** | **Meaning** |
+|---|---|---|---|
+| 1 | `-E 1G -c 1`<br>(0 to 1 GiB) | 1 | From byte 0 up to 1 GiB, the file is written to just 1 OST (no striping). Good for small files — avoids the overhead of spreading tiny files across many OSTs. |
+| 2 | `-E 10G -c 4`<br>(1 GiB to 10 GiB) | 4 | Once the file grows past 1 GiB and up to 10 GiB, new data is striped across 4 OSTs, giving more aggregate bandwidth as the file gets bigger. |
+| 3 | `-E eof -c 8`<br>(10 GiB to EOF) | 8 | Beyond 10 GiB, and up to end-of-file (`eof` = unbounded), the file is striped across 8 OSTs for maximum parallel I/O throughput on very large files. |
+
+### Why Use This Instead of a Single Fixed Stripe Count?
+
+A single static stripe count is a compromise: a high stripe count wastes OST objects and metadata overhead on
+small files, while a low stripe count throttles bandwidth on large files. PFL solves this by letting the same file
+automatically change its striping as it grows, so:
+
+- Small files (< 1 GiB) stay on a single OST — low overhead, less OST fragmentation.
+- Medium files (1–10 GiB) get moderate parallelism across 4 OSTs.
+- Large files (> 10 GiB) get maximum parallelism across 8 OSTs for high-throughput I/O.
+
+### Applying to a File vs. a Directory
+
+- If the target is a new, empty file, this layout is set directly on that file.
+- If the target is a directory, this sets the default PFL layout that any new file created inside that directory will
+inherit at creation time. It does not affect existing files already in the directory
+
+### Important Notes
+- The command must be run on an empty file (0 bytes) or a directory. It cannot be applied to a file that
+already has data written to it.
+- The stripe count values (1, 4, 8 in this example) must not exceed the number of OSTs available in the file
+system.
+- PFL layout components only take effect as the file actually grows into that byte range — Lustre
+instantiates each component lazily.
+- Verify a file's or directory's layout at any time with: lfs getstripe /path/to/file_or_di
 
 
 
