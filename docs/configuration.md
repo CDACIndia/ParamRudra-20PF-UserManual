@@ -133,6 +133,7 @@ It consists of 128 nodes connected with an indigenously developed Trinetra High 
 | Login nodes | 14 |
 | Management nodes | 24 |
 | Visualization nodes | 2 |
+| Trinetra Nodes | 128 |
 | Interconnect | InfiniBand **NDR** (primary) + 10 Gbps Ethernet (secondary) |
 | Parallel filesystem | **Lustre** — 20 PiB primary + 10 PiB archival |
 | Operating system | Rocky Linux 9.6 |
@@ -142,10 +143,11 @@ It consists of 128 nodes connected with an indigenously developed Trinetra High 
 
 | Node class | Count | CPU | Cores/node | Memory/node | Local SSD | GPUs | Partition |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| **CPU compute** | 2,266 | 2× Intel Xeon Gold 6240R @ 2.4 GHz | 48 | 192 GB DDR4-2933 | 800 GB | — | `cpu` |
-| **GPU compute** | 320 | 2× Intel Xeon Gold 6240R @ 2.4 GHz | 48 | 192 GB DDR4-2933 | 800 GB | **2× NVIDIA A100 (80 GB HBM2e)** | `gpu` |
-| **High-memory** | 320 | 2× Intel Xeon Gold 6240R @ 2.4 GHz | 48 | **768 GB** | 800 GB | — | `hm` |
+| **CPU compute** | 2,266 | 2× Intel Xeon Gold 6240R @ 2.4 GHz | 48 | 192 GB DDR4-2933 | 800 GB | — | 
+| **GPU compute** | 320 | 2× Intel Xeon Gold 6240R @ 2.4 GHz | 48 | 192 GB DDR4-2933 | 800 GB | **2× NVIDIA A100 (80 GB HBM2e)** |
+| **High-memory** | 320 | 2× Intel Xeon Gold 6240R @ 2.4 GHz | 48 | **768 GB** | 800 GB | — |
 | **Login** | 14 | 2× Intel Xeon Gold 6240R @ 2.4 GHz | 48 | 192 GB | — | — (interactive gateway) |
+| **Trinetra Nodes** | 128 | 2× Intel Xeon Gold 6240R @ 2.4 GHz | 48 | 192 GB DDR4-2933 | 800 GB | — |
 
 
 
