@@ -1,6 +1,6 @@
 # PARAM Rudra — 20 PetaFlop System User Manual
 
-![C-DAC PARAM Rudra — 20 PetaFlop Supercomputer](assets/img/home1.png){ loading=lazy }
+![C-DAC PARAM Rudra — 20 PetaFlop HPC System](assets/img/home1.png){ loading=lazy }
 
 Welcome to the user documentation for **PARAM Rudra**, a ~20 PetaFlop
 HPC system operated under the **National Supercomputing Mission (NSM)** by

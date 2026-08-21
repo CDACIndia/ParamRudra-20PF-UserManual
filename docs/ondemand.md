@@ -22,8 +22,6 @@ By default, Open OnDemand starts you in your home directory, located at:
 
 $HOME
 
-Here, $USER represents your own PARAM Rudra username.
-
 You are provided with the following storage:
 
 | **Location**        | **Quota** | **Recommended Use**                                                   |

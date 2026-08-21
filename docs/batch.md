@@ -29,7 +29,7 @@ finds nodes and runs your job when they are free.
 | terai       | 3400     | 480 (10 nodes) | 2400 (50 nodes) | 24:00:00            | 4                        | 2                        | 70                   |
 | shiwalik    | 3700     | 2448 (51 nodes) | 12288 (256 nodes) | 24:00:00          | 2                        | 1                        | 15                   |
 | himachal    | 4000     | 12336 (257 nodes) | 24576 (512 nodes) | 12:00:00        | 2                        | 1                        | 3                    |
-| himadri     | 5000     | 24624 (513 nodes) | 72000 (1500 nodes) | 06:00:00       | 1                        | 1                        | 1                    |
+| himadri     | 6000     | 24624 (513 nodes) | 72000 (1500 nodes) | 06:00:00       | 1                        | 1                        | 1                    |
 | gpu-debug   | 4800     | 1            | 4            | 01:00:00                  | 2                        | 1                        | 20                   |
 | gpu-small   | 3400     | 10 (5 nodes) | 50 (25 nodes) | 24:00:00                | 4                        | 2                        | 20                   |
 | gpu-large   | 4000     | 52 (26 nodes) | 200 (100 nodes) | 12:00:00              | 2                        | 1                        | 3                    |
@@ -42,10 +42,6 @@ sinfo -s                          # quick partition summary
 scontrol show partition gpu-small       # authoritative limits, live
 ```
 
-
-!!! tip "Set an accurate walltime"
-    If you omit `--time`, your job gets only **2 hours** and will be killed when
-    it expires. Requesting *less* time also helps backfill schedule you sooner.
 
 ## Your account (`-A`) is mandatory
 

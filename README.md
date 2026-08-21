@@ -4,7 +4,7 @@
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](LICENSE)
 
 A free, community-maintained user manual for **PARAM Rudra**, a ~20 PetaFlop
-supercomputer under the National Supercomputing Mission (NSM) at C-DAC. It is
+HPC System under the National Supercomputing Mission (NSM) at C-DAC. It is
 grounded in the official C-DAC PARAM Rudra User Manual plus the live login banner
 and SLURM configuration.
 
@@ -14,8 +14,8 @@ and SLURM configuration.
 ## What's inside
 
 - **Getting Access** — Visit the PARAM Rudra Open OnDemand (OOD) portal.
-- **System Configuration** — 2,906 nodes (2× Xeon 6240R; A100 GPUs; 768 GB HM), InfiniBand NDR, Lustre
-- **Environment / Modules & Conda** — shell, modules, Miniconda, `/home` & `/scratch` (1 TiB)
+- **System Configuration** — 3,074 nodes, InfiniBand NDR, Lustre
+- **Environment / Modules & Conda** — shell, modules, Miniconda, `$HOME` & `$SCRATCH` (1 TiB)
 - **Spack Packages** — the primary package manager (`spack load`, environments, hashes)
 - **Building Software** — Intel/GNU/CUDA/MKL/OpenACC toolchains with real versions
 - **Batch System (SLURM)** — partitions, QoS, dependencies, arrays, PBS→SLURM
@@ -24,7 +24,7 @@ and SLURM configuration.
 - **Applications** — GROMACS, LAMMPS, NAMD, OpenFOAM, WRF, CP2K, NWChem via Spack
 - **Job Script Examples** — 10 ready-to-copy templates
 - **Debugging** — gdb basics + job-failure diagnosis
-- **Data Management** — Lustre striping, `/scratch` 1-week purge, quotas, transfers
+- **Data Management** — Lustre striping, `$SCRATCH` 1-week purge, quotas, transfers
 - **Accounts & Acknowledgement** — NSM account process, CPU-hour accounting, NSM citation
 - **Policies & FAQ**
 

@@ -89,11 +89,6 @@ cd $SCRATCH/mpi_run
 srun --cpu-bind=cores ./my_mpi_app
 ```
 
-!!! tip "Need many CPU nodes?"
-    The `cpu` partition allows **1 node per job**. For large multi-node MPI on
-    CPUs, discuss options with [support](support.md); multi-node scaling is
-    otherwise available on `gpu` (≤128 nodes) and `hm` (≤8 nodes).
-
 ## 4. Hybrid MPI + OpenMP
 
 ```bash
