@@ -11,19 +11,19 @@ Partition is a logical grouping of nodes that share similar characteristics or r
 
 The following partitions/queues have been defined to meet user requirements:
 
-| NAME        | Priority | Min Core/GPU | Max Core/GPU | Max Walltime (HH:MM:SS) | Max Queued Jobs per User | Max Running Job per User | Overall Running Jobs |
-|-------------|----------|--------------|--------------|--------------------------|--------------------------|--------------------------|----------------------|
-| debug       | 4800     | 01           | 192 (4 nodes) | 01:00:00               | 2                        | 1                        | 20                   |
-| terai       | 3400     | 480 (10 nodes) | 2400 (50 nodes) | 24:00:00            | 4                        | 2                        | 70                   |
-| shiwalik    | 3700     | 2448 (51 nodes) | 12288 (256 nodes) | 24:00:00          | 2                        | 1                        | 15                   |
-| himachal    | 4000     | 12336 (257 nodes) | 24576 (512 nodes) | 12:00:00        | 2                        | 1                        | 3                    |
-| himadri     | 5000     | 24624 (513 nodes) | 72000 (1500 nodes) | 06:00:00       | 1                        | 1                        | 1                    |
-| gpu-debug   | 4800     | 1            | 4            | 01:00:00                  | 2                        | 1                        | 20                   |
-| gpu-small   | 3400     | 10 (5 nodes) | 50 (25 nodes) | 24:00:00                | 4                        | 2                        | 20                   |
-| gpu-large   | 4000     | 52 (26 nodes) | 200 (100 nodes) | 12:00:00              | 2                        | 1                        | 3                    |
-| gpu-massive | 5000     | 202 (101 nodes) | 400 (200 nodes) | 06:00:00             | 1                        | 1                        | 1                    |
-| hm-small    | 3700     | 480 (10 nodes) | 2400 (50 nodes) | 24:00:00              | 3                        | 2                        | 5                    |
-| hm-large    | 4000     | 2448 (51 nodes) | 4800 (100 nodes) | 12:00:00             | 2                        | 1                        | 3                    |
+| Partition | Priority | Min Core / GPU | Max Core / GPU | Max Walltime | Max Queued / User | Max Running / User | Overall Running |
+|-----------|---------:|---------------:|---------------:|--------------|------------------:|-------------------:|----------------:|
+| **debug** | **4800** | 1 | **432** (9 nodes) | 01:00:00 | 4 | 2 | 40 |
+| **terai** | **3400** | **480** (10 nodes) | **2400** (50 nodes) | 24:00:00 | 16 | 8 | 140 |
+| **shiwalik** | **3700** | **2448** (51 nodes) | **12288** (256 nodes) | 24:00:00 | 4 | 2 | 30 |
+| **himachal** | **4000** | **12336** (257 nodes) | **24576** (512 nodes) | 12:00:00 | 4 | 2 | 6 |
+| **himadri** | **6000** | **24624** (513 nodes) | **72000** (1500 nodes) | 06:00:00 | 2 | 1 | 1 |
+| **gpu-debug** | **4800** | 1 | 4 | 01:00:00 | 4 | 2 | 40 |
+| **gpu-small** | **3400** | **10** (5 nodes) | **50** (25 nodes) | 24:00:00 | 8 | 4 | 40 |
+| **gpu-large** | **4000** | **52** (26 nodes) | **200** (100 nodes) | 12:00:00 | 4 | 2 | 6 |
+| **gpu-massive** | **5000** | **202** (101 nodes) | **400** (200 nodes) | 06:00:00 | 2 | 2 | 2 |
+| **hm-small** | **3700** | **480** (10 nodes) | **2400** (50 nodes) | 12:00:00 | 6 | 4 | 10 |
+| **hm-large** | **4000** | **2448** (51 nodes) | **4800** (100 nodes) | 24:00:00 | 4 | 2 | 6 |
 
 
 
@@ -32,11 +32,11 @@ The following partitions/queues have been defined to meet user requirements:
 Users have the flexibility to run up to 10 simultaneous jobs. They can run an 8-node job for 4 days, a 16-node job for 2 days, or a 32-node job for 1 day. The default policy of the system allows for a maximum wall time of 4 days per job. However, this policy can be tailored to individual user needs or adjusted for all users in the future, depending on system usage. Users will be informed about any changes made to the SLURM policy.
 
 **Walltime :** 
-The walltime parameter defines the maximum amount of time for which a job is allowed to run under a particular QoS. The maximum walltime is determined by the selected QoS and the resources requested by the user.Users are requested to explicitly specify the required walltime in their SLURM job script using the --time parameter. For example:
+The walltime parameter defines the maximum amount of time for which a job is allowed to run under a particular QoS. The maximum walltime is determined by the selected QoS. Users are requested to explicitly specify the required walltime in their SLURM job script using the --time parameter. For example:
 
 **#SBATCH --time=02:00:00**
 
-The maximum walltime depends on the selected QoS. For example, debug and gpu-debug jobs are limited to 1 hour, while terai and cpu jobs can run for up to 24 hours. himachal and gpu-large jobs are limited to 12 hours, whereas himadri and gpu-massive jobs are limited to 6 hours. If a job exceeds the walltime specified in the SLURM script, the job will be terminated by SLURM. Therefore, users should provide a realistic walltime based on their expected execution time.
+The maximum walltime depends on the selected QoS. For example, debug and gpu-debug jobs are limited to 1 hour, while terai, shiwalik, and hm-small jobs can run for up to 24 hours. himachal, gpu-large, and hm-large jobs are limited to 12 hours, whereas himadri and gpu-massive jobs are limited to 6 hours. If a job exceeds the walltime specified in the SLURM script, the job will be terminated by SLURM. Therefore, users should provide a realistic walltime based on their expected execution time
 
 
 ### Scheduling Type
@@ -96,6 +96,7 @@ Here is the example of sample slurm script:
 #SBATCH --output=job.%J.out 	// name of output file
 #SBATCH --time=01:00:00    	// time required to execute the program
 #SBATCH --partition=debug 
+#SBATCH --mem=180G
 
 #// To load the package //
 source /home/apps/spack/share/spack/setup-env.sh
@@ -130,6 +131,8 @@ Note that the Slurm -J option is used to give the job a name.
 #!/bin/bash
 #SBATCH -p debug
 #SBATCH -J simple
+#SBATCH --mem=180G
+
 sleep 60
 Submit the job:  
 $ sbatch simple.sh
@@ -196,6 +199,8 @@ example: N1 -one node, N4 - four nodes. Instead of tmp here you can use the belo
 #SBATCH --output=job.%A_%a.out
 #SBATCH --time=01:00:00
 #SBATCH --partition=debug
+#SBATCH --mem=180G
+
 
 source /home/apps/spack/share/spack/setup-env.sh
 spack load intel-oneapi-compilers /nizifpn
@@ -272,6 +277,8 @@ Script for a Sequential Job
 #SBATCH --output=job.%J.out // name of output file
 #SBATCH --time=01:00:00    // time required to execute the program
 #SBATCH --partition=debug 
+#SBATCH --mem=180G
+
 
 #// To load the package //
 source /home/apps/spack/share/spack/setup-env.sh
@@ -290,7 +297,9 @@ Script for a Parallel OpenMP Job
 #SBATCH --error=job.%J.err    //  Name of error file
 #SBATCH --output=job.%J.out   // Name of output file
 #SBATCH --time=01:00:00       // Time take to execute the program 
-#SBATCH --partition=debug       
+#SBATCH --partition=debug   
+#SBATCH --mem=180G
+
 
 
 source /home/apps/spack/share/spack/setup-env.sh
@@ -355,6 +364,8 @@ Script for Hybrid Parallel Job – (MPI + OpenMP)
 #SBATCH --error=job.%J.err_16_node_48
 #SBATCH --output=job.%J.out_16_node_48
 #SBATCH --partition=debug
+#SBATCH --mem=180G
+
 
 # Load required package
 source /home/apps/spack/share/spack/setup-env.sh
@@ -389,7 +400,7 @@ Monitoring jobs on SLURM can be done using the command squeue.  The command sque
 
          JOBID  PARTITION   NAME      USER    ST  TIME  NODES  NODELIST(REASON)
 
-          106  debug    slurm-jo   user1   R   0:04    1     rpcn001
+          106  debug    slurm-jo   user1   R   0:04    1     cbcn0001
 
 The command `scontrol` provides even more detailed information about jobs and job steps.
 
@@ -527,11 +538,11 @@ The exit code of a job is captured by Slurm and saved as part of the job record.
 
 **Per user**
 
-- Every user will have a quota of 1TiB of soft limit in the HOME file system (/home) and 1 TiB of soft limit in the SCRATCH(/scratch) file system.
+- Every user will have a quota of 1TiB of soft limit in the HOME file system ($HOME) and 1 TiB of soft limit in the SCRATCH($SCRATCH) file system.
 
 - Users are recommended to copy their execution environment and input files to scratch file system ($SCRATCH) during job running and copy output data back to HOME area
 
-- File retention policy has been implemented on Lustre storage for the "/scratch" file system. After the jobs are completed, you need to store the data in /home. Users are requested to regularly back up their data from the /scratch directory. As per the policy, files stored in /scratch will be retained for only one week, after which they will be permanently deleted.
+- File retention policy has been implemented on Lustre storage for the "$SCRATCH" file system. After the jobs are completed, you need to store the data in $HOME. Users are requested to regularly back up their data from the $SCRATCH directory. As per the policy, files stored in $SCRATCH will be retained for only one week, after which they will be permanently deleted.
 
 
 **It is important to note:**

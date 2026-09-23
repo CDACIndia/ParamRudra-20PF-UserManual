@@ -33,6 +33,8 @@ Minimal GPU job script:
 #SBATCH --cpus-per-task=8
 #SBATCH --time=00:30:00
 #SBATCH --output=%x-%j.out
+#SBATCH --mem=180G
+
 
 source /home/apps/spack/share/spack/setup-env.sh
 spack load cuda /jlytfxg           
@@ -96,6 +98,8 @@ use `srun` to launch one process per GPU across nodes:
 #SBATCH --cpus-per-task=8
 #SBATCH --time=12:00:00
 #SBATCH --output=%x-%j.out
+#SBATCH --mem=180G
+
 
 
 source /home/apps/spack/share/spack/setup-env.sh

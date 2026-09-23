@@ -8,7 +8,7 @@ plugins:
   - with-pdf:
       enabled_if_env: ENABLE_PDF_EXPORT
       output_path: assets/PARAM-Rudra-20PF-User-Manual.pdf
-      cover_title: PARAM Rudra — 20 PetaFlop Supercomputer
+      cover_title: PARAM Rudra — 20 PetaFlop HPC System
       cover_subtitle: C-DAC · National Supercomputing Mission · User Manual
       author: C-DAC HPC Technologies
       copyright: C-DAC PARAM Rudra (20 PF) · National Supercomputing Mission

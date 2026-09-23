@@ -1,6 +1,6 @@
-site_name: C-DAC PARAM Rudra - 20 PetaFlop Supercomputer
+site_name: C-DAC PARAM Rudra - 20 PetaFlop HPC System
 site_description: >-
-  Official-style user guide for the C-DAC PARAM Rudra 20 PetaFlop supercomputer
+  Official-style user guide for the C-DAC PARAM Rudra 20 PetaFlop HPC System
   (National Supercomputing Mission) — access, environment, Spack, SLURM batch
   system, GPU computing, applications and data management.
 site_author: C-DAC HPC Technologies · PARAM Rudra (20 PF) · National Supercomputing Mission
@@ -11,7 +11,7 @@ repo_url: https://github.com/CDACIndia/ParamRudra-20PF-UserManual
 edit_uri: edit/main/docs/
 
 copyright: >-
-  C-DAC PARAM Rudra — 20 PetaFlop Supercomputer · National Supercomputing Mission.
+  C-DAC PARAM Rudra — 20 PetaFlop HPC System · National Supercomputing Mission.
   Community-maintained user guide; verify site-specific values with the C-DAC
   support desk (rudrasupport@cdac.in).
 
@@ -105,6 +105,7 @@ nav:
       - Resource Management: resource-management.md
       - Batch System (SLURM): batch.md
       - Job Script Examples: examples.md
+      
 
   - Software:
       - Modules & Conda: modules.md
@@ -134,6 +135,7 @@ nav:
       - Important Facts : important-facts.md
       - Debugging: debugging.md
       - Data Management: data.md
+      - Handling Large Files: largefiles.md
       - Policies: policies.md
       - Accounts & Acknowledgement: acknowledgement.md
       - FAQ & Support: support.md

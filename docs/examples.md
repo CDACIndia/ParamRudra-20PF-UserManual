@@ -33,6 +33,8 @@ the [hardware you confirmed](configuration.md#node-types-and-per-node-hardware).
 #SBATCH --cpus-per-task=1
 #SBATCH --time=01:00:00
 #SBATCH --output=%x-%j.out
+#SBATCH --mem=180G
+
 
 set -euo pipefail
 source /home/apps/spack/share/spack/setup-env.sh
@@ -54,6 +56,8 @@ cd $SCRATCH/serial_run
 #SBATCH --cpus-per-task=48        # threads = cores on the node
 #SBATCH --time=02:00:00
 #SBATCH --output=%x-%j.out
+#SBATCH --mem=180G
+
 
 set -euo pipefail
 source /home/apps/spack/share/spack/setup-env.sh
@@ -79,6 +83,8 @@ srun ./my_openmp_app
 #SBATCH --cpus-per-task=1
 #SBATCH --time=04:00:00
 #SBATCH --output=%x-%j.out
+#SBATCH --mem=180G
+
 
 set -euo pipefail
 source /home/apps/spack/share/spack/setup-env.sh
@@ -88,11 +94,6 @@ spack load openmpi@5.0.10 /cw7xezt
 cd $SCRATCH/mpi_run
 srun --cpu-bind=cores ./my_mpi_app
 ```
-
-!!! tip "Need many CPU nodes?"
-    The `cpu` partition allows **1 node per job**. For large multi-node MPI on
-    CPUs, discuss options with [support](support.md); multi-node scaling is
-    otherwise available on `gpu` (≤128 nodes) and `hm` (≤8 nodes).
 
 ## 4. Hybrid MPI + OpenMP
 
@@ -106,6 +107,8 @@ srun --cpu-bind=cores ./my_mpi_app
 #SBATCH --cpus-per-task=12        # 12 threads each -> 48 cores
 #SBATCH --time=06:00:00
 #SBATCH --output=%x-%j.out
+#SBATCH --mem=180G
+
 
 set -euo pipefail
 source /home/apps/spack/share/spack/setup-env.sh
@@ -133,6 +136,8 @@ srun --cpu-bind=cores ./my_hybrid_app
 #SBATCH --mem=0                   # request all memory on the node
 #SBATCH --time=1-00:00:00
 #SBATCH --output=%x-%j.out
+#SBATCH --mem=750G
+
 
 set -euo pipefail
 source /home/apps/spack/share/spack/setup-env.sh
@@ -156,6 +161,8 @@ srun ./memory_hungry_app large_input
 #SBATCH --cpus-per-task=8
 #SBATCH --time=02:00:00
 #SBATCH --output=%x-%j.out
+#SBATCH --mem=180G
+
 
 set -euo pipefail
 source /home/apps/spack/share/spack/setup-env.sh
@@ -179,6 +186,8 @@ srun ./my_gpu_app
 #SBATCH --cpus-per-task=8
 #SBATCH --time=12:00:00
 #SBATCH --output=%x-%j.out
+#SBATCH --mem=180G
+
 
 set -euo pipefail
 source /home/apps/spack/share/spack/setup-env.sh
@@ -208,6 +217,8 @@ srun python train_ddp.py
 #SBATCH --time=00:30:00
 #SBATCH --array=1-50%10           # 50 cases, 10 at a time
 #SBATCH --output=sweep-%A_%a.out
+#SBATCH --mem=180G
+
 
 set -euo pipefail
 source /home/apps/spack/share/spack/setup-env.sh

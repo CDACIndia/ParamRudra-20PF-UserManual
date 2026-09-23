@@ -46,6 +46,8 @@ or
 #SBATCH --gres=gpu:1           # Request 1 GPU device
 #SBATCH --output=cp2k.out
 #SBATCH --error=cp2k.err
+#SBATCH --mem=180G
+
 
 # 1. Initialize Spack
 . /home/apps/spack/share/spack/setup-env.sh

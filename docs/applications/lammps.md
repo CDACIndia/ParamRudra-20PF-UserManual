@@ -49,6 +49,8 @@ or
 #SBATCH --error=rfm_job.err
 #SBATCH --exclusive
 #SBATCH –partition=debug
+#SBATCH --mem=180G
+
 export SPACK_ROOT=/home/apps/spack
 . $SPACK_ROOT/share/spack/setup-env.sh
 spack load lammps /4dwl4bk
@@ -76,8 +78,4 @@ The standard `in.lj` 3-D Lennard-Jones melt is a common starting benchmark
 (available from the LAMMPS benchmarks page). Point the `-in` flag at your input
 deck.
 
-!!! tip "Scaling"
-    `cpu` is capped at 1 node on this system. For multi-node runs use `hm`
-    (≤8 nodes) or the `gpu` partition (with a GPU-enabled LAMMPS build), or ask
-    [support](../support.md). Keep `OMP_NUM_THREADS=1` unless you have tuned a
-    hybrid MPI+OpenMP configuration.
+

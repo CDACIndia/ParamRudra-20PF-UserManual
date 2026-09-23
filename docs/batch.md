@@ -22,30 +22,25 @@ finds nodes and runs your job when they are free.
 | `sacct -j <jobid>` | Accounting/history for a finished job |
 
 ## Partitions and limits
-
-| NAME        | Priority | Min Core/GPU | Max Core/GPU | Max Walltime (HH:MM:SS) | Max Queued Jobs per User | Max Running Job per User | Overall Running Jobs |
-|-------------|----------|--------------|--------------|--------------------------|--------------------------|--------------------------|----------------------|
-| debug       | 4800     | 01           | 192 (4 nodes) | 01:00:00               | 2                        | 1                        | 20                   |
-| terai       | 3400     | 480 (10 nodes) | 2400 (50 nodes) | 24:00:00            | 4                        | 2                        | 70                   |
-| shiwalik    | 3700     | 2448 (51 nodes) | 12288 (256 nodes) | 24:00:00          | 2                        | 1                        | 15                   |
-| himachal    | 4000     | 12336 (257 nodes) | 24576 (512 nodes) | 12:00:00        | 2                        | 1                        | 3                    |
-| himadri     | 5000     | 24624 (513 nodes) | 72000 (1500 nodes) | 06:00:00       | 1                        | 1                        | 1                    |
-| gpu-debug   | 4800     | 1            | 4            | 01:00:00                  | 2                        | 1                        | 20                   |
-| gpu-small   | 3400     | 10 (5 nodes) | 50 (25 nodes) | 24:00:00                | 4                        | 2                        | 20                   |
-| gpu-large   | 4000     | 52 (26 nodes) | 200 (100 nodes) | 12:00:00              | 2                        | 1                        | 3                    |
-| gpu-massive | 5000     | 202 (101 nodes) | 400 (200 nodes) | 06:00:00             | 1                        | 1                        | 1                    |
-| hm-small    | 3700     | 480 (10 nodes) | 2400 (50 nodes) | 24:00:00              | 3                        | 2                        | 5                    |
-| hm-large    | 4000     | 2448 (51 nodes) | 4800 (100 nodes) | 12:00:00             | 2                        | 1                        | 3                    |
+| Partition | Priority | Min Core / GPU | Max Core / GPU | Max Walltime | Max Queued / User | Max Running / User | Overall Running |
+|-----------|---------:|---------------:|---------------:|--------------|------------------:|-------------------:|----------------:|
+| **debug** | **4800** | 1 | **432** (9 nodes) | 01:00:00 | 4 | 2 | 40 |
+| **terai** | **3400** | **480** (10 nodes) | **2400** (50 nodes) | 24:00:00 | 16 | 8 | 140 |
+| **shiwalik** | **3700** | **2448** (51 nodes) | **12288** (256 nodes) | 24:00:00 | 4 | 2 | 30 |
+| **himachal** | **4000** | **12336** (257 nodes) | **24576** (512 nodes) | 12:00:00 | 4 | 2 | 6 |
+| **himadri** | **6000** | **24624** (513 nodes) | **72000** (1500 nodes) | 06:00:00 | 2 | 1 | 1 |
+| **gpu-debug** | **4800** | 1 | 4 | 01:00:00 | 4 | 2 | 40 |
+| **gpu-small** | **3400** | **10** (5 nodes) | **50** (25 nodes) | 24:00:00 | 8 | 4 | 40 |
+| **gpu-large** | **4000** | **52** (26 nodes) | **200** (100 nodes) | 12:00:00 | 4 | 2 | 6 |
+| **gpu-massive** | **5000** | **202** (101 nodes) | **400** (200 nodes) | 06:00:00 | 2 | 2 | 2 |
+| **hm-small** | **3700** | **480** (10 nodes) | **2400** (50 nodes) | 12:00:00 | 6 | 4 | 10 |
+| **hm-large** | **4000** | **2448** (51 nodes) | **4800** (100 nodes) | 24:00:00 | 4 | 2 | 6 |
 
 ```bash
 sinfo -s                          # quick partition summary
 scontrol show partition gpu-small       # authoritative limits, live
 ```
 
-
-!!! tip "Set an accurate walltime"
-    If you omit `--time`, your job gets only **2 hours** and will be killed when
-    it expires. Requesting *less* time also helps backfill schedule you sooner.
 
 ## Your account (`-A`) is mandatory
 
@@ -76,7 +71,7 @@ Create `job.slurm`:
 #SBATCH --time=02:00:00             # walltime HH:MM:SS (<= partition limit)
 #SBATCH --output=%x-%j.out          # stdout -> jobname-jobid.out
 #SBATCH --error=%x-%j.err           # stderr (omit to merge into .out)
-
+#SBATCH --mem=180G
 set -euo pipefail
 
 # 1) Reproducible environment

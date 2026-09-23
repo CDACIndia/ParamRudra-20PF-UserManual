@@ -2,8 +2,6 @@
 
  <https://nsm-cdac.community.forum> : Use the NSM Users Forum for discussions, sharing experiences, asking questions, and getting help from the NSM user community. Users can post their queries and participate in discussions to find solutions and share knowledge with other users.
 
-After the "Create a support ticket" section, add the following:
-
 ## Access the NSM Users Forum
 
 1. Open <https://nsm-cdac.community.forum> and click Register/Login.

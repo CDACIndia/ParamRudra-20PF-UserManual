@@ -116,6 +116,8 @@ conda activate <env_name>	# load working environment
 python <script>.py		# run python script
 conda deactivate 		# deactivate environment
 # end of script
+#SBATCH --mem=180G
+
 
 ```
 ## Pre-built ML/DL Conda environments

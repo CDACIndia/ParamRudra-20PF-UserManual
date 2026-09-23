@@ -202,6 +202,8 @@ Activate the environment inside the job, run, then deactivate:
 #SBATCH -t 05:00:00
 #SBATCH -o %j.out
 #SBATCH -e %j.err
+#SBATCH --mem=180G
+
 
 cd $SLURM_SUBMIT_DIR
 module purge

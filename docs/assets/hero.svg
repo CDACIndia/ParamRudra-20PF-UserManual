@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" role="img" aria-label="C-DAC PARAM Rudra 20 PetaFlop Supercomputer">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" role="img" aria-label="C-DAC PARAM Rudra 20 PetaFlop HPC System">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#141c47"/>
@@ -38,7 +38,7 @@
 
   <!-- subtitle -->
   <text x="64" y="224" font-family="Segoe UI, Arial, sans-serif" font-size="26" fill="#dfe6ff"
-        font-weight="500">20 PetaFlop Supercomputer &#8212; User Manual</text>
+        font-weight="500">20 PetaFlop HPC System &#8212; User Manual</text>
 
   <!-- stat chips -->
   <g font-family="Segoe UI, Arial, sans-serif">

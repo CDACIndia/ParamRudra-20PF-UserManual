@@ -170,6 +170,8 @@ Once we’ve specified a package’s recipe, users of our recipe can ask Spack t
 #SBATCH -p debug        # debug/gpu-small/debug
 #SBATCH --exclusive
 #SBATCH -t 1:00:00
+#SBATCH --mem=180G
+
 
 
 echo "SLURM_JOBID = $SLURM_JOBID"
@@ -209,6 +211,8 @@ export OMP_PLACES=cores
 #SBATCH --ntasks-per-node=48
 #SBATCH -t 01:00:00
 #SBATCH -o %x-%j.out
+#SBATCH --mem=180G
+
 
 export SPACK_ROOT=/home/apps/spack
 . $SPACK_ROOT/share/spack/setup-env.sh

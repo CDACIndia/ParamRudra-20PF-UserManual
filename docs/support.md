@@ -1,6 +1,6 @@
 # FAQ & Support
 
-# Getting Help – PARAM Rudra Support  
+## Getting Help – PARAM Rudra Support  
 
 The PARAM Rudra Support Center is the official helpdesk portal for reporting issues, requesting assistance, and tracking the status of support requests related to the PARAM Rudra High Performance Computing (HPC) system. It is provided under the National Supercomputing Mission by C-DAC.
 
@@ -127,21 +127,6 @@ To provide more information or respond to a support agent, type your message in 
 ### 8. Need Further Help?
 
 If you are unable to access the Support Center, or need urgent assistance outside the ticketing system, contact the PARAM Rudra team at <rudrasupport@cdac.in>
-
-## system Usage Policy
-
-Please read and follow them:
-
-!!! Data retention
-    
-    Regularly back up your data in the /home and /scratch directories.
-    Files in /scratch that are not accessed for one week are permanently deleted.
-
-
-!!! Login node rules
-    Do not run jobs on the login node — doing so results in termination without prior notice.
-    Use the srun command on login06, login07, or login08 for interactive/test runs.
-    Internet access is available only on login01, login02, and login03.
 
 
 

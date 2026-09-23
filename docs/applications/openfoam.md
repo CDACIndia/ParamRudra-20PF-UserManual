@@ -60,6 +60,8 @@ or
 #SBATCH --error=rfm_job.err
 #SBATCH --exclusive
 #SBATCH --partition=debug
+#SBATCH --mem=180G
+
 
 
 # 1. Initialize Spack

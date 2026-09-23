@@ -15,7 +15,7 @@ prompt like:
 The `(base)` prefix indicates that a **Conda base environment** is active by
 default (see [Conda / Python](#conda-and-python) below).
 
-Customise your environment through the usual bash startup files in `/home`:
+Customise your environment through the usual bash startup files in `$HOME`:
 
 - `~/.bashrc` — interactive shell settings, aliases, `module load` lines you
   want every session.
@@ -69,7 +69,7 @@ cp -r /home/apps/Docs/samples/ ~/
 ```
 
 !!! danger "Back up your data"
-    `/scratch` is purged and neither filesystem should be treated as an archive.
+    `$SCRATCH` is purged and neither filesystem should be treated as an archive.
     Regularly copy results you cannot regenerate to your own institutional
     storage. See [Data Management](data.md).
 
@@ -152,8 +152,7 @@ A user using the ‘Windows’ operating system will have access to methods and 
 their terminal. Here’s how:
 
 ```bash 
-scp -r -P 4422 -i ~.ssh/id_rsa <path to the local data directory> <username>@paramrudra.cdacb.in:<path to directory on HPC where to save the data>
-
+scp -r -P 4422 -i ~.ssh/id_rsa -o ServerAliveInterval=60 -o ServerAliveCountMax=10 <path to the local data directory> <username>@paramrudra.cdacb.in:<path to directory on HPC where to save the data>
 ```
 
 **Note:** use port 4422 for your system.
@@ -194,7 +193,7 @@ Click “Advanced...” in the Login window, then go to SSH → Authentication. 
 
 ## Step 3: Browse to the private key file
 
-![alt text](scp3.png)Under “Authentication parameters”, click the “...” button next to “Private key file” and browse to the key on the local machine, then select it (for example id_ed25519_ood-generated) and click Open.
+Under “Authentication parameters”, click the “...” button next to “Private key file” and browse to the key on the local machine, then select it (for example id_ed25519_ood-generated) and click Open.
 
 ![WinSCP](assets/img/scp3.png){loading=lazy}
 

@@ -56,6 +56,8 @@ or
 #SBATCH --error=rfm_job.err
 #SBATCH --exclusive
 #SBATCH --partition=debug
+#SBATCH --mem=180G
+
 spack load namd/syvixe4
 export OMP_NUM_THREADS=1
 tar -xvf apoa1.tar.gz
