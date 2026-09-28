@@ -114,7 +114,7 @@ nav:
       - HPC Apptainer Scripts: apptainer_slurmscript.md
       - Building Software: building.md
       - Tools:
-          - Knit.sh: knit1.md
+          - Knit.sh: knit.md
 
 
   - GPU & AI:
