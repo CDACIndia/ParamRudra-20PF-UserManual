@@ -50,7 +50,7 @@ or
 
 
 # 1. Initialize Spack
-. /home/apps/spack/share/spack/setup-env.sh
+source /home/apps/spack/share/spack/setup-env.sh
 
 # 2. Load CP2K
 spack load cp2k/i55m5p3

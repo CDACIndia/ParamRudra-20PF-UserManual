@@ -113,6 +113,9 @@ nav:
       - HPC Containers: apptainer.md
       - HPC Apptainer Scripts: apptainer_slurmscript.md
       - Building Software: building.md
+      - Tools:
+          - Knit.sh: knit.md
+
 
   - GPU & AI:
       - GPU Computing: gpu.md
@@ -129,6 +132,7 @@ nav:
       - Nwchem : applications/nwchem.md
       - Cp2k : applications/cp2k.md
       - Quantum Chemistry & Others: applications/quantum-chemistry.md
+      - VASP: applications/vasp.md
 
   - User Guide:
       - Best Practices & Performance: best-practices.md

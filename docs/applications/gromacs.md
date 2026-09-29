@@ -65,7 +65,7 @@ or
 #SBATCH --partition=debug
 #SBATCH --mem=180G
 
-
+source /home/apps/spack/share/spack/setup-env.sh
 
 # Load required packages
 spack load gromacs/pvlg3o7

@@ -58,12 +58,17 @@ scheduling and usage reporting.
 | **shiwalik** | **3700** | **2448** (51 nodes) | **12288** (256 nodes) | 24:00:00 | 4 | 2 | 30 |
 | **himachal** | **4000** | **12336** (257 nodes) | **24576** (512 nodes) | 12:00:00 | 4 | 2 | 6 |
 | **himadri** | **6000** | **24624** (513 nodes) | **72000** (1500 nodes) | 06:00:00 | 2 | 1 | 1 |
-| **gpu-debug** | **4800** | 1 | 4 | 01:00:00 | 4 | 2 | 40 |
+| **gpu-debug** | **4800** | **1** GPU card | **8** GPU Cards(4 nodes) | 01:00:00 | 4 | 2 | 40 |
 | **gpu-small** | **3400** | **10** (5 nodes) | **50** (25 nodes) | 24:00:00 | 8 | 4 | 40 |
 | **gpu-large** | **4000** | **52** (26 nodes) | **200** (100 nodes) | 12:00:00 | 4 | 2 | 6 |
 | **gpu-massive** | **5000** | **202** (101 nodes) | **400** (200 nodes) | 06:00:00 | 2 | 2 | 2 |
 | **hm-small** | **3700** | **480** (10 nodes) | **2400** (50 nodes) | 12:00:00 | 6 | 4 | 10 |
 | **hm-large** | **4000** | **2448** (51 nodes) | **4800** (100 nodes) | 24:00:00 | 4 | 2 | 6 |
+
+!!! Source
+    PARAM Rudra Queue & Partition Policy · figures shown per compute-node core count, GPU partitions counted in GPU units
+!!! Note    
+    Each node has 48 cores. Please utilize the maximum available cores when submitting jobs to the partition.
 
 - Request only the resources and walltime you need — over-requesting wastes the
   allocation and lengthens your own queue wait.

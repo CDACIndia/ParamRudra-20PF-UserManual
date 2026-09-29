@@ -46,8 +46,8 @@ or
 #SBATCH --partition=debug
 #SBATCH --mem=180G
 
-export SPACK_ROOT=/home/apps/spack
-. $SPACK_ROOT/share/spack/setup-env.sh
+source /home/apps/spack/share/spack/setup-env.sh
+
 spack load wrf@4.7.1
 export OMP_NUM_THREADS=1
 #wget https://www2.mmm.ucar.edu/wrf/users/benchmark/v422/v42_bench_conus2.5km.tar.gz

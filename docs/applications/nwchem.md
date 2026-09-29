@@ -50,6 +50,8 @@ or
 #SBATCH --partition=debug
 #SBATCH --mem=180G
 
+source /home/apps/spack/share/spack/setup-env.sh
+
 spack load nwchem/zsq4xv3
 spack load intel-oneapi-mpi/ptyduik
 time \

@@ -65,7 +65,7 @@ or
 
 
 # 1. Initialize Spack
-. /home/apps/spack/share/spack/setup-env.sh
+source /home/apps/spack/share/spack/setup-env.sh
 
 # 2. Load ONLY OpenFOAM (Spack will load the correct MPI dependency automatically)
 spack load openfoam/q5jbckq

@@ -58,6 +58,8 @@ or
 #SBATCH --partition=debug
 #SBATCH --mem=180G
 
+source /home/apps/spack/share/spack/setup-env.sh
+
 spack load namd/syvixe4
 export OMP_NUM_THREADS=1
 tar -xvf apoa1.tar.gz

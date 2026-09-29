@@ -51,8 +51,8 @@ or
 #SBATCH –partition=debug
 #SBATCH --mem=180G
 
-export SPACK_ROOT=/home/apps/spack
-. $SPACK_ROOT/share/spack/setup-env.sh
+source /home/apps/spack/share/spack/setup-env.sh
+
 spack load lammps /4dwl4bk
 spack load intel-oneapi-mpi/ptyduik
 

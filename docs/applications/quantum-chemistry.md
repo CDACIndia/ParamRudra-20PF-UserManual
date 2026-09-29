@@ -17,6 +17,8 @@ Site: <https://www.nwchem-sw.org/>.
 #SBATCH --partition=debug
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=48
+source /home/apps/spack/share/spack/setup-env.sh
+
 spack load nwchem
 spack load intel-oneapi-mpi
 time mpirun -np $SLURM_NTASKS nwchem input.nw
@@ -32,6 +34,9 @@ Multiconfigurational quantum chemistry. Site: <https://www.molcas.org/>.
 #SBATCH --ntasks-per-node=12
 #SBATCH -t 24:00:00
 module load miniconda/26.7.0
+
+source /home/apps/spack/share/spack/setup-env.sh
+
 spack load openmolcas
 pymolcas grid.inp > grid.out
 ```
