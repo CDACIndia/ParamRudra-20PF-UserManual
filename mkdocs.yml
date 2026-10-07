@@ -115,6 +115,7 @@ nav:
       - Building Software: building.md
       - Tools:
           - Knit.sh: knit.md
+          - SYCL: sycl.md
 
 
   - GPU & AI:
